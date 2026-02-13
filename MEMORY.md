@@ -94,3 +94,15 @@
 **Root cause:** `channels.telegram.accounts.main.streamMode` and `accounts.config.streamMode` override top-level.
 **Fix:** Set `"streamMode": "block"` on both `main` and `config` account objects.
 **Restart required:** `openclaw gateway restart` after config change.
+
+### Telegram Fragmentation Unresolved (2026-02-12)
+**Problem:** Messages STILL fragment despite `streamMode: "off"` at all levels (top-level + accounts).
+**Tried:** `partial` → `block` → `off` - no change.
+**Suspected causes:** Block streaming at agent level, message queue settings, or deeper OpenClaw bug.
+**Next step:** Search OpenClaw issues or try clean restart without streaming configs.
+
+### Config Validation is Strict (2026-02-12)
+**Mistake:** Added `blockStreaming: true` (should be `"on"`/`"off"`) and `blockStreamingDefault: "off"`.
+**Result:** Gateway crashed on restart.
+**Fix:** Reverted via `openclaw doctor --non-interactive`.
+**Rule:** Always verify config values against official docs before adding. Invalid values crash gateway.
