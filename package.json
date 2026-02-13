@@ -13,6 +13,7 @@
     "@azure/identity": "^4.13.0",
     "@azure/msal-node": "^5.0.4",
     "@lancedb/lancedb": "^0.26.2",
-    "axios": "^1.13.5"
+    "axios": "^1.13.5",
+    "playwright": "^1.58.2"
   }
 }

@@ -55,6 +55,7 @@
 1. **AI Cost Tracker** - `/home/legion/.openclaw/workspace/ai-cost-tracker/` - CLI cost logging, 28-model pricing
 2. **Nightly Business Briefing** - Multi-AI council (LeadAnalyst + 4 personas), playbook-integrated
 3. **RAG Knowledge Base** - `/home/legion/.openclaw/workspace/rag-kb/` - Auto-indexes `knowledge/playbook/*.md`
+4. **Mission Control** - Dashboard at `/home/legion/.openclaw/workspace/openclaw-dashboard/dist/` - serves sessions.json + cron.json
 
 ### Hamono Cron Issues (2026-02-12, Updated 2026-02-12)
 - Gateway timeouts due to memory-lancedb crash (FIXED)
@@ -95,11 +96,43 @@
 **Fix:** Set `"streamMode": "block"` on both `main` and `config` account objects.
 **Restart required:** `openclaw gateway restart` after config change.
 
-### Telegram Fragmentation Unresolved (2026-02-12)
-**Problem:** Messages STILL fragment despite `streamMode: "off"` at all levels (top-level + accounts).
-**Tried:** `partial` → `block` → `off` - no change.
-**Suspected causes:** Block streaming at agent level, message queue settings, or deeper OpenClaw bug.
-**Next step:** Search OpenClaw issues or try clean restart without streaming configs.
+### Telegram Fragmentation Fix (2026-02-13)
+**Problem:** Messages breaking up at every newline.
+**Root cause:** `chunkMode: "newline"` splits at every newline character.
+**Fix:** Changed `chunkMode` to `"length"` with `textChunkLimit: 100000` (effectively disables splitting for normal messages).
+**Note:** `chunkMode` only accepts "length" or "newline" - no "off" option. Use "length" with high limit instead.
+
+### Workspace Overview (2026-02-13)
+**Projects in `/home/legion/.openclaw/workspace/`:**
+- **apexform** - Flutter fitness app (main production), Firebase backend, 35 directories
+- **hamono** - Flutter game, test coverage ~15-20%, feature issues #23-27 open
+- **shootrebook** - React app, Stripe integrated, testing in progress
+- **stitchai** - React+AI app, Firebase, Cypress/Playwright tests
+- **ai-cost-tracker** - CLI tool for API cost tracking (28 models)
+- **business-briefing** - Multi-AI council for nightly briefings
+- **rag-kb** - Auto-indexes knowledge/playbook/*.md
+- **openclaw-dashboard** - Dashboard UI for OpenClaw sessions/cron
+
+**Playbook Location:** `/home/legion/.openclaw/workspace/knowledge/playbook/`
+- 01_issue_management.md - Auto-develop rules, Kyle response checker workflow
+- 02_cron_jobs_definitions.md - Cron definitions
+- 03_communication_channels.md - Channel configs
+- 04_api_configurations.md - API keys
+- 05_memory_system.md - Memory system docs
+
+### Dev Workflow (2026-02-13)
+1. Agents investigate → implement → test → commit → create PR
+2. Tag @krobinsonca in GitHub issues when decision needed
+3. Kyle response checker polls every 5min for responses
+4. Agents continue working after tagging, don't wait
+
+### Current Active Cron Jobs (2026-02-13)
+- hamono tests
+- shootrebook tests  
+- stitchai tests
+- apexform tests
+- Dashboard JSON refresh (sessions + cron)
+- Kyle response checker (5min interval)
 
 ### Config Validation is Strict (2026-02-12)
 **Mistake:** Added `blockStreaming: true` (should be `"on"`/`"off"`) and `blockStreamingDefault: "off"`.
