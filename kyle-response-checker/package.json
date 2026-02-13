@@ -1,0 +1,14 @@
+{
+  "name": "kyle-response-checker",
+  "version": "1.0.0",
+  "description": "Check GitHub for responses from @krobinsonca and resume agent work",
+  "main": "check-kyle-responses.js",
+  "scripts": {
+    "check": "node check-kyle-responses.js",
+    "check:all": "node check-kyle-responses.js --all",
+    "daemon": "node check-kyle-responses.js --daemon"
+  },
+  "keywords": ["github", "agent", "workflow"],
+  "author": "Legion",
+  "license": "MIT"
+}
