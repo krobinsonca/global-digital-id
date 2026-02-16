@@ -50,4 +50,73 @@ All repository jobs now include a **"break-everything" chaos phase** after regul
 
 ---
 
+## Common Issues & Auto-Fix Procedures
+
+### 🔴 App Stuck on Loading Screen (Firebase Config Missing)
+
+**Symptom:** App hangs on loading spinner, no UI renders, no console errors.
+
+**Root Cause:** Production build missing Firebase environment variables.
+
+**Auto-Fix:**
+1. Check `.github/workflows/*-deploy.yml` for missing env vars in build step
+2. Add Firebase config from secrets:
+   ```yaml
+   - name: Build application
+     run: npm run build  # or flutter build web
+     env:
+       CI: false
+       FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+       FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+       FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+       # ... other vars
+   ```
+3. Rebuild and redeploy
+
+**Verification:** Check built JS for `undefined` values: `grep -o "apiKey:void 0" build/**/*.js`
+
+### ⚠️ Test Compilation Errors (Flutter/Dart)
+
+**Symptom:** Tests fail to compile, not runtime failures.
+
+**Common Causes:**
+1. **CardTheme → CardThemeData** - Flutter API changes
+2. **google_fonts incompatibility** - Package version mismatch
+3. **Type mismatches** - Tests use old types (Set vs Map)
+4. **Missing providers** - Tutorial controllers, etc.
+
+**Auto-Fix:**
+```bash
+# Run analyze to find errors
+flutter analyze lib/
+
+# Common fixes:
+# 1. Update deprecated APIs
+sed -i 's/CardTheme(/CardThemeData(/g' lib/**/*.dart
+
+# 2. Fix type mismatches in tests
+sed -i 's/Set<ApprenticeType>/Map<ApprenticeType, HiredApprentice>/g' test/**/*.dart
+
+# 3. Update google_fonts (check compatibility first)
+flutter pub upgrade google_fonts
+```
+
+### 🟠 PWA State Not Persisted
+
+**Symptom:** Refresh returns to welcome screen, state resets.
+
+**Auto-Fix:**
+1. Check SharedPreferences implementation for web
+2. Verify IndexedDB fallback for web platform
+3. Check GoRouter configuration for deep linking
+
+### 🟠 URL Routing Broken (Deep Links Show Home)
+
+**Auto-Fix:**
+1. Check `web/index.html` for `<base href>`
+2. Verify GoRouter `staticLink` configuration
+3. Check Firebase Hosting rewrites in `firebase.json`
+
+---
+
 *Keep this file handy when adding, removing, or modifying scheduled tasks.*
