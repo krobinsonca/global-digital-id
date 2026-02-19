@@ -1,0 +1,6 @@
+[
+  { "name": "OpenClaw Gateway", "status": "up", "port": 18789, "lastCheck": 1771458000000 },
+  { "name": "Mission Control Dashboard", "status": "up", "port": 3000, "lastCheck": 1771458000000, "url": "http://192.168.0.205:3000" },
+  { "name": "Local LLM Server", "status": "up", "port": 1234, "lastCheck": 1771458000000 },
+  { "name": "Crypto Trader", "status": "up", "port": 5174, "lastCheck": 1771458000000, "url": "http://192.168.0.205:5174" }
+]
