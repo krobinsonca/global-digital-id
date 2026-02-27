@@ -135,8 +135,8 @@
       
       // Legend
       document.getElementById('legend').innerHTML = `
-        <div class="legend-item"><span class="legend-dot prod"></span> Production/Live</div>
-        <div class="legend-item"><span class="legend-dot spec"></span> Specification/Planning</div>
+        <div class="legend-item"><span class="legend-dot prod"></span> Production</div>
+        <div class="legend-item"><span class="legend-dot spec"></span> In Development</div>
       `;
       
       renderFilters();
@@ -149,8 +149,8 @@
         <span class="filter-label">Status:</span>
         <div class="filter-group">
           <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="production">Live</button>
-          <button class="filter-btn" data-filter="specification">Spec</button>
+          <button class="filter-btn" data-filter="production">Production</button>
+          <button class="filter-btn" data-filter="development">In Development</button>
         </div>
         <span class="filter-label">Region:</span>
         <div class="filter-group">
@@ -190,7 +190,7 @@
               </div>
             </div>
             <div class="card-badges">
-              <span class="badge ${j.status === 'production' ? 'badge-prod' : 'badge-spec'}">${j.status === 'production' ? 'Live' : j.status === 'specification' ? 'Spec' : j.status}</span>
+              <span class="badge ${j.status === 'production' ? 'badge-prod' : 'badge-spec'}">${j.status === 'production' ? 'Live' : 'Dev'}</span>
               ${j.isSubnational ? '<span class="badge badge-sub">Sub</span>' : ''}
             </div>
           </div>
