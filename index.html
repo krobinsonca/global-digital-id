@@ -124,8 +124,21 @@
     function initApp() {
       document.getElementById('pageTitle').textContent = appData.meta.title;
       document.getElementById('pageSubtitle').textContent = appData.meta.description;
-      document.getElementById('statsBar').innerHTML = appData.stats.countries ? 
-        '<div class="stat"><span class="stat-value">'+appData.stats.countries+'</span><span class="stat-label">Countries</span></div>' : '';
+      
+      // Stats
+      const stats = appData.stats;
+      let statsHtml = '';
+      if (stats.countries) statsHtml += '<div class="stat"><span class="stat-value">'+stats.countries+'</span><span class="stat-label">Countries</span></div>';
+      if (stats.subnationals) statsHtml += '<div class="stat"><span class="stat-value">'+stats.subnationals+'</span><span class="stat-label">Subnationals</span></div>';
+      if (stats.euDeadline) statsHtml += '<div class="stat"><span class="stat-value">'+stats.euDeadline+'</span><span class="stat-label">EU Deadline</span></div>';
+      document.getElementById('statsBar').innerHTML = statsHtml;
+      
+      // Legend
+      document.getElementById('legend').innerHTML = `
+        <div class="legend-item"><span class="legend-dot prod"></span> Production/Live</div>
+        <div class="legend-item"><span class="legend-dot spec"></span> Specification/Planning</div>
+      `;
+      
       renderFilters();
       renderCards();
     }
@@ -165,7 +178,8 @@
         if (a.isSubnational && a.parent !== b.parent) return a.parent.localeCompare(b.parent);
         return a.name.localeCompare(b.name);
       });
-      document.getElementById('cards').innerHTML = filtered.map(j => `
+      
+      document.getElementById('cards').innerHTML = `<div style="grid-column: 1/-1; margin-bottom: 12px; color: var(--text-dim); font-size: 0.75rem;">Showing ${filtered.length} jurisdictions</div>` + filtered.map(j => `
         <div class="card ${j.isSubnational ? 'is-subnational' : ''}" onclick="openModal('${j.name.replace(/'/g, "\\'")}')">
           <div class="card-header">
             <div class="card-title-group">
@@ -176,7 +190,7 @@
               </div>
             </div>
             <div class="card-badges">
-              <span class="badge ${j.status === 'production' ? 'badge-prod' : 'badge-spec'}">${j.status === 'production' ? 'Live' : 'Spec'}</span>
+              <span class="badge ${j.status === 'production' ? 'badge-prod' : 'badge-spec'}">${j.status === 'production' ? 'Live' : j.status === 'specification' ? 'Spec' : j.status}</span>
               ${j.isSubnational ? '<span class="badge badge-sub">Sub</span>' : ''}
             </div>
           </div>
