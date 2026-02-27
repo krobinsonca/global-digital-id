@@ -19,12 +19,12 @@
       "status": "production",
       "issuanceModel": "cloud",
       "isSubnational": false,
-      "url": "https://www.mygov.id.gov.au/",
-      "technology": "Cloud-native federated identity",
-      "description": "Federal system. One myGov ID per person. Cloud-based.",
-      "details": ["Cloud-linked identity", "States have additional programs"],
-      "nodevice": ["myGov centres"],
-      "metrics": [{"label": "System", "value": "Federal"}]
+      "url": "https://www.myid.gov.au/",
+      "technology": "Cloud-native federated identity (myID)",
+      "description": "Federal system. Voluntary myID for 76+ services. Cloud-based. States have additional programs.",
+      "details": ["myID app", "Identity strength levels (Basic/Standard/High)", "Facial verification", "76+ services as of Jan 2025"],
+      "nodevice": ["myGov service centres", "In-person proofing with passport/ID"],
+      "metrics": [{"label": "Services", "value": "76+"}]
     },
     {
       "name": "Brazil",
@@ -33,26 +33,26 @@
       "status": "production",
       "issuanceModel": "single",
       "isSubnational": false,
-      "url": "https://www.gov.br/",
-      "technology": "Physical card with QR + mobile app",
-      "description": "Since 2017. One RG per person with digital version.",
-      "details": ["One RG per person", "Digital in app", "QR on card"],
-      "nodevice": ["Physical + QR"],
-      "metrics": [{"label": "Since", "value": "2017"}]
+      "url": "https://www.gov.br/ids/",
+      "technology": "Gov.br 3-tier system + new national ID card with QR",
+      "description": "Since 2017. New national ID (Carteira de Identidade Nacional) replacing RG. 153M Gold accounts.",
+      "details": ["New national ID with QR", "Gov.br accounts (Bronze/Silver/Gold)", "153M Gold users", "250M authentications/month"],
+      "nodevice": ["Physical RG (old)", "NIN slip"],
+      "metrics": [{"label": "Gold users", "value": "153M"}, {"label": "Auth/Mo", "value": "250M"}]
     },
     {
       "name": "China",
       "flag": "cn",
       "region": "apac",
       "status": "production",
-      "issuanceModel": "single",
+      "issuanceModel": "cloud",
       "isSubnational": false,
-      "url": "https://www.gov.cn/",
-      "technology": "Centralized with facial recognition",
-      "description": "Launched July 2025. One online ID per person.",
-      "details": ["One online ID", "WeChat integration"],
-      "nodevice": ["Physical ID card"],
-      "metrics": [{"label": "Launch", "value": "Jul 2025"}]
+      "url": "https://www.mps.gov.cn/",
+      "technology": "Cyber ID / Web ID (voluntary)",
+      "description": "Launched July 2025. Voluntary online identity linked to physical ID. 16M users as of June 2025.",
+      "details": ["Voluntary (not mandatory)", "Linked to physical ID card", "WeChat/Taobao integration", "16M users Jun 2025"],
+      "nodevice": ["Physical ID card (required)"],
+      "metrics": [{"label": "Launch", "value": "Jul 2025"}, {"label": "Users", "value": "16M"}]
     },
     {
       "name": "Estonia",
@@ -118,11 +118,11 @@
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.gov.il/",
-      "technology": "Biometric smart cards + mobile app",
-      "description": "Digital Identity Readiness Score 79/100.",
-      "details": ["One per person", "Biometric card", "Mobile app"],
-      "nodevice": ["Physical biometric card"],
-      "metrics": [{"label": "Score", "value": "79/100"}]
+      "technology": "Biometric smart cards + government portal",
+      "description": "Teudat Zehut (ID card) mandatory. Digital services via gov.il portal.",
+      "details": ["One per person (mandatory)", "Biometric ID card", "Gov.il digital services"],
+      "nodevice": ["Physical ID card"],
+      "metrics": [{"label": "Card", "value": "Mandatory"}]
     },
     {
       "name": "Kenya",
@@ -145,12 +145,12 @@
       "status": "production",
       "issuanceModel": "single",
       "isSubnational": false,
-      "url": "https://www.digital.gov.my/",
+      "url": "https://www.digital-id.my/",
       "technology": "PKI-based with centralized registration",
-      "description": "Targeting 15M users by end 2025.",
-      "details": ["One per person", "Mobile app", "FIDO2 support"],
-      "nodevice": ["Government kiosks"],
-      "metrics": [{"label": "Target", "value": "15M"}]
+      "description": "Targeting 15M users by end 2025. Mandatory for telcos from Dec 2025, government services from 2026.",
+      "details": ["One per person", "Mobile app", "FIDO2 support", "Required for telco apps Dec 2025"],
+      "nodevice": ["Government kiosks", "Face-to-face verification"],
+      "metrics": [{"label": "Target", "value": "15M"}, {"label": "Mandate", "value": "2026"}]
     },
     {
       "name": "Nigeria",
@@ -243,12 +243,12 @@
       "status": "production",
       "issuanceModel": "multiple",
       "isSubnational": false,
-      "url": "https://www.bankid.com/",
+      "url": "https://www.bankid.com/en/",
       "technology": "Bank-issued PKI certificates",
-      "description": "8M+ users. Multiple BankIDs per person.",
-      "details": ["Multiple BankIDs", "Cross-platform", "Bank-issued"],
-      "nodevice": ["Physical ID cards"],
-      "metrics": [{"label": "Users", "value": "8M+"}]
+      "description": "94% of smartphone users. 7.6B transactions in 2024. Multiple BankIDs per person common.",
+      "details": ["Multiple BankIDs per person", "Cross-platform (mobile/desktop)", "Bank-issued", "7.6B uses in 2024"],
+      "nodevice": ["Physical ID cards (passport/ID card)"],
+      "metrics": [{"label": "Users", "value": "94% smartphone"}, {"label": "Uses 2024", "value": "7.6B"}]
     },
     {
       "name": "Taiwan",
@@ -420,10 +420,10 @@
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
-      "url": "https://www.expresslane.org/",
-      "technology": "Mobile Driver License (ISO 18013-5)",
-      "description": "First state mDL (2018). Mobile-first.",
-      "details": ["One mDL per person"],
+      "url": "https://lawallet.com/",
+      "technology": "Mobile Driver License (LA Wallet app)",
+      "description": "First state mDL (2018). Now accepted at TSA + federal buildings.",
+      "details": ["One mDL per person", "LA Wallet app", "Apple + Google Play"],
       "nodevice": ["Physical license"],
       "metrics": [{"label": "Since", "value": "2018"}]
     },
