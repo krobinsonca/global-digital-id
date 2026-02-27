@@ -4,739 +4,207 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Digital ID Landscape</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0c0c0f;
-      --bg-elevated: #141418;
-      --bg-card: #1a1a1f;
-      --bg-hover: #222228;
-      --border: #2a2a32;
-      --text: #e8e8ec;
-      --text-dim: #8a8a96;
-      --text-mute: #5a5a66;
-      --accent: #e8c547;
-      --success: #4ade80;
-      --warning: #fbbf24;
-      --info: #60a5fa;
-      --radius: 6px;
-      --radius-lg: 12px;
-    }
-
+    :root { --bg: #0c0c0f; --bg-elevated: #141418; --bg-card: #1a1a1f; --bg-hover: #222228; --border: #2a2a32; --text: #e8e8ec; --text-dim: #8a8a96; --text-mute: #5a5a66; --accent: #e8c547; --success: #4ade80; --warning: #fbbf24; --info: #60a5fa; --radius: 6px; --radius-lg: 12px; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
     .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px; }
-
     header { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-
     h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
-
-    .subtitle { color: var(--text-dim); font-size: 0.95rem; max-width: 550px; }
-
-    .stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
+    .subtitle { color: var(--text-dim); font-size: 0.95rem; }
+    .stats { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
     .stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; display: flex; align-items: center; gap: 10px; }
-
     .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--accent); }
-
     .stat-label { font-size: 0.65rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.05em; }
-
-    /* Compact Filters */
-    .filters-bar {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .filter-group {
-      display: flex;
-      gap: 3px;
-      background: var(--bg-elevated);
-      padding: 3px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-    }
-
-    .filter-btn {
-      padding: 5px 10px;
-      background: transparent;
-      border: none;
-      border-radius: 4px;
-      color: var(--text-dim);
-      font-family: inherit;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
+    .filters-bar { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+    .filter-group { display: flex; gap: 3px; background: var(--bg-elevated); padding: 3px; border-radius: var(--radius); border: 1px solid var(--border); }
+    .filter-btn { padding: 5px 10px; background: transparent; border: none; border-radius: 4px; color: var(--text-dim); font-family: inherit; font-size: 0.7rem; cursor: pointer; }
     .filter-btn:hover { color: var(--text); }
-
     .filter-btn.active { background: var(--accent); color: var(--bg); font-weight: 500; }
-
-    .filter-label {
-      font-size: 0.65rem;
-      color: var(--text-mute);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-right: 4px;
-    }
-
+    .filter-label { font-size: 0.65rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px; }
     .legend { display: flex; gap: 14px; margin-bottom: 16px; font-size: 0.7rem; color: var(--text-dim); }
-
     .legend-item { display: flex; align-items: center; gap: 5px; }
-
     .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-
     .legend-dot.prod { background: var(--success); }
     .legend-dot.spec { background: var(--warning); }
-
-    /* Cards Grid */
     .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 36px; }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; cursor: pointer; transition: all 0.2s; }
     .card:hover { border-color: var(--accent); transform: translateY(-1px); }
-
     .card.is-subnational { margin-left: 16px; border-left: 3px solid var(--info); }
-
     .card-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
-
     .card-title-group { display: flex; align-items: center; gap: 8px; }
-
     .card-flag { width: 28px; height: 19px; border-radius: 2px; object-fit: cover; }
-
     .card-title { font-weight: 600; font-size: 0.9rem; }
-
     .card-subtitle { font-size: 0.7rem; color: var(--text-dim); }
-
     .card-badges { display: flex; gap: 3px; }
-
     .badge { padding: 2px 6px; border-radius: 8px; font-size: 0.55rem; font-weight: 500; text-transform: uppercase; }
-
     .badge-prod { background: rgba(74, 222, 128, 0.15); color: var(--success); }
     .badge-spec { background: rgba(251, 191, 36, 0.15); color: var(--warning); }
     .badge-sub { background: rgba(96, 165, 250, 0.15); color: var(--info); }
-    .badge-1id { background: var(--bg-hover); color: var(--text-dim); }
-    .badge-multi { background: rgba(74, 222, 128, 0.1); color: var(--success); }
-    .badge-cloud { background: rgba(251, 191, 36, 0.1); color: var(--warning); }
-
     .card-model { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 8px; padding: 5px 7px; background: var(--bg-hover); border-radius: 4px; }
-
     .card-model strong { color: var(--text); }
-
     .card-desc { font-size: 0.75rem; color: var(--text-dim); line-height: 1.4; }
-
     .card-meta { display: flex; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--text-mute); }
-
-    .parent-jurisdiction { font-size: 0.6rem; color: var(--info); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
-
-    /* Section */
+    .parent-jurisdiction { font-size: 0.6rem; color: var(--info); margin-bottom: 3px; text-transform: uppercase; }
     .section { margin-top: 32px; }
-
     .section-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-
     .section-desc { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 14px; }
-
     .nodevice-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-
     .nodevice-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px; }
-
-    .nodevice-icon { font-size: 1rem; margin-bottom: 6px; }
-
     .nodevice-name { font-weight: 600; font-size: 0.8rem; margin-bottom: 2px; }
-
     .nodevice-examples { font-size: 0.7rem; color: var(--text-dim); }
-
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.2s ease;
-      padding: 20px;
-    }
-
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 100; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 20px; }
     .modal-overlay.active { opacity: 1; visibility: visible; }
-
-    .modal {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 460px;
-      max-height: 85vh;
-      overflow-y: auto;
-      transform: scale(0.95);
-      transition: transform 0.2s ease;
-    }
-
+    .modal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); width: 100%; max-width: 460px; max-height: 85vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.2s; }
     .modal-overlay.active .modal { transform: scale(1); }
-
     .modal-header { padding: 14px 14px 0; display: flex; align-items: center; justify-content: space-between; }
-
     .modal-title { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-
     .modal-flag { width: 26px; height: 18px; border-radius: 2px; }
-
-    .modal-close { background: none; border: none; color: var(--text-mute); font-size: 1.2rem; cursor: pointer; padding: 2px; }
-
+    .modal-close { background: none; border: none; color: var(--text-mute); font-size: 1.2rem; cursor: pointer; }
     .modal-body { padding: 14px; }
-
     .modal-section { margin-bottom: 14px; }
-
     .modal-section:last-child { margin-bottom: 0; }
-
     .modal-section h3 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 7px; }
-
-    .modal-section p { color: var(--text-dim); font-size: 0.8rem; line-height: 1.5; }
-
-    .modal-list { list-style: none; font-size: 0.75rem; color: var(--text-dim); }
-
+    .modal-section p, .modal-section li { color: var(--text-dim); font-size: 0.8rem; line-height: 1.5; }
+    .modal-list { list-style: none; font-size: 0.75rem; }
     .modal-list li { padding: 5px 0; border-bottom: 1px solid var(--border); }
-
     .modal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
-
     .modal-stat { background: var(--bg-card); padding: 8px; border-radius: var(--radius); }
-
-    .modal-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text); }
-
+    .modal-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
     .modal-stat-label { font-size: 0.6rem; color: var(--text-mute); }
-
     .modal-link { margin-top: 10px; }
-
-    .modal-link a {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 8px 12px;
-      background: var(--accent);
-      color: var(--bg);
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: 500;
-      font-size: 0.75rem;
-    }
-
-    @media (max-width: 600px) {
-      .container { padding: 20px 12px; }
-      h1 { font-size: 1.3rem; }
-      .filters-bar { flex-direction: column; align-items: flex-start; }
-      .filter-group { flex-wrap: wrap; }
-      .stats { gap: 8px; }
-      .cards { grid-template-columns: 1fr; }
-    }
+    .modal-link a { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: var(--accent); color: var(--bg); text-decoration: none; border-radius: 5px; font-weight: 500; font-size: 0.75rem; }
+    @media (max-width: 600px) { .container { padding: 20px 12px; } .cards { grid-template-columns: 1fr; } }
+    .loading { text-align: center; padding: 40px; color: var(--text-dim); }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Global Digital ID Systems</h1>
-      <p class="subtitle">Jurisdictional scan — national and subnational digital ID programs.</p>
-      
-      <div class="stats">
-        <div class="stat"><span class="stat-value">20+</span><span class="stat-label">Countries</span></div>
-        <div class="stat"><span class="stat-value">30+</span><span class="stat-label">Subnationals</span></div>
-        <div class="stat"><span class="stat-value">1.4B</span><span class="stat-label">Users</span></div>
-        <div class="stat"><span class="stat-value">2026</span><span class="stat-label">EU Deadline</span></div>
-      </div>
+      <h1 id="pageTitle">Global Digital ID Landscape</h1>
+      <p class="subtitle" id="pageSubtitle">Loading...</p>
+      <div class="stats" id="statsBar"></div>
     </header>
-
-    <div class="filters-bar">
-      <span class="filter-label">Status:</span>
-      <div class="filter-group">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="prod">Live</button>
-        <button class="filter-btn" data-filter="spec">Spec</button>
-      </div>
-      <span class="filter-label">Issuance:</span>
-      <div class="filter-group">
-        <button class="filter-btn active" data-model="all">All</button>
-        <button class="filter-btn" data-model="single">1 ID</button>
-        <button class="filter-btn" data-model="multiple">Multi</button>
-        <button class="filter-btn" data-model="cloud">Cloud</button>
-      </div>
-      <span class="filter-label">Region:</span>
-      <div class="filter-group">
-        <button class="filter-btn active" data-region="all">All</button>
-        <button class="filter-btn" data-region="na">NA</button>
-        <button class="filter-btn" data-region="eu">EU</button>
-        <button class="filter-btn" data-region="apac">APAC</button>
-        <button class="filter-btn" data-region="me">ME</button>
-        <button class="filter-btn" data-region="africa">AF</button>
-      </div>
-    </div>
-
-    <div class="legend">
-      <div class="legend-item"><span class="legend-dot prod"></span> Production</div>
-      <div class="legend-item"><span class="legend-dot spec"></span> Specification</div>
-    </div>
-
+    <div class="filters-bar" id="filters"></div>
+    <div class="legend" id="legend"></div>
     <div class="cards" id="cards"></div>
-
-    <div class="section">
-      <h2 class="section-title">No-Device Solutions</h2>
-      <p class="section-desc">How jurisdictions handle citizens without personal devices.</p>
-      <div class="nodevice-grid">
-        <div class="nodevice-card"><div class="nodevice-icon">📇</div><div class="nodevice-name">QR on Plastic</div><div class="nodevice-examples">Greece, Brazil — QR on cards</div></div>
-        <div class="nodevice-card"><div class="nodevice-icon">🏛️</div><div class="nodevice-name">Kiosks</div><div class="nodevice-examples">India, Kenya — biometric</div></div>
-        <div class="nodevice-card"><div class="nodevice-icon">📞</div><div class="nodevice-name">OTP Fallback</div><div class="nodevice-examples">SMS/email alternative</div></div>
-        <div class="nodevice-card"><div class="nodevice-icon">👥</div><div class="nodevice-name">Community</div><div class="nodevice-examples">Shared devices</div></div>
-        <div class="nodevice-card"><div class="nodevice-icon">📄</div><div class="nodevice-name">Paper</div><div class="nodevice-examples">NIN slip, PVC card</div></div>
-        <div class="nodevice-card"><div class="nodevice-icon">⚠️</div><div class="nodevice-name">Exclusion</div><div class="nodevice-examples">Nigeria — 73M blocked</div></div>
-      </div>
-    </div>
+    <div class="section" id="nodeviceSection"></div>
   </div>
-
-  <!-- Modal -->
   <div class="modal-overlay" id="modal">
     <div class="modal">
       <div class="modal-header">
         <div class="modal-title" id="modalTitle"></div>
-        <button class="modal-close" onclick="closeModal()">×</button>
+        <button class="modal-close" onclick="closeModal()">x</button>
       </div>
       <div class="modal-body">
-        <div class="modal-section"><h3>Overview</h3><p id="modalDesc"></p></div>
-        <div class="modal-section"><h3>Issuance</h3><ul class="modal-list" id="modalModel"></ul></div>
+        <div class="modal-section"><p id="modalDesc"></p></div>
+        <div class="modal-section"><h3>Technology</h3><p id="modalTech"></p></div>
+        <div class="modal-section"><h3>Details</h3><ul class="modal-list" id="modalDetails"></ul></div>
         <div class="modal-section"><h3>No-Device</h3><ul class="modal-list" id="modalNoDevice"></ul></div>
         <div class="modal-section"><h3>Metrics</h3><div class="modal-grid" id="modalStats"></div></div>
-        <div class="modal-section" id="modalLinkSection">
-          <div class="modal-link">
-            <a id="modalLink" href="#" target="_blank" rel="noopener">🔗 Visit Website</a>
-          </div>
-        </div>
+        <div class="modal-section" id="modalLinkSection"><div class="modal-link"><a id="modalLink" href="#" target="_blank">Visit Website</a></div></div>
       </div>
     </div>
   </div>
-
   <script>
-    const data = [
-      // === NATIONAL SYSTEMS - Alphabetical ===
-      { name: "Australia", flag: "au", region: "apac", status: "prod", model: "cloud", isSubnational: false,
-        url: "https://www.mygov.id.gov.au",
-        subtitle: "myGov ID", desc: "Federal system. One myGov ID per person. Cloud-based.",
-        issuance: ["1 myGov ID", "Cloud-linked", "State add-ons"],
-        nodevice: ["myGov centres"],
-        stats: [{label:"System",value:"Federal"}]
-      },
-      { name: "Brazil", flag: "br", region: "na", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.gov.br",
-        subtitle: "RG Digital", desc: "Since 2017. One RG per person with digital version. QR on cards.",
-        issuance: ["1 RG", "Digital app", "QR on card"],
-        nodevice: ["Physical + QR"],
-        stats: [{label:"Since",value:"2017"}]
-      },
-      { name: "China", flag: "cn", region: "apac", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.gov.cn",
-        subtitle: "National Online ID", desc: "Launched July 2025. One online ID per person.",
-        issuance: ["1 online ID", "WeChat"],
-        nodevice: ["Physical ID"],
-        stats: [{label:"Launch",value:"Jul 2025"}]
-      },
-      { name: "Estonia", flag: "ee", region: "eu", status: "prod", model: "multiple", isSubnational: false,
-        url: "https://e-estonia.com",
-        subtitle: "e-ID", desc: "Mandatory since 2002. 99%+ coverage. Multiple credentials.",
-        issuance: ["Card + Mobile ID + Smart ID", "e-Residency"],
-        nodevice: ["Physical cards"],
-        stats: [{label:"Coverage",value:"99%+"}]
-      },
-      { name: "European Union", flag: "eu", region: "eu", status: "spec", model: "multiple", isSubnational: false,
-        url: "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en",
-        subtitle: "EUDI Wallet", desc: "eIDAS 2.0 mandates all 27 member states by end 2026.",
-        issuance: ["Multiple credentials", "Multiple devices"],
-        nodevice: ["Physical cards"],
-        stats: [{label:"Members",value:"27"},{label:"Target",value:"2026"}]
-      },
-      { name: "Germany", flag: "de", region: "eu", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/Online-Ausweisfunktion/online-ausweisfunktion_node.html",
-        subtitle: "Online-Ausweisfunktion", desc: "eID in ID cards. NFC via smartphone. EUDI 2026.",
-        issuance: ["1 eID", "NFC smartphone"],
-        nodevice: ["Physical card"],
-        stats: [{label:"Since",value:"2010"}]
-      },
-      { name: "India", flag: "in", region: "apac", status: "prod", model: "single", isSubnational: false,
-        url: "https://uidai.gov.in",
-        subtitle: "Aadhaar", desc: "World's largest. One Aadhaar per resident linked to biometrics.",
-        issuance: ["1 Aadhaar", "Multiple auth", "DigiLocker"],
-        nodevice: ["OTP fallback", "Face auth", "100K+ centres"],
-        stats: [{label:"Enrolled",value:"1.3B+"}]
-      },
-      { name: "Israel", flag: "il", region: "me", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.gov.il",
-        subtitle: "Biometric Smart ID", desc: "Digital Identity Readiness Score 79/100.",
-        issuance: ["1 per person", "Biometric card", "App"],
-        nodevice: ["Physical biometric card"],
-        stats: [{label:"Score",value:"79/100"}]
-      },
-      { name: "Kenya", flag: "ke", region: "africa", status: "prod", model: "cloud", isSubnational: false,
-        url: "https://www.ecitizen.go.ke",
-        subtitle: "eCitizen + National ID", desc: "Browser-based. One National ID. SIM-NIN linked.",
-        issuance: ["1 National ID", "Browser"],
-        nodevice: ["Huduma centres"],
-        stats: [{label:"Access",value:"Browser"}]
-      },
-      { name: "Malaysia", flag: "my", region: "apac", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.digital.gov.my",
-        subtitle: "MyDigital ID", desc: "Targeting 15M users by end 2025.",
-        issuance: ["1 per person", "Mobile app"],
-        nodevice: ["Government kiosks"],
-        stats: [{label:"Target",value:"15M"}]
-      },
-      { name: "Nigeria", flag: "ng", region: "africa", status: "prod", model: "single", isSubnational: false,
-        url: "https://nimc.gov.ng",
-        subtitle: "NIN", desc: "95M+ enrolled. 73M+ blocked from mobile for lacking ID.",
-        issuance: ["1 NIN", "NINAuth app"],
-        nodevice: ["NIN slip (paper)"],
-        stats: [{label:"Enrolled",value:"95M+"},{label:"Blocked",value:"73M"}]
-      },
-      { name: "Oman", flag: "om", region: "me", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.oman.om",
-        subtitle: "PKI-Based ID", desc: "PKI smart cards. Tawahul 94% performance.",
-        issuance: ["1 per person", "PKI card"],
-        nodevice: ["Physical card"],
-        stats: [{label:"Program",value:"Tawahul"}]
-      },
-      { name: "Qatar", flag: "qa", region: "me", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.gov.qa",
-        subtitle: "Digital ID", desc: "Digital ID for healthcare, residency, employment.",
-        issuance: ["1 per person", "Healthcare"],
-        nodevice: ["Physical documents"],
-        stats: [{label:"Services",value:"Healthcare"}]
-      },
-      { name: "Saudi Arabia", flag: "sa", region: "me", status: "spec", model: "single", isSubnational: false,
-        url: "https://sdaia.gov.sa",
-        subtitle: "SDAIA / Digital ID", desc: "Framework launched. Digital ID law 2026.",
-        issuance: ["1 per person", "SDAIA framework"],
-        nodevice: ["Physical ID"],
-        stats: [{label:"Framework",value:"Active"}]
-      },
-      { name: "Singapore", flag: "sg", region: "apac", status: "prod", model: "cloud", isSubnational: false,
-        url: "https://www.singpass.gov.sg",
-        subtitle: "Singpass", desc: "5M+ users, 2,700+ services.",
-        issuance: ["1 account", "Multi-device", "MyInfo"],
-        nodevice: ["QR (feature phones)"],
-        stats: [{label:"Users",value:"5M+"}]
-      },
-      { name: "South Korea", flag: "kr", region: "apac", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.gov.kr",
-        subtitle: "Mobile ID", desc: "Nationwide rollout March 2025.",
-        issuance: ["1 per person", "Mobile app"],
-        nodevice: ["Physical ID cards"],
-        stats: [{label:"Launch",value:"Mar 2025"}]
-      },
-      { name: "Sweden", flag: "se", region: "eu", status: "prod", model: "multiple", isSubnational: false,
-        url: "https://www.bankid.com/en",
-        subtitle: "BankID", desc: "8M+ users. Multiple BankIDs per person.",
-        issuance: ["Multiple BankIDs", "Cross-platform"],
-        nodevice: ["Physical ID cards"],
-        stats: [{label:"Users",value:"8M+"}]
-      },
-      { name: "Taiwan", flag: "tw", region: "apac", status: "spec", model: "single", isSubnational: false,
-        url: "https://www.ey.gov.tw",
-        subtitle: "National Digital Wallet", desc: "Launching end 2025.",
-        issuance: ["1 per person", "Wallet"],
-        nodevice: ["Physical cards"],
-        stats: [{label:"Launch",value:"End 2025"}]
-      },
-      { name: "United Arab Emirates", flag: "ae", region: "me", status: "prod", model: "single", isSubnational: false,
-        url: "https://www.uaepass.ae",
-        subtitle: "UAE Pass", desc: "12K+ services. One per person linked to Emirates ID.",
-        issuance: ["1 UAE Pass", "Linked to Emirates ID"],
-        nodevice: ["Emirates ID card"],
-        stats: [{label:"Services",value:"12K+"}]
-      },
-      { name: "United Kingdom", flag: "gb", region: "eu", status: "spec", model: "single", isSubnational: false,
-        url: "https://www.gov.uk/government/collections/uk-digital-identity-and-attributes-trust-framework",
-        subtitle: "BritCard", desc: "Announced Sept 2025. Mandatory for work by 2029.",
-        issuance: ["1 ID", "Mandatory for work"],
-        nodevice: ["Passport fallback"],
-        stats: [{label:"Announced",value:"Sept 2025"},{label:"Mandatory",value:"2029"}]
-      },
-
-      // === SUBNATIONALS - Alphabetical by country, then by name ===
-      // Australia states
-      { name: "New South Wales", flag: "au", region: "apac", status: "prod", model: "cloud", isSubnational: true, parent: "Australia",
-        url: "https://www.nsw.gov.au",
-        desc: "NSW Digital ID.",
-        issuance: ["1 per person"],
-        nodevice: ["Service NSW"],
-        stats: [{label:"Status",value:"Live"}]
-      },
-      { name: "Victoria", flag: "au", region: "apac", status: "prod", model: "cloud", isSubnational: true, parent: "Australia",
-        url: "https://www.vic.gov.au",
-        desc: "VIC digital services.",
-        issuance: ["1 per person"],
-        nodevice: ["Vic Gov"],
-        stats: [{label:"Status",value:"Live"}]
-      },
-
-      // Canada provinces
-      { name: "Alberta", flag: "ca", region: "na", status: "spec", model: "single", isSubnational: true, parent: "Canada",
-        url: "https://www.alberta.ca",
-        desc: "Targeting single device with own app.",
-        issuance: ["1 per person", "Own app"],
-        nodevice: ["Alberta registry"],
-        stats: [{label:"Status",value:"Dev"}]
-      },
-      { name: "British Columbia", flag: "ca", region: "na", status: "prod", model: "single", isSubnational: true, parent: "Canada",
-        url: "https://www2.gov.bc.ca/gov/content/governments/government-id/bc-wallet",
-        desc: "Person credential LIVE in BC Wallet.",
-        issuance: ["1 Person credential", "BC Wallet app"],
-        nodevice: ["Service BC"],
-        stats: [{label:"Credential",value:"Person"},{label:"Status",value:"Live"}]
-      },
-      { name: "Manitoba", flag: "ca", region: "na", status: "prod", model: "single", isSubnational: true, parent: "Canada",
-        url: "https://www.gov.mb.ca",
-        desc: "Manitoba ID available.",
-        issuance: ["1 per person"],
-        nodevice: ["Manitoba Gov"],
-        stats: [{label:"Status",value:"Live"}]
-      },
-      { name: "Ontario", flag: "ca", region: "na", status: "prod", model: "single", isSubnational: true, parent: "Canada",
-        url: "https://www.ontario.ca/page/serviceontario",
-        desc: "ServiceOntario digital services.",
-        issuance: ["1 per person"],
-        nodevice: ["ServiceOntario"],
-        stats: [{label:"Status",value:"Live"}]
-      },
-      { name: "Quebec", flag: "ca", region: "na", status: "spec", model: "single", isSubnational: true, parent: "Canada",
-        url: "https://www.quebec.ca",
-        desc: "Identité numérique Québec in development.",
-        issuance: ["1 per person"],
-        nodevice: ["Service Québec"],
-        stats: [{label:"Status",value:"Dev"}]
-      },
-      { name: "Saskatchewan", flag: "ca", region: "na", status: "prod", model: "single", isSubnational: true, parent: "Canada",
-        url: "https://www.saskatchewan.ca",
-        desc: "eSask available.",
-        issuance: ["1 per person"],
-        nodevice: ["Sask Gov"],
-        stats: [{label:"Status",value:"Live"}]
-      },
-
-      // US states
-      { name: "Arizona", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.azdot.gov",
-        desc: "mDL 2020. Apple + Google Wallet.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2020"},{label:"TSA",value:"Yes"}]
-      },
-      { name: "California", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.dmv.ca.gov",
-        desc: "Apple Wallet Dec 2023.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"Dec 2023"},{label:"TSA",value:"Yes"}]
-      },
-      { name: "Colorado", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.colorado.gov/dmv",
-        desc: "Apple + Google Wallet.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2022"}]
-      },
-      { name: "Georgia", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://dds.georgia.gov",
-        desc: "Apple + Google Wallet.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2022"}]
-      },
-      { name: "Iowa", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://iowadot.gov",
-        desc: "State app.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2023"}]
-      },
-      { name: "Louisiana", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.expresslane.org",
-        desc: "First state mDL (2018). Mobile-first.",
-        issuance: ["1 mDL", "Mobile-first"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2018"}]
-      },
-      { name: "Maryland", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://mva.maryland.gov",
-        desc: "Apple + Google Wallet.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2021"}]
-      },
-      { name: "Nevada", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://dmv.nv.gov",
-        desc: "Apple + Google Wallet.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2024"}]
-      },
-      { name: "New Jersey", flag: "us", region: "na", status: "spec", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.nj.gov/mvc",
-        desc: "Law passed 2025.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Status",value:"Spec"}]
-      },
-      { name: "New York", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://dmv.ny.gov",
-        desc: "200K+ enrollments March 2025.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Enrolled",value:"200K+"}]
-      },
-      { name: "Ohio", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.bmv.ohio.gov",
-        desc: "Apple Wallet only.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Platform",value:"Apple"}]
-      },
-      { name: "Texas", flag: "us", region: "na", status: "spec", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.txdps.gov",
-        desc: "In development.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Status",value:"Spec"}]
-      },
-      { name: "Utah", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://dld.utah.gov",
-        desc: "State app.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2023"}]
-      },
-      { name: "Vermont", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://dmv.vermont.gov",
-        desc: "State app.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2024"}]
-      },
-      { name: "Virginia", flag: "us", region: "na", status: "prod", model: "single", isSubnational: true, parent: "United States",
-        url: "https://www.dmv.virginia.gov",
-        desc: "Apple + Google Wallet.",
-        issuance: ["1 mDL"],
-        nodevice: ["Physical license"],
-        stats: [{label:"Since",value:"2024"}]
-      }
-    ];
-
-    // Sort: national systems first (by name), then subnationals (by parent country, then by name)
-    data.sort((a, b) => {
-      if (a.isSubnational !== b.isSubnational) return a.isSubnational ? 1 : -1;
-      if (a.isSubnational) {
-        if (a.parent !== b.parent) return a.parent.localeCompare(b.parent);
-        return a.name.localeCompare(b.name);
-      }
-      return a.name.localeCompare(b.name);
-    });
-
+    let appData = null;
     let filter = 'all', model = 'all', region = 'all';
-
-    function getBadges(item) {
-      let badges = [];
-      if (item.status === 'prod') badges.push('<span class="badge badge-prod">Live</span>');
-      else badges.push('<span class="badge badge-spec">Spec</span>');
-      if (item.isSubnational) badges.push('<span class="badge badge-sub">Sub</span>');
-      if (item.model === 'single') badges.push('<span class="badge badge-1id">1 ID</span>');
-      else if (item.model === 'multiple') badges.push('<span class="badge badge-multi">Multi</span>');
-      else if (item.model === 'cloud') badges.push('<span class="badge badge-cloud">Cloud</span>');
-      return badges.join('');
+    
+    async function loadData() {
+      try {
+        const resp = await fetch('data.json');
+        appData = await resp.json();
+        initApp();
+      } catch(e) {
+        document.getElementById('cards').innerHTML = '<div class="loading">Error loading data.json. Make sure you are running from a local server.</div>';
+      }
     }
-
-    function renderCards() {
-      const grid = document.getElementById('cards');
-      const filtered = data.filter(item => {
-        const f = filter === 'all' || item.status === filter;
-        const m = model === 'all' || item.model === model;
-        const r = region === 'all' || item.region === region;
-        return f && m && r;
+    
+    function initApp() {
+      document.getElementById('pageTitle').textContent = appData.meta.title;
+      document.getElementById('pageSubtitle').textContent = appData.meta.description;
+      document.getElementById('statsBar').innerHTML = appData.stats.countries ? 
+        '<div class="stat"><span class="stat-value">'+appData.stats.countries+'</span><span class="stat-label">Countries</span></div>' : '';
+      renderFilters();
+      renderCards();
+    }
+    
+    function renderFilters() {
+      const regions = [...new Set(appData.jurisdictions.map(j => j.region))];
+      document.getElementById('filters').innerHTML = `
+        <span class="filter-label">Status:</span>
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="production">Live</button>
+          <button class="filter-btn" data-filter="specification">Spec</button>
+        </div>
+        <span class="filter-label">Region:</span>
+        <div class="filter-group">
+          <button class="filter-btn active" data-region="all">All</button>
+          ${regions.map(r => `<button class="filter-btn" data-region="${r}">${r.toUpperCase()}</button>`).join('')}
+        </div>
+      `;
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.onclick = () => {
+        document.querySelectorAll('.filter-btn[data-filter]').forEach(x => x.classList.remove('active'));
+        b.classList.add('active'); filter = b.dataset.filter; renderCards();
       });
-      
-      grid.innerHTML = filtered.map(item => `
-        <div class="card ${item.isSubnational ? 'is-subnational' : ''}" onclick="openModal(${data.indexOf(item)})">
+      document.querySelectorAll('.filter-btn[data-region]').forEach(b => b.onclick = () => {
+        document.querySelectorAll('.filter-btn[data-region]').forEach(x => x.classList.remove('active'));
+        b.classList.add('active'); region = b.dataset.region; renderCards();
+      });
+    }
+    
+    function renderCards() {
+      const filtered = appData.jurisdictions.filter(j => {
+        const f = filter === 'all' || j.status === filter;
+        const r = region === 'all' || j.region === region;
+        return f && r;
+      }).sort((a, b) => {
+        if (a.isSubnational !== b.isSubnational) return a.isSubnational ? 1 : -1;
+        if (a.isSubnational && a.parent !== b.parent) return a.parent.localeCompare(b.parent);
+        return a.name.localeCompare(b.name);
+      });
+      document.getElementById('cards').innerHTML = filtered.map(j => `
+        <div class="card ${j.isSubnational ? 'is-subnational' : ''}" onclick="openModal('${j.name.replace(/'/g, "\\'")}')">
           <div class="card-header">
             <div class="card-title-group">
-              <img class="card-flag" src="flags/${item.flag}.png" alt="${item.name}">
+              <img class="card-flag" src="flags/${j.flag}.png" alt="${j.name}">
               <div>
-                <div class="card-title">${item.name}</div>
-                <div class="card-subtitle">${item.subtitle || (item.isSubnational ? item.parent : 'National')}</div>
+                <div class="card-title">${j.name}</div>
+                <div class="card-subtitle">${j.isSubnational ? j.parent : j.technology}</div>
               </div>
             </div>
-            <div class="card-badges">${getBadges(item)}</div>
+            <div class="card-badges">
+              <span class="badge ${j.status === 'production' ? 'badge-prod' : 'badge-spec'}">${j.status === 'production' ? 'Live' : 'Spec'}</span>
+              ${j.isSubnational ? '<span class="badge badge-sub">Sub</span>' : ''}
+            </div>
           </div>
-          ${item.isSubnational ? `<div class="parent-jurisdiction">${item.parent}</div>` : ''}
-          <div class="card-model"><strong>${item.model === 'multiple' ? 'Multiple IDs' : item.model === 'cloud' ? 'Cloud account' : 'One ID per person'}</strong></div>
-          <div class="card-desc">${item.desc.substring(0, 90)}...</div>
-          <div class="card-meta">${item.stats.slice(0, 2).map(s => `<span>${s.label}: <strong>${s.value}</strong></span>`).join('')}</div>
+          ${j.isSubnational ? `<div class="parent-jurisdiction">${j.parent}</div>` : ''}
+          <div class="card-model"><strong>${j.issuanceModel === 'multiple' ? 'Multiple IDs' : j.issuanceModel === 'cloud' ? 'Cloud account' : 'One ID'}</strong></div>
+          <div class="card-desc">${j.description.substring(0, 90)}...</div>
+          <div class="card-meta">${j.metrics.slice(0, 2).map(m => `<span>${m.label}: <strong>${m.value}</strong></span>`).join('')}</div>
         </div>
       `).join('');
     }
-
-    function openModal(index) {
-      const item = data[index];
-      document.getElementById('modalTitle').innerHTML = `<img class="modal-flag" src="flags/${item.flag}.png" alt="${item.name}"> ${item.name}`;
-      document.getElementById('modalDesc').textContent = item.desc;
-      document.getElementById('modalModel').innerHTML = item.issuance.map(i => `<li>✓ ${i}</li>`).join('');
-      document.getElementById('modalNoDevice').innerHTML = item.nodevice.map(n => `<li>• ${n}</li>`).join('');
-      document.getElementById('modalStats').innerHTML = item.stats.map(s => `<div class="modal-stat"><div class="modal-stat-value">${s.value}</div><div class="modal-stat-label">${s.label}</div></div>`).join('');
-      
-      const linkSection = document.getElementById('modalLinkSection');
-      const link = document.getElementById('modalLink');
-      if (item.url) { link.href = item.url; linkSection.style.display = 'block'; }
-      else { linkSection.style.display = 'none'; }
-      
+    
+    window.openModal = function(name) {
+      const j = appData.jurisdictions.find(x => x.name === name);
+      if (!j) return;
+      document.getElementById('modalTitle').innerHTML = `<img class="modal-flag" src="flags/${j.flag}.png"> ${j.name}`;
+      document.getElementById('modalDesc').textContent = j.description;
+      document.getElementById('modalTech').textContent = j.technology;
+      document.getElementById('modalDetails').innerHTML = j.details.map(d => `<li>${d}</li>`).join('');
+      document.getElementById('modalNoDevice').innerHTML = j.nodevice.map(n => `<li>${n}</li>`).join('');
+      document.getElementById('modalStats').innerHTML = j.metrics.map(m => `<div class="modal-stat"><div class="modal-stat-value">${m.value}</div><div class="modal-stat-label">${m.label}</div></div>`).join('');
+      if (j.url) { document.getElementById('modalLink').href = j.url; document.getElementById('modalLinkSection').style.display = 'block'; }
+      else document.getElementById('modalLinkSection').style.display = 'none';
       document.getElementById('modal').classList.add('active');
-    }
-
-    function closeModal() { document.getElementById('modal').classList.remove('active'); }
-
-    document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn[data-filter]').forEach(x => x.classList.remove('active'));
-      b.classList.add('active'); filter = b.dataset.filter; renderCards();
-    }));
-    document.querySelectorAll('.filter-btn[data-model]').forEach(b => b.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn[data-model]').forEach(x => x.classList.remove('active'));
-      b.classList.add('active'); model = b.dataset.model; renderCards();
-    }));
-    document.querySelectorAll('.filter-btn[data-region]').forEach(b => b.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn[data-region]').forEach(x => x.classList.remove('active'));
-      b.classList.add('active'); region = b.dataset.region; renderCards();
-    }));
-    document.getElementById('modal').addEventListener('click', e => { if(e.target.id==='modal') closeModal(); });
-    document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
-
-    renderCards();
+    };
+    window.closeModal = function() { document.getElementById('modal').classList.remove('active'); };
+    document.getElementById('modal').onclick = e => { if(e.target.id === 'modal') closeModal(); };
+    document.onkeydown = e => { if(e.key === 'Escape') closeModal(); };
+    loadData();
   </script>
 </body>
 </html>
