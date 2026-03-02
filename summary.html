@@ -123,6 +123,7 @@
     .nodevice-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
     .nodevice-desc { font-size: 0.75rem; color: var(--text-dim); }
     .nodevice-examples { font-size: 0.7rem; color: var(--accent); margin-top: 6px; }
+    .nodevice-summary { font-size: 0.75rem; color: var(--text-dim); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
     
     /* Footer */
     .footer {
@@ -351,6 +352,28 @@
           <div class="nodevice-examples">${n.examples.join(', ')}</div>
         </div>
       `).join('');
+      
+      // Add summary of physical card types
+      const nodeviceCounts = { physical: 0, chip_qr: 0, paper: 0, in_person: 0, other: 0 };
+      jur.forEach(j => {
+        const nd = j.nodevice || [];
+        if (!nd.length) return;
+        const hasChipQR = nd.some(n => n.includes('QR') || n.toLowerCase().includes('chip') || n.includes('Code card'));
+        const hasPhysical = nd.some(n => n.toLowerCase().includes('physical') || n.toLowerCase().includes('card') || n.toLowerCase().includes('license'));
+        const hasPaper = nd.some(n => n.toLowerCase().includes('slip') || n.toLowerCase().includes('paper'));
+        const hasInPerson = nd.some(n => n.toLowerCase().includes('kiosk') || n.toLowerCase().includes('centre') || n.toLowerCase().includes('center') || n.toLowerCase().includes('registry') || n.toLowerCase().includes('service bc'));
+        
+        if (hasChipQR) nodeviceCounts.chip_qr++;
+        else if (hasPhysical) nodeviceCounts.physical++;
+        if (hasPaper) nodeviceCounts.paper++;
+        if (hasInPerson) nodeviceCounts.in_person++;
+      });
+      
+      document.getElementById('nodevice').innerHTML += `
+        <div class="nodevice-summary">
+          <strong>Summary:</strong> ${nodeviceCounts.physical} with physical cards · ${nodeviceCounts.chip_qr} with chip/QR on card · ${nodeviceCounts.paper} with paper alternatives · ${nodeviceCounts.in_person} with in-person options
+        </div>
+      `;
       
       // Footer
       document.getElementById('footer').textContent = `Based on publicly available information as of ${data.meta.lastUpdated}. Prepared for ${data.meta.preparedFor}.`;
