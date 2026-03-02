@@ -1,146 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital ID Briefing - BC Government</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Digital ID Issuance Models - Slide Deck</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --bg: #0a0a0f; --accent: #e8c547; --text: #f0f0f5; --text-dim: #9090a0; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; height: 100vh; }
-    .slideshow { position: relative; width: 100%; height: 100vh; }
-    .slide { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px; opacity: 0; transform: translateX(100px); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
-    .slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
-    .slide.prev { transform: translateX(-100px); }
-    .slide-1 { background: linear-gradient(135deg, #0a0a0f 0%, #1a1520 100%); }
-    .slide-1 h1 { font-size: 4rem; font-weight: 700; margin-bottom: 20px; background: linear-gradient(90deg, var(--text), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp 0.8s ease-out 0.2s backwards; }
-    .slide-1 .subtitle { font-size: 1.5rem; color: var(--text-dim); animation: fadeInUp 0.8s ease-out 0.4s backwards; }
-    .slide-1 .meta { margin-top: 40px; font-size: 1rem; color: var(--accent); animation: fadeInUp 0.8s ease-out 0.6s backwards; }
-    .slide-2 h2, .slide-3 h2, .slide-4 h2, .slide-5 h2 { font-size: 2.5rem; margin-bottom: 40px; color: var(--accent); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1000px; }
-    .stat-card { background: #15151f; border: 1px solid #2a2a35; border-radius: 16px; padding: 30px; text-align: center; opacity: 0; transform: translateY(30px); }
-    .slide.active .stat-card { animation: fadeInUp 0.6s ease-out backwards; }
-    .slide.active .stat-card:nth-child(1) { animation-delay: 0.2s; }
-    .slide.active .stat-card:nth-child(2) { animation-delay: 0.35s; }
-    .slide.active .stat-card:nth-child(3) { animation-delay: 0.5s; }
-    .slide.active .stat-card:nth-child(4) { animation-delay: 0.65s; }
-    .stat-card .value { font-size: 3rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
-    .stat-card .label { font-size: 0.9rem; color: var(--text-dim); margin-top: 8px; }
-    .models-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; }
-    .model-card { background: #15151f; border: 1px solid #2a2a35; border-radius: 12px; padding: 24px; opacity: 0; transform: scale(0.9); }
-    .slide.active .model-card { animation: popIn 0.5s ease-out backwards; }
-    .slide.active .model-card:nth-child(1) { animation-delay: 0.2s; }
-    .slide.active .model-card:nth-child(2) { animation-delay: 0.35s; }
-    .slide.active .model-card:nth-child(3) { animation-delay: 0.5s; }
-    .model-card h3 { font-size: 1.2rem; margin-bottom: 12px; }
-    .model-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; }
-    .model-card .count { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; color: var(--accent); margin-top: 12px; }
-    .regions { display: flex; gap: 20px; max-width: 1100px; flex-wrap: wrap; justify-content: center; }
-    .region { background: #15151f; border: 1px solid #2a2a35; border-radius: 12px; padding: 20px 28px; display: flex; align-items: center; gap: 14px; opacity: 0; transform: translateY(20px); }
-    .slide.active .region { animation: fadeInUp 0.5s ease-out backwards; }
-    .region:nth-child(1) { animation-delay: 0.15s; }
-    .region:nth-child(2) { animation-delay: 0.25s; }
-    .region:nth-child(3) { animation-delay: 0.35s; }
-    .region:nth-child(4) { animation-delay: 0.45s; }
-    .region:nth-child(5) { animation-delay: 0.55s; }
-    .region img { width: 36px; height: 24px; border-radius: 4px; }
-    .region span { font-size: 1rem; font-weight: 500; }
-    .slide-5 { background: linear-gradient(180deg, var(--bg) 0%, #15120f 100%); }
-    .slide-5 .warning { background: rgba(248, 113, 113, 0.15); border: 1px solid rgba(248, 113, 113, 0.3); border-radius: 12px; padding: 20px 30px; margin-bottom: 30px; color: #f87171; font-size: 1.1rem; opacity: 0; }
-    .slide.active .warning { animation: fadeInUp 0.6s ease-out 0.2s backwards; }
-    .solutions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 800px; }
-    .solution { background: #15151f; border: 1px solid #2a2a35; border-radius: 10px; padding: 20px; text-align: center; opacity: 0; transform: translateY(20px); }
-    .slide.active .solution { animation: fadeInUp 0.5s ease-out backwards; }
-    .solution:nth-child(1) { animation-delay: 0.4s; }
-    .solution:nth-child(2) { animation-delay: 0.55s; }
-    .solution:nth-child(3) { animation-delay: 0.7s; }
-    .solution .icon { font-size: 2rem; margin-bottom: 8px; }
-    .solution .name { font-weight: 600; margin-bottom: 4px; }
-    .solution .examples { font-size: 0.75rem; color: var(--text-dim); }
-    .nav { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 100; }
-    .nav-dot { width: 12px; height: 12px; border-radius: 50%; background: #333; cursor: pointer; transition: all 0.3s; }
-    .nav-dot.active { background: var(--accent); transform: scale(1.2); }
-    .slide-number { position: fixed; bottom: 30px; right: 40px; font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.9rem; }
-    .instructions { position: fixed; top: 20px; right: 20px; background: rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 20px; font-size: 0.75rem; color: var(--text-dim); }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @page {
+      size: 16in 9in;
+      margin: 0;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+    }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      padding: 60px 80px;
+      box-sizing: border-box;
+      display: none;
+    }
+    .slide.active {
+      display: block;
+    }
+    .slide h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: #e8c547;
+    }
+    .slide h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: #4ade80;
+    }
+    .slide p {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .card {
+      background: #16213e;
+      border-radius: 16px;
+      padding: 30px;
+      border: 2px solid #333;
+    }
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .card .count {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #e8c547;
+    }
+    .card .desc {
+      font-size: 1rem;
+      color: #888;
+      margin-top: 10px;
+    }
+    .card .examples {
+      font-size: 0.9rem;
+      color: #4ade80;
+      margin-top: 15px;
+    }
+    .bar-chart {
+      margin-top: 50px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+    .bar-label {
+      width: 200px;
+      font-size: 1.1rem;
+    }
+    .bar {
+      flex: 1;
+      height: 40px;
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .bar.small {
+      background: linear-gradient(90deg, #60a5fa, #3b82f6);
+    }
+    .bar.medium {
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    }
+    .highlight-box {
+      background: #16213e;
+      border-left: 5px solid #e8c547;
+      padding: 20px 30px;
+      margin: 30px 0;
+      font-size: 1.3rem;
+    }
+    .footer {
+      position: fixed;
+      bottom: 30px;
+      left: 80px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .nav {
+      position: fixed;
+      bottom: 30px;
+      right: 80px;
+      font-size: 1rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
-  <div class="instructions">Arrow keys or click dots to navigate</div>
-  <div class="slideshow">
-    <div class="slide slide-1 active">
-      <h1>Global Digital ID Landscape</h1>
-      <p class="subtitle">Jurisdictional Scan Briefing</p>
-      <p class="meta">BC Government Digital Trust Initiative</p>
+
+<!-- Slide 1: Issuance Models Overview -->
+<div class="slide active" id="slide1">
+  <h1>How Many Digital IDs Per Citizen?</h1>
+  <h2>Issuance Models by Jurisdiction Count</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>🏛️ Single Issuer</h3>
+      <div class="count">33</div>
+      <div class="desc">Government issues ONE digital credential per person</div>
+      <div class="examples">India, Brazil, Germany, US states</div>
     </div>
-    <div class="slide slide-2">
-      <h2>Global Overview</h2>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="value">20+</div><div class="label">Countries with<br>Digital ID</div></div>
-        <div class="stat-card"><div class="value">1.4B</div><div class="label">Total Users<br>Worldwide</div></div>
-        <div class="stat-card"><div class="value">30+</div><div class="label">US States &<br>Provinces</div></div>
-        <div class="stat-card"><div class="value">2026</div><div class="label">EU Wallet<br>Deadline</div></div>
-      </div>
+    <div class="card">
+      <h3>☁️ Cloud-Based</h3>
+      <div class="count">14</div>
+      <div class="desc">Browser/app account, no physical credential issued</div>
+      <div class="examples">Australia, Singapore, Kenya</div>
     </div>
-    <div class="slide slide-3">
-      <h2>Three Issuance Models</h2>
-      <div class="models-grid">
-        <div class="model-card"><h3>Single ID</h3><p>One credential per person. Most common. US mDL, India Aadhaar, UAE Pass.</p><div class="count">~60%</div></div>
-        <div class="model-card"><h3>Cloud-Linked</h3><p>Central account that edge devices connect to. Singpass, myGov ID, Kenya.</p><div class="count">~25%</div></div>
-        <div class="model-card"><h3>Multi-Device</h3><p>Credentials sync across multiple devices. EUDI Wallet, Estonia, BankID.</p><div class="count">~15%</div></div>
-      </div>
-    </div>
-    <div class="slide slide-4">
-      <h2>Key Jurisdictions</h2>
-      <div class="regions">
-        <div class="region"><img src="flags/eu.png" alt="EU"><span>EU (2026)</span></div>
-        <div class="region"><img src="flags/gb.png" alt="UK"><span>UK (2029)</span></div>
-        <div class="region"><img src="flags/in.png" alt="India"><span>India</span></div>
-        <div class="region"><img src="flags/sg.png" alt="Singapore"><span>Singapore</span></div>
-        <div class="region"><img src="flags/kr.png" alt="Korea"><span>South Korea</span></div>
-      </div>
-    </div>
-    <div class="slide slide-5">
-      <h2>The Inclusion Challenge</h2>
-      <div class="warning">73 million Nigerians blocked from mobile networks for lacking digital ID</div>
-      <div class="solutions">
-        <div class="solution"><div class="icon">QR</div><div class="name">QR on Plastic</div><div class="examples">Greece, Brazil</div></div>
-        <div class="solution"><div class="icon">Kiosk</div><div class="name">Kiosks</div><div class="examples">India (100K+)</div></div>
-        <div class="solution"><div class="icon">OTP</div><div class="name">OTP Fallback</div><div class="examples">SMS/Email</div></div>
-      </div>
+    <div class="card">
+      <h3>🔑 Multiple Providers</h3>
+      <div class="count">3</div>
+      <div class="desc">Multiple issuers (banks, telcos) provide credentials</div>
+      <div class="examples">Estonia, Sweden, Finland</div>
     </div>
   </div>
-  <div class="nav">
-    <div class="nav-dot active" data-slide="0"></div>
-    <div class="nav-dot" data-slide="1"></div>
-    <div class="nav-dot" data-slide="2"></div>
-    <div class="nav-dot" data-slide="3"></div>
-    <div class="nav-dot" data-slide="4"></div>
+  
+  <div class="highlight-box">
+    <strong>Key Insight:</strong> Most jurisdictions (67%) use a <strong>single issuer model</strong> where the government provides one digital identity per citizen.
   </div>
-  <div class="slide-number">1 / 5</div>
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.nav-dot');
-    const number = document.querySelector('.slide-number');
-    const total = slides.length;
-    function goToSlide(n) {
-      slides[currentSlide].classList.remove('active');
-      slides[currentSlide].classList.add('prev');
-      dots[currentSlide].classList.remove('active');
-      currentSlide = (n + total) % total;
-      slides.forEach(s => s.classList.remove('prev'));
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
-      number.textContent = (currentSlide + 1) + ' / ' + total;
+  
+  <div class="footer">Global Digital ID Landscape | BC Government Digital Trust</div>
+  <div class="nav">Slide 1 of 2 →</div>
+</div>
+
+<!-- Slide 2: Technology Stack -->
+<div class="slide" id="slide2">
+  <h1>Technology Approaches</h1>
+  <h2>Underlying Credential Formats & Protocols</h2>
+  
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">ISO mDL (mobile DL)</div>
+      <div class="bar">16</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">OIDC-style auth</div>
+      <div class="bar small">14</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">EUDI Wallet</div>
+      <div class="bar medium">6</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">PKI-based</div>
+      <div class="bar medium">4</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Verifiable Credentials</div>
+      <div class="bar small">3</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">PKI + Mobile ID</div>
+      <div class="bar small">2</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Biometric Database</div>
+      <div class="bar small">2</div>
+    </div>
+  </div>
+  
+  <div class="highlight-box">
+    <strong>Emerging Trend:</strong> ISO 18013-5 (mobile Driver License) is the most common format, especially in the US. EUDI Wallet adoption is accelerating in Europe with 2026 deadline.
+  </div>
+  
+  <div class="footer">Global Digital ID Landscape | BC Government Digital Trust</div>
+  <div class="nav">← Slide 2 of 2</div>
+</div>
+
+<script>
+  let current = 1;
+  const total = 2;
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      current = current < total ? current + 1 : 1;
+      showSlide();
+    } else if (e.key === 'ArrowLeft') {
+      current = current > 1 ? current - 1 : total;
+      showSlide();
     }
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === ' ') goToSlide(currentSlide + 1);
-      if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
-    });
-    dots.forEach(dot => { dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.slide))); });
-  </script>
+  });
+  
+  function showSlide() {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.getElementById('slide' + current).classList.add('active');
+  }
+</script>
+
 </body>
 </html>
