@@ -2,7 +2,7 @@
   "meta": {
     "title": "Global Digital ID Landscape",
     "description": "Jurisdictional scan of digital ID systems worldwide",
-    "lastUpdated": "2026-02-27",
+    "lastUpdated": "2026-03-01",
     "preparedFor": "BC Government Digital Trust Initiative"
   },
   "stats": {
@@ -35,10 +35,10 @@
       "isSubnational": false,
       "url": "https://www.gov.br/ids/",
       "technology": "Gov.br 3-tier system + new national ID card with QR",
-      "description": "Since 2017. New national ID (Carteira de Identidade Nacional) replacing RG. 153M Gold accounts.",
-      "details": ["New national ID with QR", "Gov.br accounts (Bronze/Silver/Gold)", "153M Gold users", "250M authentications/month"],
+      "description": "Since 2017. New national ID (Carteira de Identidade Nacional) replacing RG. 166M Gold accounts.",
+      "details": ["New national ID with QR", "Gov.br accounts (Bronze/Silver/Gold)", "166M Gold users", "250M+ authentications/month"],
       "nodevice": ["Physical RG (old)", "NIN slip"],
-      "metrics": [{"label": "Gold users", "value": "153M"}, {"label": "Auth/Mo", "value": "250M"}]
+      "metrics": [{"label": "Gold users", "value": "166M"}, {"label": "Auth/Mo", "value": "250M+"}]
     },
     {
       "name": "China",
@@ -49,10 +49,10 @@
       "isSubnational": false,
       "url": "https://www.mps.gov.cn/",
       "technology": "Cyber ID / Web ID (voluntary)",
-      "description": "Launched July 2025. Voluntary online identity linked to physical ID. 16M users as of June 2025.",
-      "details": ["Voluntary (not mandatory)", "Linked to physical ID card", "WeChat/Taobao integration", "16M users Jun 2025"],
+      "description": "Launched July 2025. Voluntary online identity linked to physical ID. 16M downloads, 6M credentials applied.",
+      "details": ["Voluntary (not mandatory)", "Linked to physical ID card", "WeChat/Taobao integration", "16M downloads, 6M applied"],
       "nodevice": ["Physical ID card (required)"],
-      "metrics": [{"label": "Launch", "value": "Jul 2025"}, {"label": "Users", "value": "16M"}]
+      "metrics": [{"label": "Launch", "value": "Jul 2025"}, {"label": "Downloads", "value": "16M"}, {"label": "Applied", "value": "6M"}]
     },
     {
       "name": "Estonia",
@@ -91,7 +91,7 @@
       "isSubnational": false,
       "url": "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/Online-Ausweisfunktion/online-ausweisfunktion_node.html",
       "technology": "NFC-enabled ID card (Online-Ausweisfunktion) + EUDI Wallet in dev",
-      "description": "eID in ID cards since 2010. EUDI Wallet sandbox launched, targeting early 2027.",
+      "description": "eID in ID cards since 2010. EUDI Wallet sandbox launched, gradually usable by early 2027.",
       "details": ["eID function in card", "NFC smartphone", "EUDI Wallet sandbox", "75+ companies in MoU"],
       "nodevice": ["Physical card"],
       "metrics": [{"label": "eID since", "value": "2010"}, {"label": "EUDI", "value": "Early 2027"}]
@@ -161,10 +161,10 @@
       "isSubnational": false,
       "url": "https://nimc.gov.ng/",
       "technology": "Biometric central database",
-      "description": "95M+ enrolled. 73M+ blocked from mobile for lacking ID.",
+      "description": "127M+ enrolled. 73M+ blocked from mobile for lacking ID.",
       "details": ["One NIN per person", "Biometric capture"],
       "nodevice": ["NIN slip (paper)"],
-      "metrics": [{"label": "Enrolled", "value": "95M+"}, {"label": "Blocked", "value": "73M"}]
+      "metrics": [{"label": "Enrolled", "value": "127M+"}, {"label": "Blocked", "value": "73M+"}]
     },
     {
       "name": "Oman",
@@ -217,10 +217,10 @@
       "isSubnational": false,
       "url": "https://www.singpass.gov.sg/",
       "technology": "Cloud-native with MyInfo",
-      "description": "5M+ users, 2,700+ services.",
+      "description": "5M+ users, 2,700 services across 800+ agencies.",
       "details": ["One account", "Multi-device", "MyInfo", "Digital IC"],
       "nodevice": ["QR (feature phones)"],
-      "metrics": [{"label": "Users", "value": "5M+"}]
+      "metrics": [{"label": "Users", "value": "5M+"}, {"label": "Services", "value": "2,700"}]
     },
     {
       "name": "South Korea",
@@ -329,10 +329,10 @@
       "isSubnational": false,
       "url": "https://civictech.moda.gov.tw/en/what-is-the-taiwan-digital-identity-wallet/",
       "technology": "Wallet architecture",
-      "description": "Launching end 2025.",
-      "details": ["One per person", "Digital wallet"],
+      "description": "Prototype revealed March 2025. Target launch end 2026.",
+      "details": ["One per person", "Digital wallet", "Prototype revealed"],
       "nodevice": ["Physical cards"],
-      "metrics": [{"label": "Launch", "value": "End 2025"}]
+      "metrics": [{"label": "Target", "value": "End 2026"}]
     },
     {
       "name": "United Arab Emirates",
@@ -357,8 +357,8 @@
       "isSubnational": false,
       "url": "https://www.gov.uk/government/collections/uk-digital-identity-and-attributes-trust-framework",
       "technology": "Centralized with attribute sharing",
-      "description": "Announced Sept 2025. Mandatory for work by 2029.",
-      "details": ["One ID per person", "Trust framework"],
+      "description": "Announced Sept 25, 2025. Mandatory for work by 2029.",
+      "details": ["One ID per person", "Trust framework", "GOV.UK Wallet"],
       "nodevice": ["Passport fallback"],
       "metrics": [{"label": "Announced", "value": "Sept 2025"}]
     },

@@ -87,6 +87,15 @@
     .exec-insights { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
     .exec-insight { background: var(--bg-card); border-radius: var(--radius); padding: 10px; font-size: 0.75rem; color: var(--text-dim); border-left: 3px solid var(--accent); }
     .exec-insight strong { color: var(--text); }
+    .header-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+    .header-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-dim); font-size: 0.75rem; text-decoration: none; transition: all 0.2s; }
+    .header-btn:hover { border-color: var(--accent); color: var(--text); }
+    .header-btn svg { width: 14px; height: 14px; }
+    .search-bar { display: flex; gap: 10px; margin-bottom: 16px; }
+    .search-input { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; color: var(--text); font-size: 0.8rem; }
+    .search-input:focus { outline: none; border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-mute); }
+    .sort-select { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; color: var(--text); font-size: 0.75rem; min-width: 140px; }
   </style>
 </head>
 <body>
@@ -101,6 +110,20 @@
       <h2>Executive Summary</h2>
       <div class="exec-grid" id="execGrid"></div>
       <div class="exec-insights" id="execInsights"></div>
+      <div class="header-actions">
+        <a href="summary.html" class="header-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          View Full Summary
+        </a>
+      </div>
+    </div>
+    <div class="search-bar">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search jurisdictions, technologies...">
+      <select class="sort-select" id="sortSelect">
+        <option value="name">Sort by Name</option>
+        <option value="region">Sort by Region</option>
+        <option value="status">Sort by Status</option>
+      </select>
     </div>
     <div class="filters-bar" id="filters"></div>
     <div class="legend" id="legend"></div>
@@ -125,7 +148,7 @@
   </div>
   <script>
     let appData = null;
-    let filter = 'all', model = 'all', region = 'all';
+    let filter = 'all', model = 'all', region = 'all', sortBy = 'name', searchQuery = '';
     
     async function loadData() {
       try {
@@ -140,6 +163,15 @@
     function initApp() {
       document.getElementById('pageTitle').textContent = appData.meta.title;
       document.getElementById('pageSubtitle').textContent = appData.meta.description;
+      
+      // Check URL params for pre-selected filters
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('region')) {
+        region = urlParams.get('region');
+      }
+      if (urlParams.has('filter')) {
+        filter = urlParams.get('filter');
+      }
       
       // Stats
       const stats = appData.stats;
@@ -199,14 +231,14 @@
       document.getElementById('filters').innerHTML = `
         <span class="filter-label">Status:</span>
         <div class="filter-group">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="production">Production</button>
-          <button class="filter-btn" data-filter="development">In Development</button>
+          <button class="filter-btn ${filter === 'all' ? 'active' : ''}" data-filter="all">All</button>
+          <button class="filter-btn ${filter === 'production' ? 'active' : ''}" data-filter="production">Production</button>
+          <button class="filter-btn ${filter === 'development' ? 'active' : ''}" data-filter="development">In Development</button>
         </div>
         <span class="filter-label">Region:</span>
         <div class="filter-group">
-          <button class="filter-btn active" data-region="all">All</button>
-          ${regions.map(r => `<button class="filter-btn" data-region="${r}">${r.toUpperCase()}</button>`).join('')}
+          <button class="filter-btn ${region === 'all' ? 'active' : ''}" data-region="all">All</button>
+          ${regions.map(r => `<button class="filter-btn ${region === r ? 'active' : ''}" data-region="${r}">${r.toUpperCase()}</button>`).join('')}
         </div>
       `;
       document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.onclick = () => {
@@ -223,11 +255,34 @@
       const filtered = appData.jurisdictions.filter(j => {
         const f = filter === 'all' || j.status === filter;
         const r = region === 'all' || j.region === region;
-        return f && r;
+        
+        // Search filter
+        let s = true;
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          s = j.name.toLowerCase().includes(q) || 
+              j.technology.toLowerCase().includes(q) ||
+              (j.description && j.description.toLowerCase().includes(q)) ||
+              (j.parent && j.parent.toLowerCase().includes(q));
+        }
+        
+        return f && r && s;
       }).sort((a, b) => {
-        if (a.isSubnational !== b.isSubnational) return a.isSubnational ? 1 : -1;
-        if (a.isSubnational && a.parent !== b.parent) return a.parent.localeCompare(b.parent);
-        return a.name.localeCompare(b.name);
+        // Sort
+        if (sortBy === 'name') {
+          if (a.isSubnational !== b.isSubnational) return a.isSubnational ? 1 : -1;
+          if (a.isSubnational && a.parent !== b.parent) return a.parent.localeCompare(b.parent);
+          return a.name.localeCompare(b.name);
+        }
+        if (sortBy === 'region') {
+          if (a.region !== b.region) return a.region.localeCompare(b.region);
+          return a.name.localeCompare(b.name);
+        }
+        if (sortBy === 'status') {
+          if (a.status !== b.status) return a.status === 'production' ? -1 : 1;
+          return a.name.localeCompare(b.name);
+        }
+        return 0;
       });
       
       document.getElementById('cards').innerHTML = `<div style="grid-column: 1/-1; margin-bottom: 12px; color: var(--text-dim); font-size: 0.75rem;">Showing ${filtered.length} jurisdictions</div>` + filtered.map(j => `
@@ -269,6 +324,18 @@
     window.closeModal = function() { document.getElementById('modal').classList.remove('active'); };
     document.getElementById('modal').onclick = e => { if(e.target.id === 'modal') closeModal(); };
     document.onkeydown = e => { if(e.key === 'Escape') closeModal(); };
+    
+    // Search and sort
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderCards();
+    });
+    
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      sortBy = e.target.value;
+      renderCards();
+    });
+    
     loadData();
   </script>
 </body>
