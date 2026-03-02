@@ -191,16 +191,18 @@
         j.name === 'British Columbia' || j.name === 'China' || j.name === 'Sweden'
       );
       
-      document.getElementById('systems').innerHTML = notable.map(j => `
+      document.getElementById('systems').innerHTML = notable.map(j => {
+        const metric = j.metrics && j.metrics[0] ? `${j.metrics[0].label}: ${j.metrics[0].value}` : '';
+        return `
         <div class="system-card">
           <span class="system-flag">${flags[j.flag] || '🏳️'}</span>
           <div class="system-info">
             <div class="system-name">${j.name}</div>
-            <div style="font-size: 0.8rem; color: var(--text-dim)">${j.technology.substring(0, 50)}...</div>
+            ${metric ? `<div style="font-size: 0.8rem; color: var(--text-dim)">${metric}</div>` : ''}
           </div>
           <span class="system-status ${j.status === 'production' ? 'prod' : 'dev'}">${j.status}</span>
         </div>
-      `).join('');
+      `}).join('');
       
       // Footer
       document.getElementById('footer').textContent = `Based on publicly available information as of ${data.meta.lastUpdated}. Prepared for ${data.meta.preparedFor}.`;
