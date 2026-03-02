@@ -56,8 +56,9 @@
     .badge-prod { background: rgba(74, 222, 128, 0.15); color: var(--success); }
     .badge-spec { background: rgba(251, 191, 36, 0.15); color: var(--warning); }
     .badge-sub { background: rgba(96, 165, 250, 0.15); color: var(--info); }
-    .card-model { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 8px; padding: 5px 7px; background: var(--bg-hover); border-radius: 4px; }
+    .card-model { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 4px; padding: 5px 7px; background: var(--bg-hover); border-radius: 4px; }
     .card-model strong { color: var(--text); }
+    .card-tech { font-size: 0.65rem; color: var(--accent); margin-bottom: 6px; }
     .card-desc { font-size: 0.75rem; color: var(--text-dim); line-height: 1.4; }
     .card-meta { display: flex; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--text-mute); }
     .parent-jurisdiction { font-size: 0.6rem; color: var(--info); margin-bottom: 3px; text-transform: uppercase; }
@@ -263,6 +264,7 @@
           </div>
           ${j.isSubnational ? `<div class="parent-jurisdiction">${j.parent}</div>` : ''}
           <div class="card-model"><strong>${j.issuanceModel === 'multiple' ? 'Multiple IDs' : j.issuanceModel === 'cloud' ? 'Cloud account' : 'One ID'}</strong> · ${j.credentialType || ''}</div>
+          <div class="card-tech">${(j.techStack || []).slice(0, 3).join(', ')}</div>
           <div class="card-desc">${j.description.substring(0, 90)}...</div>
           <div class="card-meta">${j.metrics.slice(0, 2).map(m => `<span>${m.label}: <strong>${m.value}</strong></span>`).join('')}</div>
         </div>

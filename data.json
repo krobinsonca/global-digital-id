@@ -13,6 +13,69 @@
   },
   "jurisdictions": [
     {
+      "name": "Finland",
+      "flag": "fi",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "multiple",
+      "isSubnational": false,
+      "url": "https://dvv.fi/en/european-digital-identity-wallet",
+      "technology": "Findy + EUDI Wallet",
+      "techStack": [
+        "Findy",
+        "MyData",
+        "EUDI Wallet",
+        "Verifiable Credentials"
+      ],
+      "credentialType": "EUDI Wallet",
+      "description": "Findy network for verifiable data. National Digital Identity Wallet launching end 2026.",
+      "details": [
+        "Findy network",
+        "MyData model",
+        "EUDI Wallet 2026"
+      ],
+      "nodevice": [
+        "Physical ID"
+      ],
+      "metrics": [
+        {
+          "label": "Wallet",
+          "value": "End 2026"
+        }
+      ]
+    },
+    {
+      "name": "Austroads",
+      "flag": "au",
+      "region": "apac",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://austroads.gov.au/drivers-and-vehicles/digital-trust-service",
+      "technology": "Digital Trust Service - National Digital Credential",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Interoperability framework"
+      ],
+      "credentialType": "Digital Wallet -- ISO mDL",
+      "description": "National digital trust service for interoperable digital credentials across Australia and NZ.",
+      "details": [
+        "National framework",
+        "mDL interoperability",
+        "All states/territories"
+      ],
+      "nodevice": [
+        "Physical licence"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Dev"
+        }
+      ]
+    },
+    {
       "name": "Australia",
       "flag": "au",
       "region": "apac",
