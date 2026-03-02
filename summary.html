@@ -75,7 +75,7 @@
     /* Key Systems */
     .systems-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 12px;
     }
     .system-card {
@@ -84,7 +84,7 @@
       border-radius: 10px;
       padding: 16px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
     }
     .system-flag { font-size: 1.5rem; }
@@ -192,13 +192,14 @@
       );
       
       document.getElementById('systems').innerHTML = notable.map(j => {
-        const metric = j.metrics && j.metrics[0] ? `${j.metrics[0].label}: ${j.metrics[0].value}` : '';
+        const metrics = j.metrics ? j.metrics.map(m => `${m.value}`).join(' · ') : '';
         return `
         <div class="system-card">
           <span class="system-flag">${flags[j.flag] || '🏳️'}</span>
           <div class="system-info">
             <div class="system-name">${j.name}</div>
-            ${metric ? `<div style="font-size: 0.8rem; color: var(--text-dim)">${metric}</div>` : ''}
+            <div style="font-size: 0.8rem; color: var(--text-dim)">${j.description}</div>
+            ${metrics ? `<div style="font-size: 0.75rem; color: var(--accent); margin-top: 4px">${metrics}</div>` : ''}
           </div>
           <span class="system-status ${j.status === 'production' ? 'prod' : 'dev'}">${j.status}</span>
         </div>
