@@ -110,6 +110,13 @@
     .model-desc { font-size: 0.8rem; color: var(--text-dim); margin-top: 4px; }
     .model-examples { font-size: 0.75rem; color: var(--accent); margin-top: 8px; }
     
+    /* Tech Stack breakdown */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 40px; }
+    .tech-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .tech-count { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    .tech-name { font-size: 0.9rem; font-weight: 600; margin-top: 4px; }
+    .tech-desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    
     /* Footer */
     .footer {
       margin-top: 48px;
@@ -134,6 +141,12 @@
     <div class="section">
       <h2 class="section-title">Issuance Models</h2>
       <div class="model-grid" id="models"></div>
+    </div>
+    
+    <!-- Tech Stack -->
+    <div class="section">
+      <h2 class="section-title">Technology Stack</h2>
+      <div class="tech-grid" id="techStack"></div>
     </div>
     
     <!-- Key Insights -->
@@ -211,6 +224,63 @@
           <div class="model-examples">${modelExamples.multiple.join(', ')}</div>
         </div>
       `;
+      
+      // Tech stack breakdown
+      const techCounts = {};
+      jur.forEach(j => {
+        if (j.techStack) {
+          j.techStack.forEach(t => {
+            techCounts[t] = (techCounts[t] || 0) + 1;
+          });
+        }
+      });
+      
+      const techLabels = {
+        'PKI': { icon: '🔐', desc: 'Certificate-based authentication' },
+        'Biometric (fingerprint/iris)': { icon: '👆', desc: 'Fingerprint or iris scanning' },
+        'Biometric': { icon: '👆', desc: 'Fingerprint, iris, or facial recognition' },
+        'OIDC': { icon: '🔓', desc: 'OpenID Connect protocol' },
+        'ISO 18013-5': { icon: '📱', desc: 'Mobile Driver License standard' },
+        'Verifiable Credentials': { icon: '📄', desc: 'W3C verifiable credentials' },
+        'FIDO2': { icon: '🛡️', desc: 'Passwordless authentication' },
+        'NFC': { icon: '📳', desc: 'Tap to authenticate' },
+        'QR Code': { icon: '⬛', desc: 'QR-based credential presentation' },
+        'Central Database': { icon: '🗄️', desc: 'Government-managed identity database' },
+        'OAuth 2.0': { icon: '🔓', desc: 'Authorization framework' },
+        'Facial recognition': { icon: '👤', desc: 'Face authentication' },
+        'OTP': { icon: '📱', desc: 'One-time password' },
+        'X-Road': { icon: '🛣️', desc: 'Data exchange layer' },
+        'Mobile-ID': { icon: '📱', desc: 'Mobile SIM-based authentication' },
+        'Smart-ID': { icon: '📱', desc: 'App-based authentication' },
+        'eIDAS': { icon: '🇪🇺', desc: 'EU electronic ID framework' },
+        'OpenID4VP': { icon: '🔓', desc: 'Verifiable Presentations' },
+        'W3C Verifiable Credentials': { icon: '📄', desc: 'Digital credential standard' },
+        'SAML': { icon: '🔐', desc: 'Security assertion markup' },
+        'REST API': { icon: '🔗', desc: 'API-based integration' },
+        'WeChat integration': { icon: '💬', desc: 'WeChat platform integration' },
+        'MyInfo': { icon: '📋', desc: 'Singapore citizen data platform' },
+        'SingPass app': { icon: '🇸🇬', desc: 'Singapore authentication app' },
+        'QR login': { icon: '⬛', desc: 'QR code login' },
+        'Mobile certificate': { icon: '📜', desc: 'Certificate on mobile device' },
+        'BankID': { icon: '🏦', desc: 'Bank-issued authentication' },
+        'Wallet app': { icon: '👛', desc: 'Digital wallet application' },
+        'GOV.UK Wallet': { icon: '🇬🇧', desc: 'UK government wallet' },
+        'Trust framework': { icon: '📋', desc: 'Trust framework for identity' },
+        'Attribute sharing': { icon: '🔄', desc: 'Selective attribute disclosure' }
+      };
+      
+      const topTech = Object.entries(techCounts).sort((a,b) => b[1]-a[1]).slice(0, 6);
+      
+      document.getElementById('techStack').innerHTML = topTech.map(([tech, count]) => {
+        const info = techLabels[tech] || { icon: '⚙️', desc: '' };
+        return `
+          <div class="tech-card">
+            <div class="tech-count">${count}</div>
+            <div class="tech-name">${info.icon} ${tech}</div>
+            <div class="tech-desc">${info.desc}</div>
+          </div>
+        `;
+      }).join('');
       
       // Insights
       const regionCounts = {};
