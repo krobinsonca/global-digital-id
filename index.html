@@ -34,7 +34,7 @@
     .card.is-subnational { margin-left: 16px; border-left: 3px solid var(--info); }
     .card-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
     .card-title-group { display: flex; align-items: center; gap: 8px; }
-    .card-flag { width: 28px; height: 19px; border-radius: 2px; object-fit: cover; }
+    .card-flag { font-size: 1.5rem; }
     .card-title { font-weight: 600; font-size: 0.9rem; }
     .card-subtitle { font-size: 0.7rem; color: var(--text-dim); }
     .card-badges { display: flex; gap: 3px; }
@@ -60,7 +60,7 @@
     .modal-overlay.active .modal { transform: scale(1); }
     .modal-header { padding: 14px 14px 0; display: flex; align-items: center; justify-content: space-between; }
     .modal-title { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-    .modal-flag { width: 26px; height: 18px; border-radius: 2px; }
+    .modal-flag { font-size: 1.5rem; }
     .modal-close { background: none; border: none; color: var(--text-mute); font-size: 1.2rem; cursor: pointer; }
     .modal-body { padding: 14px; }
     .modal-section { margin-bottom: 14px; }
@@ -289,7 +289,7 @@
         <div class="card ${j.isSubnational ? 'is-subnational' : ''}" onclick="openModal('${j.name.replace(/'/g, "\\'")}')">
           <div class="card-header">
             <div class="card-title-group">
-              <img class="card-flag" src="flags/${j.flag}.png" alt="${j.name}">
+              <span class="card-flag">${getFlag(j.flag)}</span>
               <div>
                 <div class="card-title">${j.name}</div>
                 <div class="card-subtitle">${j.isSubnational ? j.parent : j.technology}</div>
@@ -311,7 +311,7 @@
     window.openModal = function(name) {
       const j = appData.jurisdictions.find(x => x.name === name);
       if (!j) return;
-      document.getElementById('modalTitle').innerHTML = `<img class="modal-flag" src="flags/${j.flag}.png"> ${j.name}`;
+      document.getElementById('modalTitle').innerHTML = `<span class="modal-flag">${getFlag(j.flag)}</span> ${j.name}`;
       document.getElementById('modalDesc').textContent = j.description;
       document.getElementById('modalTech').textContent = j.technology;
       document.getElementById('modalDetails').innerHTML = j.details.map(d => `<li>${d}</li>`).join('');
@@ -324,6 +324,11 @@
     window.closeModal = function() { document.getElementById('modal').classList.remove('active'); };
     document.getElementById('modal').onclick = e => { if(e.target.id === 'modal') closeModal(); };
     document.onkeydown = e => { if(e.key === 'Escape') closeModal(); };
+    
+    function getFlag(code) {
+      const flags = { au:'🇦🇺', br:'🇧🇷', cn:'🇨🇳', de:'🇩🇪', ee:'🇪🇪', es:'🇪🇸', eu:'🇪🇺', fr:'🇫🇷', gb:'🇬🇧', in:'🇮🇳', il:'🇮🇱', it:'🇮🇹', ke:'🇰🇪', kr:'🇰🇷', my:'🇲🇾', ng:'🇳🇬', nl:'🇳🇱', om:'🇴🇲', pt:'🇵🇹', qa:'🇶🇦', sa:'🇸🇦', sg:'🇸🇬', se:'🇸🇪', tw:'🇹🇼', ae:'🇦🇪', us:'🇺🇸', ca:'🇨🇦', af:'🇦🇫' };
+      return flags[code] || '🏳️';
+    }
     
     // Search and sort
     document.getElementById('searchInput').addEventListener('input', (e) => {
