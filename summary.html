@@ -117,6 +117,13 @@
     .tech-name { font-size: 0.9rem; font-weight: 600; margin-top: 4px; }
     .tech-desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
     
+    /* No-device */
+    .nodevice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .nodevice-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+    .nodevice-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+    .nodevice-desc { font-size: 0.75rem; color: var(--text-dim); }
+    .nodevice-examples { font-size: 0.7rem; color: var(--accent); margin-top: 6px; }
+    
     /* Footer */
     .footer {
       margin-top: 48px;
@@ -159,6 +166,12 @@
     <div class="section">
       <h2 class="section-title">Notable Systems</h2>
       <div class="systems-grid" id="systems"></div>
+    </div>
+    
+    <!-- No-Device Solutions -->
+    <div class="section">
+      <h2 class="section-title">Non-Digital Access Options</h2>
+      <div class="nodevice-grid" id="nodevice"></div>
     </div>
     
     <div class="footer" id="footer"></div>
@@ -328,6 +341,16 @@
           <span class="system-status ${j.status === 'production' ? 'prod' : 'dev'}">${j.status}</span>
         </div>
       `}).join('');
+      
+      // No-device solutions
+      const nodevice = data.nodeviceSolutions || [];
+      document.getElementById('nodevice').innerHTML = nodevice.map(n => `
+        <div class="nodevice-card">
+          <div class="nodevice-name">${n.name}</div>
+          <div class="nodevice-desc">${n.description}</div>
+          <div class="nodevice-examples">${n.examples.join(', ')}</div>
+        </div>
+      `).join('');
       
       // Footer
       document.getElementById('footer').textContent = `Based on publicly available information as of ${data.meta.lastUpdated}. Prepared for ${data.meta.preparedFor}.`;
