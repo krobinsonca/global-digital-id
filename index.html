@@ -109,8 +109,11 @@
       <input type="text" class="search-input" id="searchInput" placeholder="Search...">
       <div class="filter-group" id="statusFilters"></div>
       <div class="filter-group" id="regionFilters"></div>
-      <select class="sort-select" id="credTypeSelect">
-        <option value="all">All Types</option>
+      <select class="sort-select" id="walletTypeSelect">
+        <option value="all">All Wallets</option>
+      </select>
+      <select class="sort-select" id="credFormatSelect">
+        <option value="all">All Formats</option>
       </select>
       <select class="sort-select" id="sortSelect">
         <option value="name">Name</option>
@@ -142,7 +145,7 @@
   </div>
   <script>
     let appData = null;
-    let filter = 'all', model = 'all', region = 'all', credentialType = 'all', sortBy = 'name', searchQuery = '';
+    let filter = 'all', model = 'all', region = 'all', walletType = 'all', credentialFormat = 'all', sortBy = 'name', searchQuery = '';
     
     async function loadData() {
       try {
@@ -184,7 +187,8 @@
     
     function renderFilters() {
       const regions = [...new Set(appData.jurisdictions.map(j => j.region))];
-      const credTypes = [...new Set(appData.jurisdictions.map(j => j.credentialType).filter(Boolean))];
+      const walletTypes = [...new Set(appData.jurisdictions.map(j => j.walletType).filter(Boolean))];
+      const credFormats = [...new Set(appData.jurisdictions.map(j => j.credentialFormat).filter(Boolean))];
       
       document.getElementById('statusFilters').innerHTML = `
         <button class="filter-btn ${filter === 'all' ? 'active' : ''}" data-filter="all">All</button>
@@ -196,11 +200,17 @@
         ${regions.map(r => `<button class="filter-btn ${region === r ? 'active' : ''}" data-region="${r}">${r.toUpperCase()}</button>`).join('')}
       `;
       
-      // Credential type dropdown
-      const credSelect = document.getElementById('credTypeSelect');
-      credSelect.innerHTML = '<option value="all">All Types</option>' + 
-        credTypes.map(t => `<option value="${t}">${t}</option>`).join('');
-      credSelect.value = credentialType;
+      // Wallet type dropdown
+      const wtSelect = document.getElementById('walletTypeSelect');
+      wtSelect.innerHTML = '<option value="all">All Wallets</option>' + 
+        walletTypes.map(t => `<option value="${t}">${t}</option>`).join('');
+      wtSelect.value = walletType;
+      
+      // Credential format dropdown
+      const cfSelect = document.getElementById('credFormatSelect');
+      cfSelect.innerHTML = '<option value="all">All Formats</option>' + 
+        credFormats.map(f => `<option value="${f}">${f}</option>`).join('');
+      cfSelect.value = credentialFormat;
       
       document.querySelectorAll('#statusFilters .filter-btn').forEach(b => b.onclick = () => {
         document.querySelectorAll('#statusFilters .filter-btn').forEach(x => x.classList.remove('active'));
@@ -216,7 +226,8 @@
       const filtered = appData.jurisdictions.filter(j => {
         const f = filter === 'all' || j.status === filter;
         const r = region === 'all' || j.region === region;
-        const ct = credentialType === 'all' || j.credentialType === credentialType;
+        const wt = walletType === 'all' || j.walletType === walletType;
+        const cf = credentialFormat === 'all' || j.credentialFormat === credentialFormat;
         
         // Search filter
         let s = true;
@@ -228,7 +239,7 @@
               (j.parent && j.parent.toLowerCase().includes(q));
         }
         
-        return f && r && ct && s;
+        return f && r && wt && cf && s;
       }).sort((a, b) => {
         // Sort
         if (sortBy === 'name') {
@@ -263,8 +274,8 @@
             </div>
           </div>
           ${j.isSubnational ? `<div class="parent-jurisdiction">${j.parent}</div>` : ''}
-          <div class="card-model"><strong>${j.credentialType || (j.issuanceModel === 'multiple' ? 'Multiple IDs' : j.issuanceModel === 'cloud' ? 'Cloud account' : 'One ID')}</strong></div>
-          <div class="card-tech">${(j.techStack || []).slice(0, 4).join(' · ')}</div>
+          <div class="card-model"><strong>${j.walletType !== 'None' ? j.walletType + ' Wallet' : (j.issuanceModel === 'multiple' ? 'Multiple Providers' : j.issuanceModel === 'cloud' ? 'Cloud' : 'Single Issuer')}</strong> · ${j.credentialFormat || 'N/A'}</div>
+          <div class="card-tech">${j.walletTech || ''}</div>
           <div class="card-desc">${j.description.substring(0, 90)}...</div>
           <div class="card-meta">${j.metrics.slice(0, 2).map(m => `<span>${m.label}: <strong>${m.value}</strong></span>`).join('')}</div>
         </div>
@@ -303,8 +314,13 @@
       renderCards();
     });
     
-    document.getElementById('credTypeSelect').addEventListener('change', (e) => {
-      credentialType = e.target.value;
+    document.getElementById('walletTypeSelect').addEventListener('change', (e) => {
+      walletType = e.target.value;
+      renderCards();
+    });
+    
+    document.getElementById('credFormatSelect').addEventListener('change', (e) => {
+      credentialFormat = e.target.value;
       renderCards();
     });
     

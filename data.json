@@ -1819,5 +1819,72 @@
       "name": "Central Database",
       "description": "Government-managed identity database"
     }
-  ]
+  ],
+  "interoperability": {
+    "eu_cross_border": {
+      "name": "EUDI Cross-Border",
+      "type": "framework",
+      "members": [
+        "European Union",
+        "Finland",
+        "Italy",
+        "Spain",
+        "France",
+        "Netherlands",
+        "Portugal",
+        "Germany"
+      ],
+      "description": "EUDI Wallet enables cross-border identity verification across EU member states"
+    },
+    "nordic": {
+      "name": "Nordic Interoperability",
+      "type": "framework",
+      "members": [
+        "Sweden",
+        "Estonia",
+        "Denmark",
+        "Norway",
+        "Iceland"
+      ],
+      "description": "Nordic countries have existing digital ID interoperability"
+    },
+    "us_tsa": {
+      "name": "US TSA Acceptance",
+      "type": "acceptance",
+      "members": [
+        "Louisiana",
+        "Arizona",
+        "Maryland",
+        "Colorado",
+        "Georgia",
+        "Ohio",
+        "California",
+        "Utah",
+        "Iowa",
+        "Virginia",
+        "Nevada",
+        "Vermont",
+        "New York"
+      ],
+      "description": "TSA accepts mDL at airport checkpoints"
+    },
+    "aus_nz": {
+      "name": "Australia/New Zealand",
+      "type": "future",
+      "members": [
+        "Austroads",
+        "New Zealand"
+      ],
+      "description": "Parallel development with potential future interoperability"
+    },
+    "eu_canada": {
+      "name": "EU-Canada MoU",
+      "type": "agreement",
+      "members": [
+        "European Union",
+        "Canada"
+      ],
+      "description": "MoU signed Dec 2025 on mutual recognition pilots"
+    }
+  }
 }
