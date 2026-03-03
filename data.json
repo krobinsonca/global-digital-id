@@ -17,7 +17,7 @@
       "flag": "fi",
       "region": "eu",
       "status": "development",
-      "issuanceModel": "multiple",
+      "issuanceModel": "wallet",
       "isSubnational": false,
       "url": "https://dvv.fi/en/european-digital-identity-wallet",
       "technology": "Findy + EUDI Wallet",
@@ -27,7 +27,7 @@
         "EUDI Wallet",
         "Verifiable Credentials"
       ],
-      "credentialType": "Multi-Issuer Wallet (EUDI)",
+      "credentialType": "Wallet (EUDI-compliant)",
       "description": "Findy network + EUDI Wallet launching end 2026. Wallet will hold credentials from government, banks, other issuers.",
       "details": [
         "Findy network",
@@ -216,14 +216,14 @@
           "value": "99%+"
         }
       ],
-      "credentialType": "Multi-Issuer (Gov + Bank credentials)"
+      "credentialType": "Bank credentials"
     },
     {
       "name": "European Union",
       "flag": "eu",
       "region": "eu",
       "status": "development",
-      "issuanceModel": "multiple",
+      "issuanceModel": "wallet",
       "isSubnational": false,
       "url": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en",
       "technology": "EUDI Wallet (eIDAS 2.0) - framework + 27 national wallets",
@@ -253,7 +253,7 @@
           "value": "Dec 2026"
         }
       ],
-      "credentialType": "Multi-Issuer Wallet (EUDI)"
+      "credentialType": "Wallet (EUDI-compliant)"
     },
     {
       "name": "Germany",
@@ -656,7 +656,7 @@
           "value": "7.6B"
         }
       ],
-      "credentialType": "Multi-Issuer (Bank credentials)"
+      "credentialType": "Bank credentials"
     },
     {
       "name": "Italy",

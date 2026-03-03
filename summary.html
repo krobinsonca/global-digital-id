@@ -320,8 +320,8 @@
           <p>US mDL rollouts (14+ states in Apple/Google Wallet) and TSA acceptance are driving mainstream digital credential use beyond government services.</p>
         </div>
         <div class="insight-card">
-          <h3>🏛️ Issuance Models: Single vs Multiple</h3>
-          <p>Most jurisdictions (${modelCounts.single}) use single issuer (one credential per person). Only ${modelCounts.multiple} use multiple providers (Estonia, Sweden, Finland, EUDI) where banks/telcos issue credentials.</p>
+          <h3>🏛️ Issuance Models</h3>
+          <p><strong>Single issuer</strong> (${modelCounts.single}): Government issues ONE credential per person. <strong>Wallet</strong> (${modelCounts.wallet || 0}): EUDI-style, holds credentials from multiple issuers. <strong>Multiple providers</strong> (${modelCounts.multiple}): Banks/telcos issue credentials.</p>
         </div>
         <div class="insight-card">
           <h3>📊 Current State: ${production} Live vs ${development} In Development</h3>
