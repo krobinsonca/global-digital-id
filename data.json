@@ -588,7 +588,7 @@
           "value": "2,700"
         }
       ],
-      "credentialType": "OIDC-style authentication"
+      "credentialType": "Platform Wallet (SingPass)"
     },
     {
       "name": "South Korea",
@@ -692,7 +692,7 @@
           "value": "2025-26"
         }
       ],
-      "credentialType": "EUDI Wallet"
+      "credentialType": "Wallet (EUDI-compliant)"
     },
     {
       "name": "Spain",
@@ -722,7 +722,7 @@
           "value": "Dev"
         }
       ],
-      "credentialType": "EUDI Wallet"
+      "credentialType": "Wallet (EUDI-compliant)"
     },
     {
       "name": "France",
@@ -752,7 +752,7 @@
           "value": "Dev"
         }
       ],
-      "credentialType": "EUDI Wallet"
+      "credentialType": "Wallet (EUDI-compliant)"
     },
     {
       "name": "Netherlands",
@@ -782,7 +782,7 @@
           "value": "End 2026"
         }
       ],
-      "credentialType": "EUDI Wallet"
+      "credentialType": "Wallet (EUDI-compliant)"
     },
     {
       "name": "Portugal",
@@ -812,7 +812,7 @@
           "value": "2025-26"
         }
       ],
-      "credentialType": "EUDI Wallet"
+      "credentialType": "Wallet (EUDI-compliant)"
     },
     {
       "name": "Taiwan",
@@ -941,7 +941,7 @@
           "value": "Live"
         }
       ],
-      "credentialType": "Digital Wallet -- Verifiable Credentials"
+      "credentialType": "Government Wallet (BC Wallet)"
     },
     {
       "name": "Alberta",
@@ -1184,7 +1184,7 @@
           "value": "2018"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Arizona",
@@ -1214,7 +1214,7 @@
           "value": "2020"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Maryland",
@@ -1244,7 +1244,7 @@
           "value": "2021"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Colorado",
@@ -1274,7 +1274,7 @@
           "value": "2022"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Georgia",
@@ -1304,7 +1304,7 @@
           "value": "2022"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Ohio",
@@ -1334,7 +1334,7 @@
           "value": "Apple"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "California",
@@ -1364,7 +1364,7 @@
           "value": "Dec 2023"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Utah",
@@ -1394,7 +1394,7 @@
           "value": "2023"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Iowa",
@@ -1424,7 +1424,7 @@
           "value": "2023"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Virginia",
@@ -1454,7 +1454,7 @@
           "value": "2024"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Nevada",
@@ -1484,7 +1484,7 @@
           "value": "2024"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Vermont",
@@ -1514,7 +1514,7 @@
           "value": "2024"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "New York",
@@ -1544,7 +1544,7 @@
           "value": "200K+"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "New Jersey",
@@ -1573,7 +1573,7 @@
           "value": "Spec"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     },
     {
       "name": "Texas",
@@ -1602,7 +1602,7 @@
           "value": "Spec"
         }
       ],
-      "credentialType": "Digital Wallet -- ISO mDL"
+      "credentialType": "Platform Wallet (Apple/Google)"
     }
   ],
   "nodeviceSolutions": [
