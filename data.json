@@ -78,7 +78,8 @@
         }
       ],
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "Digital Trust Service (Austroads/NEVDIS/Mattr)"
     },
     {
       "name": "Australia",
@@ -195,7 +196,8 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Browser/Cloud",
-      "credentialFormat": "Account-based"
+      "credentialFormat": "Account-based",
+      "walletTech": "National Online Identity Auth App (MPS/CAC)"
     },
     {
       "name": "Estonia",
@@ -309,7 +311,8 @@
       ],
       "credentialType": "PKI-based",
       "walletType": "Government",
-      "credentialFormat": "PKI"
+      "credentialFormat": "PKI",
+      "walletTech": "EUDI Wallet (Bundesdruckerei)"
     },
     {
       "name": "India",
@@ -417,7 +420,8 @@
       ],
       "credentialType": "Government Wallet",
       "walletType": "Browser/Cloud",
-      "credentialFormat": "Account-based"
+      "credentialFormat": "Account-based",
+      "walletTech": "eCitizen Wallet"
     },
     {
       "name": "Malaysia",
@@ -902,7 +906,8 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
-      "credentialFormat": "ID Card"
+      "credentialFormat": "ID Card",
+      "walletTech": "TW DIW (MODA)"
     },
     {
       "name": "United Arab Emirates",
@@ -968,7 +973,8 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Browser/Cloud",
-      "credentialFormat": "Account-based"
+      "credentialFormat": "Account-based",
+      "walletTech": "GOV.UK One Login"
     },
     {
       "name": "British Columbia",
@@ -1270,7 +1276,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "LA Wallet"
     },
     {
       "name": "Arizona",
@@ -1430,7 +1437,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "Apple/Google Wallet"
     },
     {
       "name": "California",
@@ -1462,7 +1470,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "CA DMV Wallet"
     },
     {
       "name": "Utah",
@@ -1494,7 +1503,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "GET Mobile App"
     },
     {
       "name": "Iowa",
@@ -1526,7 +1536,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "Iowa Mobile ID"
     },
     {
       "name": "Virginia",
@@ -1558,7 +1569,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "VA MiD App"
     },
     {
       "name": "Nevada",
@@ -1622,7 +1634,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "Apple/Google Wallet"
     },
     {
       "name": "New York",
@@ -1654,7 +1667,8 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "walletTech": "NY MiD App"
     },
     {
       "name": "New Jersey",
