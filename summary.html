@@ -304,20 +304,20 @@
       
       document.getElementById('insights').innerHTML = `
         <div class="insight-card">
-          <h3>🇪🇺 EU Deadline Looming</h3>
-          <p>All 27 member states must issue EUDI Wallets by December 2026 — the biggest coordinated digital ID rollout in history.</p>
+          <h3>🇪🇺 EU Deadline: Catalyst for Change</h3>
+          <p>All 27 EU member states must offer EUDI Wallets by Dec 2026 — the biggest coordinated digital ID rollout. This creates a de facto standard and accelerates adoption globally.</p>
         </div>
         <div class="insight-card">
-          <h3>${topRegion ? regionNames[topRegion[0]] || topRegion[0] : 'Americas'} Leads in Adoption</h3>
-          <p>${topRegion ? topRegion[1] : 0} jurisdictions tracked, driven by ${topRegion && topRegion[0] === 'na' ? 'US state mDL rollouts and BC\'s person credential' : 'national programs and state-level initiatives'}.</p>
+          <h3>🏛️ Catalyst: Multi-Credential Wallets</h3>
+          <p>Driven by EUDI Wallet, governments are moving toward user-controlled wallets that hold multiple credentials (ID, DL, health card). ISO 18013-5 enables interoperability across jurisdictions.</p>
         </div>
         <div class="insight-card">
-          <h3>Production Outpaces Development</h3>
-          <p>${production} systems live vs ${development} in development. Most governments have moved beyond pilots to production.</p>
+          <h3>📱 Catalyst: Mobile-first Adoption</h3>
+          <p>US mDL rollouts (14+ states in Apple/Google Wallet) and acceptance at TSA/federal buildings are driving mainstream digital credential use beyond government services.</p>
         </div>
         <div class="insight-card">
-          <h3>Mobile Driver Licenses Going Mainstream</h3>
-          <p>14+ US states now offer mDLs in Apple/Google Wallet. Acceptance expanding at TSA checkpoints and federal buildings.</p>
+          <h3>📊 Current State: ${production} Live vs ${development} In Development</h3>
+          <p>Most jurisdictions have moved beyond pilots to production. ${production > development ? 'Production leads' : 'Development continues'} globally.</p>
         </div>
       `;
       
