@@ -153,7 +153,8 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "Gov.br / Digital CIN",
       "credentialFormat": "ID Card"
     },
     {
@@ -207,18 +208,20 @@
       "issuanceModel": "multiple",
       "isSubnational": false,
       "url": "https://e-estonia.com/",
-      "technology": "PKI-based with multiple credentials",
+      "technology": "PKI-based with multiple credentials + government wallet",
       "techStack": [
         "PKI",
         "X-Road",
         "Mobile-ID",
-        "Smart-ID"
+        "Smart-ID",
+        "mRiik"
       ],
-      "description": "Mandatory since 2002. 99%+ coverage. ID card + Mobile-ID + Smart-ID from government and banks.",
+      "description": "Mandatory since 2002. 99%+ coverage. ID card + Mobile-ID + Smart-ID + mRiik app.",
       "details": [
         "ID card + Mobile ID + Smart ID",
         "X-Road",
-        "e-Residency"
+        "e-Residency",
+        "mRiik (mState) app"
       ],
       "nodevice": [
         "Physical cards",
@@ -231,7 +234,8 @@
         }
       ],
       "credentialType": "Bank credentials",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "mRiik / Mobile ID / Smart-ID",
       "credentialFormat": "Bank Credential"
     },
     {
@@ -354,7 +358,8 @@
         }
       ],
       "credentialType": "Biometric Central Database",
-      "walletType": "None",
+      "walletType": "Platform",
+      "walletTech": "mAadhaar / DigiLocker / Google Wallet",
       "credentialFormat": "Biometric"
     },
     {
@@ -387,7 +392,8 @@
         }
       ],
       "credentialType": "PKI-based",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "Gov.ID / Teudat Zehut App",
       "credentialFormat": "PKI"
     },
     {
@@ -430,7 +436,7 @@
       "status": "production",
       "issuanceModel": "single",
       "isSubnational": false,
-      "url": "https://www.digital-id.my/",
+      "url": "https://www.digitalid.my/",
       "technology": "PKI-based with centralized registration",
       "techStack": [
         "PKI",
@@ -459,7 +465,8 @@
         }
       ],
       "credentialType": "PKI-based",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "MyDigital ID / MyDigital ID Superapp",
       "credentialFormat": "PKI"
     },
     {
@@ -495,7 +502,8 @@
         }
       ],
       "credentialType": "Biometric Central Database",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "NIMC Mobile Digital ID / USSD *346#",
       "credentialFormat": "Biometric"
     },
     {
@@ -506,15 +514,19 @@
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://gov.om/en/w/digital-identity-service-from-rop",
-      "technology": "PKI smart cards",
+      "technology": "PKI smart cards + digital wallet app",
       "techStack": [
         "PKI",
-        "Smart card"
+        "Smart card",
+        "Facial recognition",
+        "QR codes"
       ],
-      "description": "PKI smart cards. Tawahul program 94%.",
+      "description": "PKI smart cards. Tawahul program 94%. Digital wallet app since Sep 2025.",
       "details": [
         "One per person",
-        "PKI card"
+        "PKI card",
+        "Digital wallet app",
+        "Facial biometrics"
       ],
       "nodevice": [
         "Physical card"
@@ -526,7 +538,8 @@
         }
       ],
       "credentialType": "PKI-based",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "Digital Identity Service (ROP)",
       "credentialFormat": "PKI"
     },
     {
@@ -537,14 +550,17 @@
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.mcit.gov.qa/en/services/national-authentication-service/",
-      "technology": "Multiple sector systems",
+      "technology": "Multiple sector systems + digital wallet",
       "techStack": [
         "National Authentication System",
-        "Sector-specific credentials"
+        "Sector-specific credentials",
+        "Digital wallet",
+        "QR codes"
       ],
-      "description": "Sector-specific credentials: healthcare, residency, employment via National Authentication System.",
+      "description": "QDI app for digital wallet. Stores passport, ID card, national address, driving license.",
       "details": [
         "One per person",
+        "Digital wallet app",
         "Healthcare"
       ],
       "nodevice": [
@@ -557,7 +573,8 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "QDI (Qatar Digital Identity)",
       "credentialFormat": "ID Card"
     },
     {
@@ -568,16 +585,18 @@
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://sdaia.gov.sa/",
-      "technology": "Framework established, law pending",
+      "technology": "Framework established + digital wallet app",
       "techStack": [
         "Nafath",
         "National database",
-        "Verification API"
+        "Verification API",
+        "Tawakkalna super app"
       ],
-      "description": "SDAIA framework launched. Digital ID law 2026.",
+      "description": "SDAIA framework launched. Digital ID law 2026. Nafath + Tawakkalna super app.",
       "details": [
         "SDAIA framework",
-        "Nafath verification"
+        "Nafath verification",
+        "Tawakkalna (10M+ users)"
       ],
       "nodevice": [
         "Physical ID"
@@ -589,7 +608,8 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
+      "walletType": "Government",
+      "walletTech": "Nafath / Tawakkalna",
       "credentialFormat": "ID Card"
     },
     {
@@ -640,17 +660,19 @@
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.gov.kr/",
-      "technology": "Mobile-based certificates",
+      "technology": "Mobile-based certificates + platform wallets",
       "techStack": [
         "Mobile certificate",
         "Public certificate",
-        "App-based"
+        "App-based",
+        "Samsung Wallet"
       ],
-      "description": "Nationwide rollout March 2025.",
+      "description": "Nationwide rollout March 2025. PASS app + Samsung Wallet integration.",
       "details": [
         "One per person",
         "Mobile app",
-        "Certificate auth"
+        "Certificate auth",
+        "Samsung Wallet (15+ banks)"
       ],
       "nodevice": [
         "Physical ID cards"
@@ -662,7 +684,8 @@
         }
       ],
       "credentialType": "Mobile Certificate",
-      "walletType": "None",
+      "walletType": "Platform",
+      "walletTech": "PASS / Samsung Wallet",
       "credentialFormat": "Certificate"
     },
     {
@@ -673,19 +696,21 @@
       "issuanceModel": "multiple",
       "isSubnational": false,
       "url": "https://www.bankid.com/en/",
-      "technology": "Bank-issued PKI certificates",
+      "technology": "Bank-issued PKI certificates + private wallet apps",
       "techStack": [
         "PKI",
         "BankID",
         "Mobile app",
-        "Browser plugin"
+        "Browser plugin",
+        "Freja eID"
       ],
       "description": "94% of smartphone users. 7.6B transactions in 2024. Multiple BankIDs from different banks.",
       "details": [
         "Multiple BankIDs per person",
         "Cross-platform (mobile/desktop)",
         "Bank-issued",
-        "7.6B uses in 2024"
+        "7.6B uses in 2024",
+        "Freja eID alternative"
       ],
       "nodevice": [
         "Physical ID cards (passport/ID card)"
@@ -701,7 +726,8 @@
         }
       ],
       "credentialType": "Bank credentials",
-      "walletType": "None",
+      "walletType": "Platform",
+      "walletTech": "BankID / Freja eID",
       "credentialFormat": "PKI"
     },
     {
@@ -917,16 +943,18 @@
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.uaepass.ae/",
-      "technology": "Cloud-based centralized",
+      "technology": "Cloud-based centralized + platform wallet",
       "techStack": [
         "UAE Pass app",
         "Emirates ID integration",
-        "Biometric"
+        "Biometric",
+        "Apple Wallet / Google Wallet"
       ],
-      "description": "12K+ services. One per person linked to Emirates ID.",
+      "description": "12K+ services. One per person linked to Emirates ID. Available in Apple Wallet.",
       "details": [
         "One UAE Pass",
-        "Linked to Emirates ID"
+        "Linked to Emirates ID",
+        "Apple Wallet support"
       ],
       "nodevice": [
         "Emirates ID card"
@@ -938,7 +966,8 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
+      "walletType": "Platform",
+      "walletTech": "UAE Pass / Apple Wallet",
       "credentialFormat": "Biometric"
     },
     {
@@ -1058,14 +1087,16 @@
       "isSubnational": true,
       "parent": "Canada",
       "url": "https://www.ontario.ca/page/digital-ontario",
-      "technology": "Digital ID program (on hold)",
+      "technology": "Digital ID program (on hold) + third-party app",
       "techStack": [
-        "TBD"
+        "TBD",
+        "eID-Me"
       ],
-      "description": "Digital ID program halted in 2024 amid backlash. Originally planned wallet for DL + health card.",
+      "description": "Digital ID program halted in 2024. eID-Me (Bluink) available as third-party option.",
       "details": [
         "Program on hold",
-        "Wallet for DL + health card planned"
+        "Wallet for DL + health card planned",
+        "eID-Me available"
       ],
       "nodevice": [
         "Physical ID"
@@ -1077,7 +1108,8 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
+      "walletType": "Platform",
+      "walletTech": "eID-Me (Bluink)",
       "credentialFormat": "ID Card"
     },
     {
@@ -1089,14 +1121,16 @@
       "isSubnational": true,
       "parent": "Canada",
       "url": "https://www.quebec.ca/gouvernement/identite-numerique",
-      "technology": "SQIN program (suspended)",
+      "technology": "SQIN program (suspended) + third-party app",
       "techStack": [
-        "TBD"
+        "TBD",
+        "eID-Me"
       ],
-      "description": "Identit\u00e9 num\u00e9rique Qu\u00e9bec project suspended March 2025. Law 82 passed.",
+      "description": "Identit\u00e9 num\u00e9rique Qu\u00e9bec project suspended March 2025. eID-Me available as third-party option.",
       "details": [
         "Program suspended",
-        "Bill 82 passed"
+        "Bill 82 passed",
+        "eID-Me available"
       ],
       "nodevice": [
         "Physical cards"
@@ -1108,8 +1142,9 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
-      "credentialFormat": "ID Card"
+      "walletType": "Platform",
+      "credentialFormat": "ID Card",
+      "walletTech": "eID-Me (Bluink)"
     },
     {
       "name": "Manitoba",
@@ -1154,14 +1189,16 @@
       "isSubnational": true,
       "parent": "Canada",
       "url": "https://sgi.sk.ca/photo-id",
-      "technology": "Digital ID roadmap (paused)",
+      "technology": "Digital ID roadmap (paused) + third-party app",
       "techStack": [
-        "TBD"
+        "TBD",
+        "eID-Me"
       ],
-      "description": "RFP for digital ID issued. Previously paused in 2022, now exploring again.",
+      "description": "RFP for digital ID issued. eID-Me available as third-party option since 2020.",
       "details": [
         "Digital ID roadmap",
-        "RFP in progress"
+        "RFP in progress",
+        "eID-Me available since 2020"
       ],
       "nodevice": [
         "Physical ID"
@@ -1173,8 +1210,9 @@
         }
       ],
       "credentialType": "OIDC-style authentication",
-      "walletType": "None",
-      "credentialFormat": "ID Card"
+      "walletType": "Platform",
+      "credentialFormat": "ID Card",
+      "walletTech": "eID-Me (Bluink)"
     },
     {
       "name": "New South Wales",
@@ -1240,7 +1278,7 @@
         }
       ],
       "credentialType": "Government Wallet",
-      "walletType": "None",
+      "walletType": "Government",
       "credentialFormat": "ID Card",
       "walletTech": "myVicRoads / ServiceVic"
     },
