@@ -27,8 +27,8 @@
         "EUDI Wallet",
         "Verifiable Credentials"
       ],
-      "credentialType": "EUDI Wallet",
-      "description": "Findy network for verifiable data. National Digital Identity Wallet launching end 2026.",
+      "credentialType": "Multi-Issuer Wallet (EUDI)",
+      "description": "Findy network + EUDI Wallet launching end 2026. Wallet will hold credentials from government, banks, other issuers.",
       "details": [
         "Findy network",
         "MyData model",
@@ -200,7 +200,7 @@
         "Mobile-ID",
         "Smart-ID"
       ],
-      "description": "Mandatory since 2002. 99%+ coverage. Multiple credentials per person.",
+      "description": "Mandatory since 2002. 99%+ coverage. ID card + Mobile-ID + Smart-ID from government and banks.",
       "details": [
         "ID card + Mobile ID + Smart ID",
         "X-Road",
@@ -216,7 +216,7 @@
           "value": "99%+"
         }
       ],
-      "credentialType": "PKI + Mobile ID"
+      "credentialType": "Multi-Issuer (Gov + Bank credentials)"
     },
     {
       "name": "European Union",
@@ -233,7 +233,7 @@
         "ISO 18013-5",
         "W3C Verifiable Credentials"
       ],
-      "description": "Regulation mandates all 27 member states to issue EUDI Wallets by end 2026. Pilots ongoing.",
+      "description": "Regulation mandates all 27 member states to issue EUDI Wallets by end 2026. One wallet can hold credentials from multiple issuers (government, banks, universities).",
       "details": [
         "User-controlled wallet",
         "ISO 18013-5 mDL compatible",
@@ -253,7 +253,7 @@
           "value": "Dec 2026"
         }
       ],
-      "credentialType": "EUDI Wallet"
+      "credentialType": "Multi-Issuer Wallet (EUDI)"
     },
     {
       "name": "Germany",
@@ -507,7 +507,7 @@
         "National Authentication System",
         "Sector-specific credentials"
       ],
-      "description": "Digital ID for healthcare, residency, employment.",
+      "description": "Sector-specific credentials: healthcare, residency, employment via National Authentication System.",
       "details": [
         "One per person",
         "Healthcare"
@@ -636,7 +636,7 @@
         "Mobile app",
         "Browser plugin"
       ],
-      "description": "94% of smartphone users. 7.6B transactions in 2024. Multiple BankIDs per person common.",
+      "description": "94% of smartphone users. 7.6B transactions in 2024. Multiple BankIDs from different banks.",
       "details": [
         "Multiple BankIDs per person",
         "Cross-platform (mobile/desktop)",
@@ -656,7 +656,7 @@
           "value": "7.6B"
         }
       ],
-      "credentialType": "PKI + Mobile ID"
+      "credentialType": "Multi-Issuer (Bank credentials)"
     },
     {
       "name": "Italy",
