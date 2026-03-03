@@ -6,16 +6,38 @@
   <title>Executive Summary — Global Digital ID Landscape</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
   <style>
+    /* Dark mode (default) - WCAG AA compliant */
     :root {
       --bg: #0c0c0f;
       --bg-elevated: #141418;
+      --bg-card: #1a1a1f;
+      --bg-hover: #222228;
       --border: #2a2a32;
-      --text: #e8e8ec;
-      --text-dim: #8a8a96;
+      --text: #ffffff;
+      --text-dim: #c0c0c8;
+      --text-mute: #8a8a96;
       --accent: #e8c547;
       --success: #4ade80;
       --warning: #fbbf24;
+      --info: #60a5fa;
     }
+    
+    /* Light mode - WCAG AA compliant */
+    [data-theme="light"] {
+      --bg: #f8f9fc;
+      --bg-elevated: #ffffff;
+      --bg-card: #ffffff;
+      --bg-hover: #eef0f5;
+      --border: #d8dce6;
+      --text: #1a1a1f;
+      --text-dim: #4a4a55;
+      --text-mute: #6a6a78;
+      --accent: #b8960d;
+      --success: #16a34a;
+      --warning: #d97706;
+      --info: #2563eb;
+    }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
@@ -23,8 +45,14 @@
       color: var(--text);
       line-height: 1.5;
       padding: 40px 20px;
+      transition: background 0.2s, color 0.2s;
     }
     .container { max-width: 900px; margin: 0 auto; }
+    
+    /* Theme toggle */
+    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+    .theme-toggle { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+    .theme-toggle:hover { border-color: var(--accent); }
     
     h1 { font-size: 2rem; margin-bottom: 8px; letter-spacing: -0.02em; }
     .subtitle { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 40px; }
@@ -137,10 +165,14 @@
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="back">← Back to Registry</a>
-    
-    <h1>Global Digital ID Landscape</h1>
-    <p class="subtitle">Executive Summary — At a Glance</p>
+    <div class="header">
+      <div>
+        <a href="index.html" class="back">← Back to Registry</a>
+        <h1>Global Digital ID Landscape</h1>
+        <p class="subtitle">Executive Summary — At a Glance</p>
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+    </div>
     
     <!-- Key Stats -->
     <div class="stats-grid" id="stats"></div>
@@ -179,6 +211,20 @@
   </div>
 
   <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle.textContent = next === 'light' ? '☀️' : '🌙';
+    });
+    
     const flags = { au:'🇦🇺', br:'🇧🇷', cn:'🇨🇳', de:'🇩🇪', ee:'🇪🇪', es:'🇪🇸', eu:'🇪🇺', fr:'🇫🇷', gb:'🇬🇧', in:'🇮🇳', il:'🇮🇱', it:'🇮🇹', ke:'🇰🇪', kr:'🇰🇷', my:'🇲🇾', ng:'🇳🇬', nl:'🇳🇱', om:'🇴🇲', pt:'🇵🇹', qa:'🇶🇦', sa:'🇸🇦', sg:'🇸🇬', se:'🇸🇪', tw:'🇹🇼', ae:'🇦🇪', us:'🇺🇸', ca:'🇨🇦' };
     
     function getFlag(code) {

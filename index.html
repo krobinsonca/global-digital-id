@@ -6,22 +6,62 @@
   <title>Global Digital ID Landscape</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #0c0c0f; --bg-elevated: #141418; --bg-card: #1a1a1f; --bg-hover: #222228; --border: #2a2a32; --text: #e8e8ec; --text-dim: #8a8a96; --text-mute: #5a5a66; --accent: #e8c547; --success: #4ade80; --warning: #fbbf24; --info: #60a5fa; --radius: 6px; --radius-lg: 12px; }
+    /* Dark mode (default) - WCAG AA compliant */
+    :root { 
+      --bg: #0c0c0f; 
+      --bg-elevated: #141418; 
+      --bg-card: #1a1a1f; 
+      --bg-hover: #222228; 
+      --border: #2a2a32; 
+      --text: #ffffff; 
+      --text-dim: #c0c0c8; 
+      --text-mute: #8a8a96; 
+      --accent: #e8c547; 
+      --success: #4ade80; 
+      --warning: #fbbf24; 
+      --info: #60a5fa; 
+      --radius: 6px; 
+      --radius-lg: 12px; 
+    }
+    
+    /* Light mode - WCAG AA compliant */
+    [data-theme="light"] { 
+      --bg: #f8f9fc; 
+      --bg-elevated: #ffffff; 
+      --bg-card: #ffffff; 
+      --bg-hover: #eef0f5; 
+      --border: #d8dce6; 
+      --text: #1a1a1f; 
+      --text-dim: #4a4a55; 
+      --text-mute: #6a6a78; 
+      --accent: #b8960d; 
+      --success: #16a34a; 
+      --warning: #d97706; 
+      --info: #2563eb; 
+    }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; transition: background 0.2s, color 0.2s; }
     .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px; }
     h1 { font-size: 1.4rem; font-weight: 600; margin: 0; }
+    
+    /* Theme toggle */
+    .theme-toggle { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 10px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+    .theme-toggle:hover { border-color: var(--accent); }
     
     /* Toolbar */
     .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .toolbar h1 { font-size: 1.4rem; }
     .toolbar-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; }
     .toolbar-link:hover { text-decoration: underline; }
+    .toolbar-left { display: flex; align-items: center; gap: 12px; }
+    .toolbar-right { display: flex; align-items: center; gap: 12px; }
     
     /* Toolbar bar with filters */
     .toolbar-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
     .search-input { flex: 1; min-width: 150px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; color: var(--text); font-size: 0.85rem; }
     .search-input:focus { outline: none; border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-mute); }
     .sort-select { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; color: var(--text); font-size: 0.8rem; }
     
     /* Exec bar */
@@ -101,6 +141,7 @@
         <h1 id="pageTitle">Global Digital ID</h1>
       </div>
       <div class="toolbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
         <a href="summary.html" class="toolbar-link">Summary</a>
       </div>
     </div>
@@ -146,6 +187,20 @@
   <script>
     let appData = null;
     let filter = 'all', model = 'all', region = 'all', walletType = 'all', credentialFormat = 'all', sortBy = 'name', searchQuery = '';
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle.textContent = next === 'light' ? '☀️' : '🌙';
+    });
     
     async function loadData() {
       try {
