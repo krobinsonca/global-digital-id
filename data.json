@@ -155,7 +155,7 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "walletTech": "Gov.br / Digital CIN",
-      "credentialFormat": "Physical ID"
+      "credentialFormat": "OIDC"
     },
     {
       "name": "China",
@@ -575,7 +575,7 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "walletTech": "QDI (Qatar Digital Identity)",
-      "credentialFormat": "Physical ID"
+      "credentialFormat": "OIDC"
     },
     {
       "name": "Saudi Arabia",
@@ -610,7 +610,7 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "walletTech": "Nafath / Tawakkalna",
-      "credentialFormat": "Physical ID"
+      "credentialFormat": "OIDC"
     },
     {
       "name": "Singapore",
@@ -932,7 +932,7 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
-      "credentialFormat": "Physical ID",
+      "credentialFormat": "Verifiable Credentials",
       "walletTech": "TW DIW (MODA)"
     },
     {
@@ -1110,7 +1110,7 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "walletTech": "eID-Me (Bluink)",
-      "credentialFormat": "Physical ID"
+      "credentialFormat": "OIDC"
     },
     {
       "name": "Quebec",
@@ -1143,7 +1143,7 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
-      "credentialFormat": "Physical ID",
+      "credentialFormat": "OIDC",
       "walletTech": "eID-Me (Bluink)"
     },
     {
@@ -1211,7 +1211,7 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
-      "credentialFormat": "Physical ID",
+      "credentialFormat": "OIDC",
       "walletTech": "eID-Me (Bluink)"
     },
     {
@@ -1279,7 +1279,7 @@
       ],
       "credentialType": "Government Wallet",
       "walletType": "Government",
-      "credentialFormat": "Physical ID",
+      "credentialFormat": "Verifiable Credentials",
       "walletTech": "myVicRoads / ServiceVic"
     },
     {
