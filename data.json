@@ -27,7 +27,7 @@
         "EUDI Wallet",
         "Verifiable Credentials"
       ],
-      "credentialType": "Government Wallet (Multi-issuer)",
+      "credentialType": "Government Wallet (Multi-credential)",
       "description": "Findy network + EUDI Wallet launching end 2026. Wallet will hold credentials from government, banks, other issuers.",
       "details": [
         "Findy network",
@@ -253,7 +253,7 @@
           "value": "Dec 2026"
         }
       ],
-      "credentialType": "Government Wallet (Multi-issuer)"
+      "credentialType": "Government Wallet (Multi-credential)"
     },
     {
       "name": "Germany",
@@ -692,7 +692,7 @@
           "value": "2025-26"
         }
       ],
-      "credentialType": "Government Wallet (Multi-issuer)"
+      "credentialType": "Government Wallet (Multi-credential)"
     },
     {
       "name": "Spain",
@@ -722,7 +722,7 @@
           "value": "Dev"
         }
       ],
-      "credentialType": "Government Wallet (Multi-issuer)"
+      "credentialType": "Government Wallet (Multi-credential)"
     },
     {
       "name": "France",
@@ -752,7 +752,7 @@
           "value": "Dev"
         }
       ],
-      "credentialType": "Government Wallet (Multi-issuer)"
+      "credentialType": "Government Wallet (Multi-credential)"
     },
     {
       "name": "Netherlands",
@@ -782,7 +782,7 @@
           "value": "End 2026"
         }
       ],
-      "credentialType": "Government Wallet (Multi-issuer)"
+      "credentialType": "Government Wallet (Multi-credential)"
     },
     {
       "name": "Portugal",
@@ -812,7 +812,7 @@
           "value": "2025-26"
         }
       ],
-      "credentialType": "Government Wallet (Multi-issuer)"
+      "credentialType": "Government Wallet (Multi-credential)"
     },
     {
       "name": "Taiwan",
