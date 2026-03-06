@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Credential Use Cases - BC Government Digital Trust</title>
+  <style>
+    :root {
+      --bg-color: #0a0a0f;
+      --card-bg: #1a1a2e;
+      --text-color: #e0e0e0;
+      --text-muted: #888;
+      --accent-color: #00d4ff;
+      --accent-green: #00ff88;
+      --accent-yellow: #ffcc00;
+      --accent-purple: #bf5af2;
+      --border-color: #333;
+    }
+    [data-theme="light"] {
+      --bg-color: #f5f5f5;
+      --card-bg: #ffffff;
+      --text-color: #1a1a1a;
+      --text-muted: #666;
+      --border-color: #ddd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+    }
+    .header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .header h1 { font-size: 1.2rem; font-weight: 600; }
+    .header-controls { display: flex; gap: 10px; align-items: center; }
+    .theme-toggle, .back-btn, .view-btn {
+      background: var(--accent-color);
+      color: #000;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .back-btn, .view-btn { background: var(--text-muted); color: var(--text-color); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-value { font-size: 2rem; font-weight: 700; color: var(--accent-color); }
+    .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-top: 5px; }
+    .section-title { font-size: 1rem; font-weight: 600; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; }
+    .section-title::before { content: ''; width: 4px; height: 20px; background: var(--accent-color); border-radius: 2px; }
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .usecase-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .usecase-card:hover { border-color: var(--accent-color); transform: translateY(-2px); }
+    .usecase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .usecase-title { font-size: 0.95rem; font-weight: 600; }
+    .usecase-count { font-size: 0.7rem; padding: 3px 10px; background: var(--accent-color); color: #000; border-radius: 10px; font-weight: 600; }
+    .usecase-agency { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; }
+    .credential-flow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .cred-pill {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cred-pill::before { content: '✓'; color: var(--accent-green); font-weight: 700; }
+    .jurisdiction-list { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); }
+    .jurisdiction-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .jur-tag { font-size: 0.65rem; padding: 2px 8px; background: var(--accent-purple); color: #fff; border-radius: 4px; opacity: 0.8; }
+    .filter-bar {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-label { font-size: 0.75rem; color: var(--text-muted); margin-right: 5px; }
+    .filter-select {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 25px;
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+    .modal-title { font-size: 1.2rem; font-weight: 600; }
+    .modal-close { background: none; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
+    .modal-section { margin-bottom: 20px; }
+    .modal-section h3 { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; }
+    .detail-item { background: var(--bg-color); padding: 12px; border-radius: 8px; }
+    .detail-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px; }
+    .detail-value { font-size: 0.85rem; }
+    .loading { text-align: center; padding: 40px; color: var(--text-muted); }
+    @media (max-width: 768px) {
+      .usecase-grid { grid-template-columns: 1fr; }
+      .filter-bar { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔐 Multi-Credential Use Cases</h1>
+    <div class="header-controls">
+      <button class="view-btn" onclick="window.location.href='map.html'">🗺️ Map View</button>
+      <button class="back-btn" onclick="window.location.href='index.html'">← Back to List</button>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <select class="filter-select" id="regionFilter">
+        <option value="all">All Regions</option>
+        <option value="na">North America</option>
+        <option value="eu">Europe</option>
+        <option value="apac">Asia-Pacific</option>
+        <option value="me">Middle East</option>
+        <option value="af">Africa</option>
+        <option value="sa">South America</option>
+      </select>
+      <select class="filter-select" id="statusFilter">
+        <option value="all">All Status</option>
+        <option value="production">Production</option>
+        <option value="development">Development</option>
+      </select>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search use cases, agencies, credentials...">
+    </div>
+
+    <div class="section-title">Use Cases by Category</div>
+    <div class="usecase-grid" id="usecaseGrid"></div>
+  </div>
+
+  <div class="modal" id="detailModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle"></div>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    let appData = null;
+    let useCaseData = {};
+
+    async function loadData() {
+      try {
+        const resp = await fetch('data.json');
+        appData = await resp.json();
+        processUseCases();
+        initUI();
+      } catch(e) {
+        document.getElementById('usecaseGrid').innerHTML = '<div class="loading">Error loading data.json</div>';
+      }
+    }
+
+    function processUseCases() {
+      useCaseData = {};
+
+      appData.jurisdictions.forEach(j => {
+        if (j.acceptedCredentials) {
+          Object.entries(j.acceptedCredentials).forEach(([useCase, data]) => {
+            if (!useCaseData[useCase]) {
+              useCaseData[useCase] = {
+                useCase: useCase,
+                agency: new Set(),
+                credentials: new Set(),
+                jurisdictions: [],
+                regions: new Set()
+              };
+            }
+            useCaseData[useCase].agency.add(data.agency);
+            data.acceptedTypes.forEach(ct => useCaseData[useCase].credentials.add(ct));
+            useCaseData[useCase].jurisdictions.push({ name: j.name, flag: j.flag, status: j.status, region: j.region });
+            useCaseData[useCase].regions.add(j.region);
+          });
+        }
+      });
+    }
+
+    function initUI() {
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeToggle.textContent = next === 'light' ? '☀️' : '🌙';
+      });
+
+      // Stats
+      const totalJur = appData.jurisdictions.length;
+      const totalUseCases = Object.keys(useCaseData).length;
+      const totalCredentials = new Set(Object.values(useCaseData).flatMap(uc => [...uc.credentials])).size;
+      const withMulti = appData.jurisdictions.filter(j => j.acceptedCredentials && Object.keys(j.acceptedCredentials).length > 0).length;
+
+      document.getElementById('statsGrid').innerHTML = `
+        <div class="stat-card"><div class="stat-value">${totalJur}</div><div class="stat-label">Jurisdictions</div></div>
+        <div class="stat-card"><div class="stat-value">${totalUseCases}</div><div class="stat-label">Use Cases</div></div>
+        <div class="stat-card"><div class="stat-value">${totalCredentials}</div><div class="stat-label">Unique Credentials</div></div>
+        <div class="stat-card"><div class="stat-value">${withMulti}</div><div class="stat-label">With Acceptance Data</div></div>
+      `;
+
+      // Filter handlers
+      document.getElementById('regionFilter').onchange = render;
+      document.getElementById('statusFilter').onchange = render;
+      document.getElementById('searchInput').oninput = render;
+
+      render();
+    }
+
+    function render() {
+      const regionFilter = document.getElementById('regionFilter').value;
+      const statusFilter = document.getElementById('statusFilter').value;
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+
+      const filtered = Object.values(useCaseData).filter(uc => {
+        const regionMatch = regionFilter === 'all' || uc.regions.has(regionFilter);
+        const statusMatch = statusFilter === 'all' || uc.jurisdictions.some(j => j.status === statusFilter);
+        const searchMatch = searchQuery === '' || 
+          uc.useCase.toLowerCase().includes(searchQuery) ||
+          [...uc.agency].some(a => a.toLowerCase().includes(searchQuery)) ||
+          [...uc.credentials].some(c => c.toLowerCase().includes(searchQuery));
+        return regionMatch && statusMatch && searchMatch;
+      });
+
+      // Sort by jurisdiction count
+      filtered.sort((a, b) => b.jurisdictions.length - a.jurisdictions.length);
+
+      document.getElementById('usecaseGrid').innerHTML = filtered.map(uc => `
+        <div class="usecase-card" onclick='showDetail("${uc.useCase.replace(/"/g, '\\"')}")'>
+          <div class="usecase-header">
+            <div class="usecase-title">${uc.useCase}</div>
+            <div class="usecase-count">${uc.jurisdictions.length} jurisdictions</div>
+          </div>
+          <div class="usecase-agency">🏛️ ${[...uc.agency].slice(0, 2).join(', ')}${uc.agency.size > 2 ? '...' : ''}</div>
+          <div class="credential-flow">
+            ${[...uc.credentials].slice(0, 6).map(ct => `<span class="cred-pill">${ct}</span>`).join('')}
+            ${uc.credentials.size > 6 ? `<span class="cred-pill">+${uc.credentials.size - 6} more</span>` : ''}
+          </div>
+          <div class="jurisdiction-list">
+            <div class="jurisdiction-tags">
+              ${uc.jurisdictions.slice(0, 8).map(j => `<span class="jur-tag">${getFlag(j.flag)} ${j.name}</span>`).join('')}
+              ${uc.jurisdictions.length > 8 ? `<span class="jur-tag">+${uc.jurisdictions.length - 8} more</span>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function showDetail(useCaseName) {
+      const uc = useCaseData[useCaseName];
+      if (!uc) return;
+
+      document.getElementById('modalTitle').textContent = uc.useCase;
+      document.getElementById('modalBody').innerHTML = `
+        <div class="modal-section">
+          <h3>🏛️ Accepting Agencies</h3>
+          <div class="detail-grid">
+            ${[...uc.agency].map(a => `<div class="detail-item"><div class="detail-label">Agency</div><div class="detail-value">${a}</div></div>`).join('')}
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3>🪪 Accepted Credential Types</h3>
+          <div class="credential-flow">
+            ${[...uc.credentials].map(ct => `<span class="cred-pill">${ct}</span>`).join('')}
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3>🌍 Jurisdictions (${uc.jurisdictions.length})</h3>
+          <div class="jurisdiction-tags">
+            ${uc.jurisdictions.map(j => `<span class="jur-tag">${getFlag(j.flag)} ${j.name} (${j.status})</span>`).join('')}
+          </div>
+        </div>
+        <div class="modal-section">
+          <h3>📊 Coverage by Region</h3>
+          <div class="detail-grid">
+            ${[...uc.regions].map(r => `<div class="detail-item"><div class="detail-label">Region</div><div class="detail-value">${r.toUpperCase()}: ${uc.jurisdictions.filter(j => j.region === r).length}</div></div>`).join('')}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('detailModal').classList.remove('active');
+    }
+
+    function getFlag(code) {
+      if (!code) return '🏳️';
+      const flags = {
+        'us': '🇺🇸', 'ca': '🇨🇦', 'mx': '🇲🇽', 'gb': '🇬🇧', 'fr': '🇫🇷', 'de': '🇩🇪',
+        'it': '🇮🇹', 'es': '🇪🇸', 'pt': '🇵🇹', 'nl': '🇳🇱', 'se': '🇸🇪', 'fi': '🇫🇮',
+        'ee': '🇪🇪', 'cn': '🇨🇳', 'in': '🇮🇳', 'jp': '🇯🇵', 'kr': '🇰🇷', 'sg': '🇸🇬',
+        'au': '🇦🇺', 'nz': '🇳🇿', 'il': '🇮🇱', 'ae': '🇦🇪', 'sa': '🇸🇦', 'om': '🇴🇲',
+        'qa': '🇶🇦', 'ng': '🇳🇬', 'ke': '🇰🇪', 'br': '🇧🇷', 'ar': '🇦🇷'
+      };
+      return flags[code.toLowerCase()] || '🏳️';
+    }
+
+    // Close modal on outside click
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+      if (e.target.id === 'detailModal') closeModal();
+    });
+
+    loadData();
+  </script>
+</body>
+</html>

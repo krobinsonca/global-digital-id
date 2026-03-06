@@ -45,7 +45,73 @@
       ],
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "Findy / EUDI"
+      "walletTech": "Findy / EUDI",
+      "issuedCredentialTypes": [
+        "eID",
+        "Mobile Certificate",
+        "EUDI Wallet",
+        "Bank ID",
+        "Health Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "DVV (Digital and Population Data Agency)",
+          "type": "National",
+          "credentials": [
+            "eID",
+            "Mobile Certificate",
+            "EUDI Wallet"
+          ]
+        },
+        {
+          "name": "Finnish Banks",
+          "type": "Private",
+          "credentials": [
+            "Bank ID"
+          ]
+        },
+        {
+          "name": "Kela (Social Insurance Institution)",
+          "type": "National",
+          "credentials": [
+            "Health Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "DVV",
+          "acceptedTypes": [
+            "eID",
+            "Mobile Certificate",
+            "EUDI Wallet",
+            "Bank ID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Kela / Healthcare Providers",
+          "acceptedTypes": [
+            "Health Card",
+            "eID",
+            "Mobile Certificate"
+          ]
+        },
+        "Banking": {
+          "agency": "Finnish Banks",
+          "acceptedTypes": [
+            "Bank ID",
+            "eID"
+          ]
+        },
+        "Travel (Domestic)": {
+          "agency": "Finnish Transport",
+          "acceptedTypes": [
+            "eID",
+            "Mobile Certificate",
+            "Physical ID"
+          ]
+        }
+      }
     },
     {
       "name": "Austroads",
@@ -79,7 +145,53 @@
       ],
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "Digital Trust Service (Austroads/NEVDIS/Mattr)"
+      "walletTech": "Digital Trust Service (Austroads/NEVDIS/Mattr)",
+      "issuedCredentialTypes": [
+        "Digital Driver License",
+        "National Digital Credential"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Austroads",
+          "type": "National Body",
+          "credentials": [
+            "Digital Driver License",
+            "National Digital Credential"
+          ]
+        },
+        {
+          "name": "State/Territory Transport Authorities",
+          "type": "State",
+          "credentials": [
+            "Digital Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Travel (Domestic)": {
+          "agency": "Airlines",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Proof of Age Card"
+          ]
+        },
+        "Government Services": {
+          "agency": "State/Federal Agencies",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "myGovID"
+          ]
+        }
+      }
     },
     {
       "name": "Australia",
@@ -115,7 +227,75 @@
       "credentialType": "Government Wallet",
       "walletType": "Browser/Cloud",
       "credentialFormat": "OIDC",
-      "walletTech": "myID"
+      "walletTech": "myID",
+      "issuedCredentialTypes": [
+        "Digital ID (myGovID)",
+        "Physical Driver License (state)",
+        "Passport",
+        "Proof of Age Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "ATO (myGovID)",
+          "type": "National",
+          "credentials": [
+            "myGovID"
+          ]
+        },
+        {
+          "name": "State/Territory Transport Authorities",
+          "type": "State",
+          "credentials": [
+            "Physical Driver License",
+            "Proof of Age Card"
+          ]
+        },
+        {
+          "name": "DFAT",
+          "type": "National",
+          "credentials": [
+            "Passport"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Federal Government Services": {
+          "agency": "myGov / Services Australia",
+          "acceptedTypes": [
+            "myGovID",
+            "Physical Driver License",
+            "Passport"
+          ]
+        },
+        "Tax Services": {
+          "agency": "ATO",
+          "acceptedTypes": [
+            "myGovID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Medicare",
+          "acceptedTypes": [
+            "Medicare Card",
+            "myGovID"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Physical Driver License",
+            "Proof of Age Card",
+            "Passport"
+          ]
+        },
+        "Travel (Domestic)": {
+          "agency": "Airlines / TSA equivalent",
+          "acceptedTypes": [
+            "Physical Driver License",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Brazil",
@@ -155,7 +335,81 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "walletTech": "Gov.br / Digital CIN",
-      "credentialFormat": "OIDC"
+      "credentialFormat": "OIDC",
+      "issuedCredentialTypes": [
+        "Gov.br",
+        "RG",
+        "CNH Digital",
+        "CPF",
+        "Passport"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Economy",
+          "type": "National",
+          "credentials": [
+            "Gov.br",
+            "CPF"
+          ]
+        },
+        {
+          "name": "State Secretariats",
+          "type": "State",
+          "credentials": [
+            "RG"
+          ]
+        },
+        {
+          "name": "DENATRAN",
+          "type": "National",
+          "credentials": [
+            "CNH Digital"
+          ]
+        },
+        {
+          "name": "Federal Police",
+          "type": "National",
+          "credentials": [
+            "Passport"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Gov.br",
+            "RG",
+            "CPF",
+            "CNH Digital"
+          ]
+        },
+        "Banking": {
+          "agency": "Brazilian Banks",
+          "acceptedTypes": [
+            "Gov.br",
+            "CPF",
+            "RG",
+            "CNH Digital"
+          ]
+        },
+        "Travel (Domestic)": {
+          "agency": "Airlines",
+          "acceptedTypes": [
+            "RG",
+            "CNH Digital",
+            "Passport",
+            "Gov.br"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "RG",
+            "CNH Digital"
+          ]
+        }
+      }
     },
     {
       "name": "China",
@@ -198,7 +452,70 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Browser/Cloud",
       "credentialFormat": "OIDC",
-      "walletTech": "National Online Identity Auth App (MPS/CAC)"
+      "walletTech": "National Online Identity Auth App (MPS/CAC)",
+      "issuedCredentialTypes": [
+        "Resident Identity Card",
+        "Digital ID (CTID)",
+        "Passport",
+        "Driver License",
+        "Social Security Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Public Security",
+          "type": "National",
+          "credentials": [
+            "Resident Identity Card",
+            "Digital ID (CTID)",
+            "Passport"
+          ]
+        },
+        {
+          "name": "Ministry of Transport",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        },
+        {
+          "name": "Ministry of Human Resources",
+          "type": "National",
+          "credentials": [
+            "Social Security Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Resident Identity Card",
+            "Digital ID (CTID)"
+          ]
+        },
+        "Banking": {
+          "agency": "Chinese Banks",
+          "acceptedTypes": [
+            "Resident Identity Card",
+            "Digital ID (CTID)"
+          ]
+        },
+        "Travel (Domestic)": {
+          "agency": "Airlines / Railways",
+          "acceptedTypes": [
+            "Resident Identity Card",
+            "Digital ID (CTID)",
+            "Passport"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Healthcare Providers",
+          "acceptedTypes": [
+            "Social Security Card",
+            "Resident Identity Card"
+          ]
+        }
+      }
     },
     {
       "name": "Estonia",
@@ -236,7 +553,66 @@
       "credentialType": "Bank credentials",
       "walletType": "Government",
       "walletTech": "mRiik / Mobile ID / Smart-ID",
-      "credentialFormat": "PKI"
+      "credentialFormat": "PKI",
+      "issuedCredentialTypes": [
+        "e-Residency",
+        "ID-kaart",
+        "Digital ID",
+        "Mobile-ID",
+        "Smart-ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Police and Border Guard Board",
+          "type": "National",
+          "credentials": [
+            "ID-kaart",
+            "e-Residency"
+          ]
+        },
+        {
+          "name": "Telia / Elisa / Tele2",
+          "type": "Private",
+          "credentials": [
+            "Mobile-ID",
+            "Smart-ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "e-Estonia",
+          "acceptedTypes": [
+            "ID-kaart",
+            "Digital ID",
+            "Mobile-ID",
+            "Smart-ID",
+            "e-Residency"
+          ]
+        },
+        "Banking": {
+          "agency": "Estonian Banks",
+          "acceptedTypes": [
+            "ID-kaart",
+            "Mobile-ID",
+            "Smart-ID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "e-Health",
+          "acceptedTypes": [
+            "ID-kaart",
+            "Digital ID"
+          ]
+        },
+        "Travel (EU)": {
+          "agency": "Border Control",
+          "acceptedTypes": [
+            "ID-kaart",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "European Union",
@@ -276,7 +652,63 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "EUDI Wallet SDK"
+      "walletTech": "EUDI Wallet SDK",
+      "issuedCredentialTypes": [
+        "EUDI Wallet",
+        "National eIDs",
+        "Digital Driving License",
+        "Health Credentials",
+        "Professional Credentials"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "EU Commission (eIDAS 2.0)",
+          "type": "Supranational",
+          "credentials": [
+            "EUDI Wallet Framework"
+          ]
+        },
+        {
+          "name": "Member State Authorities",
+          "type": "National",
+          "credentials": [
+            "National eIDs",
+            "Digital Driving License",
+            "Health Credentials"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Cross-Border Government Services": {
+          "agency": "EU Member States",
+          "acceptedTypes": [
+            "EUDI Wallet",
+            "National eIDs"
+          ]
+        },
+        "Healthcare (Cross-Border)": {
+          "agency": "EU Health Systems",
+          "acceptedTypes": [
+            "EHIC",
+            "EUDI Health Credentials"
+          ]
+        },
+        "Professional Recognition": {
+          "agency": "EU Professional Bodies",
+          "acceptedTypes": [
+            "Professional Credentials",
+            "EUDI Wallet"
+          ]
+        },
+        "Travel (Schengen)": {
+          "agency": "Border Control",
+          "acceptedTypes": [
+            "National ID",
+            "Passport",
+            "EUDI Wallet (future)"
+          ]
+        }
+      }
     },
     {
       "name": "Germany",
@@ -316,7 +748,71 @@
       "credentialType": "PKI-based",
       "walletType": "Government",
       "credentialFormat": "PKI",
-      "walletTech": "EUDI Wallet (Bundesdruckerei)"
+      "walletTech": "EUDI Wallet (Bundesdruckerei)",
+      "issuedCredentialTypes": [
+        "Personalausweis",
+        "EUDI Wallet",
+        "Digital Driver License",
+        "Health Card (eGK)",
+        "Passport"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Federal Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "Personalausweis",
+            "EUDI Wallet",
+            "Passport"
+          ]
+        },
+        {
+          "name": "State Authorities",
+          "type": "State",
+          "credentials": [
+            "Digital Driver License"
+          ]
+        },
+        {
+          "name": "Health Insurance Funds",
+          "type": "Private/Regulated",
+          "credentials": [
+            "Health Card (eGK)"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Personalausweis",
+            "EUDI Wallet",
+            "Digital ID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Healthcare Providers",
+          "acceptedTypes": [
+            "Health Card (eGK)",
+            "Personalausweis"
+          ]
+        },
+        "Travel (EU)": {
+          "agency": "Border Control / Airlines",
+          "acceptedTypes": [
+            "Personalausweis",
+            "Passport",
+            "Digital Driver License"
+          ]
+        },
+        "Banking": {
+          "agency": "German Banks",
+          "acceptedTypes": [
+            "Personalausweis",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "India",
@@ -360,7 +856,103 @@
       "credentialType": "Biometric Central Database",
       "walletType": "Platform",
       "walletTech": "mAadhaar / DigiLocker / Google Wallet",
-      "credentialFormat": "Biometric"
+      "credentialFormat": "Biometric",
+      "issuedCredentialTypes": [
+        "Aadhaar",
+        "PAN Card",
+        "Passport",
+        "Driver License",
+        "Voter ID",
+        "Health ID (ABHA)"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "UIDAI",
+          "type": "National",
+          "credentials": [
+            "Aadhaar"
+          ]
+        },
+        {
+          "name": "Income Tax Department",
+          "type": "National",
+          "credentials": [
+            "PAN Card"
+          ]
+        },
+        {
+          "name": "Ministry of External Affairs",
+          "type": "National",
+          "credentials": [
+            "Passport"
+          ]
+        },
+        {
+          "name": "State RTOs",
+          "type": "State",
+          "credentials": [
+            "Driver License"
+          ]
+        },
+        {
+          "name": "Election Commission",
+          "type": "National",
+          "credentials": [
+            "Voter ID"
+          ]
+        },
+        {
+          "name": "Ministry of Health",
+          "type": "National",
+          "credentials": [
+            "ABHA Health ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "Various Ministries",
+          "acceptedTypes": [
+            "Aadhaar",
+            "PAN Card",
+            "Passport",
+            "Voter ID"
+          ]
+        },
+        "Banking (KYC)": {
+          "agency": "RBI / Banks",
+          "acceptedTypes": [
+            "Aadhaar",
+            "PAN Card",
+            "Passport",
+            "Driver License",
+            "Voter ID"
+          ]
+        },
+        "Tax Services": {
+          "agency": "Income Tax Department",
+          "acceptedTypes": [
+            "PAN Card",
+            "Aadhaar"
+          ]
+        },
+        "Travel (Domestic)": {
+          "agency": "Airlines / Railways",
+          "acceptedTypes": [
+            "Aadhaar",
+            "Passport",
+            "Driver License",
+            "Voter ID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Healthcare Providers",
+          "acceptedTypes": [
+            "ABHA Health ID",
+            "Aadhaar"
+          ]
+        }
+      }
     },
     {
       "name": "Israel",
@@ -394,7 +986,63 @@
       "credentialType": "PKI-based",
       "walletType": "Government",
       "walletTech": "Gov.ID / Teudat Zehut App",
-      "credentialFormat": "PKI"
+      "credentialFormat": "PKI",
+      "issuedCredentialTypes": [
+        "Teudat Zehut",
+        "Digital ID",
+        "Driver License",
+        "Passport"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "Teudat Zehut",
+            "Digital ID",
+            "Passport"
+          ]
+        },
+        {
+          "name": "Ministry of Transport",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Teudat Zehut",
+            "Digital ID"
+          ]
+        },
+        "Banking": {
+          "agency": "Israeli Banks",
+          "acceptedTypes": [
+            "Teudat Zehut",
+            "Digital ID",
+            "Driver License"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Kupat Holim",
+          "acceptedTypes": [
+            "Teudat Zehut",
+            "Digital ID"
+          ]
+        },
+        "Travel": {
+          "agency": "Border Control / Airlines",
+          "acceptedTypes": [
+            "Teudat Zehut",
+            "Passport",
+            "Driver License"
+          ]
+        }
+      }
     },
     {
       "name": "Kenya",
@@ -427,7 +1075,77 @@
       "credentialType": "Government Wallet",
       "walletType": "Browser/Cloud",
       "credentialFormat": "OIDC",
-      "walletTech": "eCitizen Wallet"
+      "walletTech": "eCitizen Wallet",
+      "issuedCredentialTypes": [
+        "Maisha Card",
+        "National ID",
+        "Passport",
+        "Driver License",
+        "NHIF Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Civil Registration",
+          "type": "National",
+          "credentials": [
+            "Maisha Card",
+            "National ID"
+          ]
+        },
+        {
+          "name": "Immigration",
+          "type": "National",
+          "credentials": [
+            "Passport"
+          ]
+        },
+        {
+          "name": "NTSA",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        },
+        {
+          "name": "NHIF",
+          "type": "National",
+          "credentials": [
+            "NHIF Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Maisha Card",
+            "National ID",
+            "Passport"
+          ]
+        },
+        "Healthcare": {
+          "agency": "NHIF / Healthcare Providers",
+          "acceptedTypes": [
+            "NHIF Card",
+            "National ID"
+          ]
+        },
+        "Banking (KYC)": {
+          "agency": "CBK / Banks",
+          "acceptedTypes": [
+            "National ID",
+            "Passport",
+            "Driver License"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "National ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Malaysia",
@@ -467,7 +1185,62 @@
       "credentialType": "PKI-based",
       "walletType": "Government",
       "walletTech": "MyDigital ID / MyDigital ID Superapp",
-      "credentialFormat": "PKI"
+      "credentialFormat": "PKI",
+      "issuedCredentialTypes": [
+        "MyKad",
+        "MyDigital ID",
+        "Passport",
+        "Driver License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "JPN (National Registration)",
+          "type": "National",
+          "credentials": [
+            "MyKad",
+            "MyDigital ID",
+            "Passport"
+          ]
+        },
+        {
+          "name": "JPJ (Road Transport)",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "MyKad",
+            "MyDigital ID"
+          ]
+        },
+        "Banking": {
+          "agency": "Malaysian Banks",
+          "acceptedTypes": [
+            "MyKad",
+            "MyDigital ID"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "MyKad",
+            "Passport",
+            "Driver License"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "MyKad",
+            "Driver License"
+          ]
+        }
+      }
     },
     {
       "name": "Nigeria",
@@ -504,7 +1277,85 @@
       "credentialType": "Biometric Central Database",
       "walletType": "Government",
       "walletTech": "NIMC Mobile Digital ID / USSD *346#",
-      "credentialFormat": "Biometric"
+      "credentialFormat": "Biometric",
+      "issuedCredentialTypes": [
+        "NIN",
+        "BVN",
+        "International Passport",
+        "Driver License",
+        "Voter's Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "NIMC",
+          "type": "National",
+          "credentials": [
+            "NIN"
+          ]
+        },
+        {
+          "name": "CBN / NIBSS",
+          "type": "National",
+          "credentials": [
+            "BVN"
+          ]
+        },
+        {
+          "name": "Nigeria Immigration Service",
+          "type": "National",
+          "credentials": [
+            "International Passport"
+          ]
+        },
+        {
+          "name": "FRSC",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        },
+        {
+          "name": "INEC",
+          "type": "National",
+          "credentials": [
+            "Voter's Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "NIN",
+            "International Passport",
+            "Driver License",
+            "Voter's Card"
+          ]
+        },
+        "Banking (KYC)": {
+          "agency": "CBN / Banks",
+          "acceptedTypes": [
+            "BVN",
+            "NIN",
+            "International Passport",
+            "Driver License"
+          ]
+        },
+        "SIM Registration": {
+          "agency": "NCC / Telcos",
+          "acceptedTypes": [
+            "NIN"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "International Passport",
+            "Driver License",
+            "Voter's Card"
+          ]
+        }
+      }
     },
     {
       "name": "Oman",
@@ -540,7 +1391,54 @@
       "credentialType": "PKI-based",
       "walletType": "Government",
       "walletTech": "Digital Identity Service (ROP)",
-      "credentialFormat": "PKI"
+      "credentialFormat": "PKI",
+      "issuedCredentialTypes": [
+        "National ID",
+        "Digital ID",
+        "Passport",
+        "Driver License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "National ID",
+            "Digital ID",
+            "Passport"
+          ]
+        },
+        {
+          "name": "Royal Oman Police",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "National ID",
+            "Digital ID"
+          ]
+        },
+        "Banking": {
+          "agency": "Omani Banks",
+          "acceptedTypes": [
+            "National ID",
+            "Digital ID"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "National ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Qatar",
@@ -575,7 +1473,54 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "walletTech": "QDI (Qatar Digital Identity)",
-      "credentialFormat": "OIDC"
+      "credentialFormat": "OIDC",
+      "issuedCredentialTypes": [
+        "Qatar ID",
+        "Digital ID",
+        "Passport",
+        "Driver License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "Qatar ID",
+            "Digital ID",
+            "Passport"
+          ]
+        },
+        {
+          "name": "Traffic Department",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Qatar ID",
+            "Digital ID"
+          ]
+        },
+        "Banking": {
+          "agency": "Qatari Banks",
+          "acceptedTypes": [
+            "Qatar ID",
+            "Digital ID"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "Qatar ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Saudi Arabia",
@@ -610,7 +1555,59 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "walletTech": "Nafath / Tawakkalna",
-      "credentialFormat": "OIDC"
+      "credentialFormat": "OIDC",
+      "issuedCredentialTypes": [
+        "National ID",
+        "Absher Digital ID",
+        "Passport",
+        "Driver License",
+        "Iqama"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "National ID",
+            "Absher Digital ID",
+            "Passport",
+            "Iqama"
+          ]
+        },
+        {
+          "name": "Traffic Police",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "National ID",
+            "Absher Digital ID",
+            "Iqama"
+          ]
+        },
+        "Banking": {
+          "agency": "Saudi Banks",
+          "acceptedTypes": [
+            "National ID",
+            "Absher Digital ID",
+            "Iqama"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "National ID",
+            "Passport",
+            "Iqama"
+          ]
+        }
+      }
     },
     {
       "name": "Singapore",
@@ -650,7 +1647,64 @@
       "credentialType": "Government Wallet",
       "walletType": "Browser/Cloud",
       "credentialFormat": "OIDC",
-      "walletTech": "SingPass App"
+      "walletTech": "SingPass App",
+      "issuedCredentialTypes": [
+        "Singpass",
+        "NRIC",
+        "Digital Identity",
+        "Passport"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "GovTech",
+          "type": "National",
+          "credentials": [
+            "Singpass",
+            "Digital Identity"
+          ]
+        },
+        {
+          "name": "ICA",
+          "type": "National",
+          "credentials": [
+            "NRIC",
+            "Passport"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Singpass",
+            "NRIC",
+            "Digital Identity"
+          ]
+        },
+        "Banking": {
+          "agency": "Singapore Banks",
+          "acceptedTypes": [
+            "Singpass",
+            "NRIC",
+            "Passport"
+          ]
+        },
+        "Healthcare": {
+          "agency": "MOH / Healthcare Providers",
+          "acceptedTypes": [
+            "Singpass",
+            "NRIC"
+          ]
+        },
+        "Travel": {
+          "agency": "ICA / Airlines",
+          "acceptedTypes": [
+            "NRIC",
+            "Passport",
+            "Digital Identity"
+          ]
+        }
+      }
     },
     {
       "name": "South Korea",
@@ -686,7 +1740,70 @@
       "credentialType": "Mobile Certificate",
       "walletType": "Platform",
       "walletTech": "PASS / Samsung Wallet",
-      "credentialFormat": "Certificate"
+      "credentialFormat": "Certificate",
+      "issuedCredentialTypes": [
+        "PASS Mobile ID",
+        "Resident Registration Card",
+        "Digital Driver License",
+        "Passport"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "PASS Mobile ID",
+            "Resident Registration Card"
+          ]
+        },
+        {
+          "name": "Korea Road Traffic Authority",
+          "type": "National",
+          "credentials": [
+            "Digital Driver License"
+          ]
+        },
+        {
+          "name": "Ministry of Foreign Affairs",
+          "type": "National",
+          "credentials": [
+            "Passport"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "PASS Mobile ID",
+            "Resident Registration Card"
+          ]
+        },
+        "Banking": {
+          "agency": "Korean Banks",
+          "acceptedTypes": [
+            "PASS Mobile ID",
+            "Resident Registration Card",
+            "Digital Driver License"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "PASS Mobile ID",
+            "Digital Driver License",
+            "Resident Registration Card"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "Resident Registration Card",
+            "Passport",
+            "Digital Driver License"
+          ]
+        }
+      }
     },
     {
       "name": "Sweden",
@@ -728,7 +1845,83 @@
       "credentialType": "Bank credentials",
       "walletType": "Platform",
       "walletTech": "BankID / Freja eID",
-      "credentialFormat": "PKI"
+      "credentialFormat": "PKI",
+      "issuedCredentialTypes": [
+        "BankID",
+        "Freja eID",
+        "EUDI Wallet",
+        "Health Card",
+        "Digital Driving License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Swedish Banks",
+          "type": "Private",
+          "credentials": [
+            "BankID"
+          ]
+        },
+        {
+          "name": "Freja eID AB",
+          "type": "Private",
+          "credentials": [
+            "Freja eID"
+          ]
+        },
+        {
+          "name": "Bolagsverket / DIGG",
+          "type": "National",
+          "credentials": [
+            "EUDI Wallet"
+          ]
+        },
+        {
+          "name": "Transportstyrelsen",
+          "type": "National",
+          "credentials": [
+            "Digital Driving License"
+          ]
+        },
+        {
+          "name": "1177 / Healthcare",
+          "type": "Regional",
+          "credentials": [
+            "Health Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "e-legitimation",
+          "acceptedTypes": [
+            "BankID",
+            "Freja eID",
+            "EUDI Wallet"
+          ]
+        },
+        "Banking": {
+          "agency": "Swedish Banks",
+          "acceptedTypes": [
+            "BankID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "1177 / Regional Councils",
+          "acceptedTypes": [
+            "BankID",
+            "Freja eID",
+            "Health Card"
+          ]
+        },
+        "Travel": {
+          "agency": "Border Control / Police",
+          "acceptedTypes": [
+            "National ID",
+            "Passport",
+            "Digital Driving License"
+          ]
+        }
+      }
     },
     {
       "name": "Italy",
@@ -767,7 +1960,78 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "IT-Wallet"
+      "walletTech": "IT-Wallet",
+      "issuedCredentialTypes": [
+        "SPID",
+        "CIE",
+        "EUDI Wallet",
+        "Health Card (TS)",
+        "Digital Driving License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "AgID (Digital Italy Agency)",
+          "type": "National",
+          "credentials": [
+            "SPID",
+            "EUDI Wallet"
+          ]
+        },
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "CIE (Carta d'Identit\u00e0 Elettronica)"
+          ]
+        },
+        {
+          "name": "Ministry of Health",
+          "type": "National",
+          "credentials": [
+            "Health Card (TS)"
+          ]
+        },
+        {
+          "name": "Ministry of Transport",
+          "type": "National",
+          "credentials": [
+            "Digital Driving License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "AgID / Public Admin",
+          "acceptedTypes": [
+            "SPID",
+            "CIE",
+            "EUDI Wallet"
+          ]
+        },
+        "Healthcare": {
+          "agency": "SSN (National Health Service)",
+          "acceptedTypes": [
+            "Health Card (TS)",
+            "CIE",
+            "SPID"
+          ]
+        },
+        "Travel (Domestic/EU)": {
+          "agency": "Police / Border Control",
+          "acceptedTypes": [
+            "CIE",
+            "Passport",
+            "Digital Driving License"
+          ]
+        },
+        "Banking": {
+          "agency": "Italian Banks",
+          "acceptedTypes": [
+            "SPID",
+            "CIE"
+          ]
+        }
+      }
     },
     {
       "name": "Spain",
@@ -800,7 +2064,79 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "CL@VE"
+      "walletTech": "CL@VE",
+      "issuedCredentialTypes": [
+        "DNIe",
+        "Cl@ve",
+        "EUDI Wallet",
+        "Health Card",
+        "Digital Driving License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "DNIe (Documento Nacional de Identidad electr\u00f3nico)"
+          ]
+        },
+        {
+          "name": "Ministry of Digital Affairs",
+          "type": "National",
+          "credentials": [
+            "Cl@ve",
+            "EUDI Wallet"
+          ]
+        },
+        {
+          "name": "Ministry of Health",
+          "type": "National",
+          "credentials": [
+            "Health Card"
+          ]
+        },
+        {
+          "name": "DGT (Traffic Authority)",
+          "type": "National",
+          "credentials": [
+            "Digital Driving License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "Administraci\u00f3n Digital",
+          "acceptedTypes": [
+            "DNIe",
+            "Cl@ve",
+            "EUDI Wallet"
+          ]
+        },
+        "Healthcare": {
+          "agency": "SNS (National Health System)",
+          "acceptedTypes": [
+            "Health Card",
+            "DNIe",
+            "Cl@ve"
+          ]
+        },
+        "Travel (Domestic/EU)": {
+          "agency": "Police / Border Control",
+          "acceptedTypes": [
+            "DNIe",
+            "Passport",
+            "Digital Driving License"
+          ]
+        },
+        "Tax Services": {
+          "agency": "Agencia Tributaria",
+          "acceptedTypes": [
+            "Cl@ve",
+            "DNIe",
+            "Digital Certificate"
+          ]
+        }
+      }
     },
     {
       "name": "France",
@@ -833,7 +2169,77 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "France Identit\u00e9"
+      "walletTech": "France Identit\u00e9",
+      "issuedCredentialTypes": [
+        "FranceConnect",
+        "CNIe",
+        "EUDI Wallet",
+        "Health Card (Carte Vitale)",
+        "Digital Driving License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "DINUM (Digital Interagency)",
+          "type": "National",
+          "credentials": [
+            "FranceConnect",
+            "EUDI Wallet"
+          ]
+        },
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "CNIe (Carte Nationale d'Identit\u00e9)"
+          ]
+        },
+        {
+          "name": "Assurance Maladie",
+          "type": "National",
+          "credentials": [
+            "Carte Vitale"
+          ]
+        },
+        {
+          "name": "Ministry of Transport",
+          "type": "National",
+          "credentials": [
+            "Digital Driving License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "Service-Public.fr",
+          "acceptedTypes": [
+            "FranceConnect",
+            "CNIe",
+            "EUDI Wallet"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Assurance Maladie",
+          "acceptedTypes": [
+            "Carte Vitale",
+            "FranceConnect"
+          ]
+        },
+        "Travel (Domestic/EU)": {
+          "agency": "Police / Border Control",
+          "acceptedTypes": [
+            "CNIe",
+            "Passport",
+            "Digital Driving License"
+          ]
+        },
+        "Tax Services": {
+          "agency": "impots.gouv.fr",
+          "acceptedTypes": [
+            "FranceConnect",
+            "Digital Certificate"
+          ]
+        }
+      }
     },
     {
       "name": "Netherlands",
@@ -866,7 +2272,78 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "DigiD / EUDI"
+      "walletTech": "DigiD / EUDI",
+      "issuedCredentialTypes": [
+        "DigiD",
+        "eHerkenning",
+        "EUDI Wallet",
+        "Digital Driving License",
+        "Health Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Logius (Government IT)",
+          "type": "National",
+          "credentials": [
+            "DigiD",
+            "eHerkenning"
+          ]
+        },
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "EUDI Wallet",
+            "National ID"
+          ]
+        },
+        {
+          "name": "RDW (Vehicle Authority)",
+          "type": "National",
+          "credentials": [
+            "Digital Driving License"
+          ]
+        },
+        {
+          "name": "Zorgverzekeraars",
+          "type": "Private/Regulated",
+          "credentials": [
+            "Health Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "Overheid.nl",
+          "acceptedTypes": [
+            "DigiD",
+            "eHerkenning",
+            "EUDI Wallet"
+          ]
+        },
+        "Business Services": {
+          "agency": "KVK / Government",
+          "acceptedTypes": [
+            "eHerkenning",
+            "EUDI Wallet"
+          ]
+        },
+        "Healthcare": {
+          "agency": "Healthcare Providers",
+          "acceptedTypes": [
+            "Health Card",
+            "DigiD"
+          ]
+        },
+        "Travel": {
+          "agency": "Border Control / Police",
+          "acceptedTypes": [
+            "National ID",
+            "Passport",
+            "Digital Driving License"
+          ]
+        }
+      }
     },
     {
       "name": "Portugal",
@@ -899,7 +2376,78 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "PT Wallet"
+      "walletTech": "PT Wallet",
+      "issuedCredentialTypes": [
+        "Chave M\u00f3vel Digital",
+        "Cart\u00e3o de Cidad\u00e3o",
+        "EUDI Wallet",
+        "Health Card",
+        "Digital Driving License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "AMA (Agency for Modernization)",
+          "type": "National",
+          "credentials": [
+            "Chave M\u00f3vel Digital",
+            "EUDI Wallet"
+          ]
+        },
+        {
+          "name": "IRN (Records & Notaries)",
+          "type": "National",
+          "credentials": [
+            "Cart\u00e3o de Cidad\u00e3o"
+          ]
+        },
+        {
+          "name": "SNS (Health Service)",
+          "type": "National",
+          "credentials": [
+            "Health Card"
+          ]
+        },
+        {
+          "name": "IMT (Transport Institute)",
+          "type": "National",
+          "credentials": [
+            "Digital Driving License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "ePortugal",
+          "acceptedTypes": [
+            "Chave M\u00f3vel Digital",
+            "Cart\u00e3o de Cidad\u00e3o",
+            "EUDI Wallet"
+          ]
+        },
+        "Healthcare": {
+          "agency": "SNS",
+          "acceptedTypes": [
+            "Health Card",
+            "Cart\u00e3o de Cidad\u00e3o",
+            "Chave M\u00f3vel Digital"
+          ]
+        },
+        "Travel": {
+          "agency": "SEF / Border Control",
+          "acceptedTypes": [
+            "Cart\u00e3o de Cidad\u00e3o",
+            "Passport",
+            "Digital Driving License"
+          ]
+        },
+        "Banking": {
+          "agency": "Portuguese Banks",
+          "acceptedTypes": [
+            "Chave M\u00f3vel Digital",
+            "Cart\u00e3o de Cidad\u00e3o"
+          ]
+        }
+      }
     },
     {
       "name": "Taiwan",
@@ -933,7 +2481,63 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "TW DIW (MODA)"
+      "walletTech": "TW DIW (MODA)",
+      "issuedCredentialTypes": [
+        "National ID",
+        "Digital ID",
+        "Passport",
+        "Driver License",
+        "Health Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "National Immigration Agency",
+          "type": "National",
+          "credentials": [
+            "National ID",
+            "Digital ID",
+            "Passport"
+          ]
+        },
+        {
+          "name": "Ministry of Transportation",
+          "type": "National",
+          "credentials": [
+            "Driver License"
+          ]
+        },
+        {
+          "name": "Ministry of Health",
+          "type": "National",
+          "credentials": [
+            "Health Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "National ID",
+            "Digital ID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "NHI / Healthcare Providers",
+          "acceptedTypes": [
+            "Health Card",
+            "National ID"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "National ID",
+            "Passport",
+            "Driver License"
+          ]
+        }
+      }
     },
     {
       "name": "United Arab Emirates",
@@ -968,7 +2572,67 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "walletTech": "UAE Pass / Apple Wallet",
-      "credentialFormat": "Biometric"
+      "credentialFormat": "Biometric",
+      "issuedCredentialTypes": [
+        "Emirates ID",
+        "Digital ID (UAE Pass)",
+        "Passport",
+        "Driver License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Federal Authority for Identity",
+          "type": "National",
+          "credentials": [
+            "Emirates ID",
+            "Digital ID (UAE Pass)"
+          ]
+        },
+        {
+          "name": "Ministry of Interior",
+          "type": "National",
+          "credentials": [
+            "Passport"
+          ]
+        },
+        {
+          "name": "RTA / Traffic Departments",
+          "type": "Emirate-level",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "All Government Agencies",
+          "acceptedTypes": [
+            "Emirates ID",
+            "Digital ID (UAE Pass)"
+          ]
+        },
+        "Banking": {
+          "agency": "UAE Banks",
+          "acceptedTypes": [
+            "Emirates ID",
+            "Digital ID (UAE Pass)"
+          ]
+        },
+        "Travel": {
+          "agency": "Immigration / Airlines",
+          "acceptedTypes": [
+            "Emirates ID",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Emirates ID",
+            "Driver License"
+          ]
+        }
+      }
     },
     {
       "name": "United Kingdom",
@@ -1003,7 +2667,74 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Browser/Cloud",
       "credentialFormat": "OIDC",
-      "walletTech": "GOV.UK One Login"
+      "walletTech": "GOV.UK One Login",
+      "issuedCredentialTypes": [
+        "UK One Login",
+        "Physical Passport",
+        "Driving License",
+        "Biometric Residence Permit"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "GOV.UK (GDS)",
+          "type": "National",
+          "credentials": [
+            "UK One Login"
+          ]
+        },
+        {
+          "name": "HM Passport Office",
+          "type": "National",
+          "credentials": [
+            "Physical Passport"
+          ]
+        },
+        {
+          "name": "DVLA",
+          "type": "National",
+          "credentials": [
+            "Driving License"
+          ]
+        },
+        {
+          "name": "Home Office",
+          "type": "National",
+          "credentials": [
+            "Biometric Residence Permit"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Government Services": {
+          "agency": "GOV.UK",
+          "acceptedTypes": [
+            "UK One Login",
+            "Physical Passport",
+            "Driving License"
+          ]
+        },
+        "Banking": {
+          "agency": "UK Banks",
+          "acceptedTypes": [
+            "Physical Passport",
+            "Driving License"
+          ]
+        },
+        "Travel": {
+          "agency": "Border Force / Airlines",
+          "acceptedTypes": [
+            "Physical Passport",
+            "Driving License (EU only)"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Driving License",
+            "PASS cards"
+          ]
+        }
+      }
     },
     {
       "name": "British Columbia",
@@ -1042,7 +2773,62 @@
       "credentialType": "Government Wallet",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "Credo.js"
+      "walletTech": "Credo.js",
+      "issuedCredentialTypes": [
+        "BC Services Card",
+        "Physical Driver License",
+        "BCID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "BC Ministry of Citizens' Services",
+          "type": "Provincial",
+          "credentials": [
+            "BC Services Card",
+            "BCID"
+          ]
+        },
+        {
+          "name": "ICBC",
+          "type": "Provincial Crown Corp",
+          "credentials": [
+            "Physical Driver License",
+            "BCID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Provincial Government Services": {
+          "agency": "BC Government",
+          "acceptedTypes": [
+            "BC Services Card",
+            "Physical Driver License",
+            "BCID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "MSP / Healthcare Providers",
+          "acceptedTypes": [
+            "BC Services Card"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Government of Canada",
+          "acceptedTypes": [
+            "BC Services Card",
+            "Physical Driver License",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Physical Driver License",
+            "BCID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Alberta",
@@ -1076,7 +2862,55 @@
       "credentialType": "Government Wallet",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": " Alberta Wallet App"
+      "walletTech": " Alberta Wallet App",
+      "issuedCredentialTypes": [
+        "Alberta eID",
+        "Driver License",
+        "Provincial ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Service Alberta",
+          "type": "Provincial",
+          "credentials": [
+            "Alberta eID",
+            "Provincial ID"
+          ]
+        },
+        {
+          "name": "Alberta Transportation",
+          "type": "Provincial",
+          "credentials": [
+            "Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Provincial Government Services": {
+          "agency": "Alberta Government",
+          "acceptedTypes": [
+            "Alberta eID",
+            "Driver License",
+            "Provincial ID"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Government of Canada",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Ontario",
@@ -1110,7 +2944,49 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "walletTech": "eID-Me (Bluink)",
-      "credentialFormat": "OIDC"
+      "credentialFormat": "OIDC",
+      "issuedCredentialTypes": [
+        "ONeID",
+        "Driver License",
+        "Photo Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "ServiceOntario",
+          "type": "Provincial",
+          "credentials": [
+            "ONeID",
+            "Driver License",
+            "Photo Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Provincial Government Services": {
+          "agency": "Ontario Government",
+          "acceptedTypes": [
+            "ONeID",
+            "Driver License",
+            "Photo Card"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Government of Canada",
+          "acceptedTypes": [
+            "Driver License",
+            "Photo Card",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Driver License",
+            "Photo Card",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Quebec",
@@ -1144,7 +3020,61 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "credentialFormat": "OIDC",
-      "walletTech": "eID-Me (Bluink)"
+      "walletTech": "eID-Me (Bluink)",
+      "issuedCredentialTypes": [
+        "RAMQ Card",
+        "Physical Driver License",
+        "Provincial ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "RAMQ",
+          "type": "Provincial",
+          "credentials": [
+            "RAMQ Card"
+          ]
+        },
+        {
+          "name": "SAAQ",
+          "type": "Provincial",
+          "credentials": [
+            "Physical Driver License",
+            "Provincial ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Provincial Government Services": {
+          "agency": "Quebec Government",
+          "acceptedTypes": [
+            "RAMQ Card",
+            "Physical Driver License",
+            "Provincial ID"
+          ]
+        },
+        "Healthcare": {
+          "agency": "RAMQ / Healthcare Providers",
+          "acceptedTypes": [
+            "RAMQ Card"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Government of Canada",
+          "acceptedTypes": [
+            "Physical Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "SQDC / Retailers",
+          "acceptedTypes": [
+            "Physical Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Manitoba",
@@ -1178,7 +3108,46 @@
       "credentialType": "Government Wallet",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "MB Wallet App"
+      "walletTech": "MB Wallet App",
+      "issuedCredentialTypes": [
+        "Driver License",
+        "Provincial ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Manitoba Public Insurance",
+          "type": "Provincial Crown Corp",
+          "credentials": [
+            "Driver License",
+            "Provincial ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Provincial Government Services": {
+          "agency": "Manitoba Government",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Government of Canada",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "Saskatchewan",
@@ -1212,7 +3181,46 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "credentialFormat": "OIDC",
-      "walletTech": "eID-Me (Bluink)"
+      "walletTech": "eID-Me (Bluink)",
+      "issuedCredentialTypes": [
+        "Driver License",
+        "Provincial ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Saskatchewan Government Insurance",
+          "type": "Provincial Crown Corp",
+          "credentials": [
+            "Driver License",
+            "Provincial ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "Provincial Government Services": {
+          "agency": "Saskatchewan Government",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Government of Canada",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Driver License",
+            "Provincial ID",
+            "Passport"
+          ]
+        }
+      }
     },
     {
       "name": "New South Wales",
@@ -1246,7 +3254,49 @@
       "credentialType": "Government Wallet",
       "walletType": "Browser/Cloud",
       "credentialFormat": "OIDC",
-      "walletTech": "Service NSW"
+      "walletTech": "Service NSW",
+      "issuedCredentialTypes": [
+        "Digital Driver License",
+        "Physical Driver License",
+        "Proof of Age Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Service NSW",
+          "type": "State",
+          "credentials": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Proof of Age Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "State Government Services": {
+          "agency": "NSW Government",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Australian Government",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Passport",
+            "myGovID"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Proof of Age Card"
+          ]
+        }
+      }
     },
     {
       "name": "Victoria",
@@ -1280,7 +3330,49 @@
       "credentialType": "Government Wallet",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "myVicRoads / ServiceVic"
+      "walletTech": "myVicRoads / ServiceVic",
+      "issuedCredentialTypes": [
+        "Digital Driver License",
+        "Physical Driver License",
+        "Proof of Age Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Service Victoria",
+          "type": "State",
+          "credentials": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Proof of Age Card"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "State Government Services": {
+          "agency": "Victoria Government",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License"
+          ]
+        },
+        "Federal Services": {
+          "agency": "Australian Government",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Passport",
+            "myGovID"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "Digital Driver License",
+            "Physical Driver License",
+            "Proof of Age Card"
+          ]
+        }
+      }
     },
     {
       "name": "Louisiana",
@@ -1315,7 +3407,50 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "LA Wallet"
+      "walletTech": "LA Wallet",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Louisiana OMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "LA State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Arizona",
@@ -1347,7 +3482,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Arizona MVD",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "AZ State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Maryland",
@@ -1379,7 +3557,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Maryland MVA",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "MD State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Colorado",
@@ -1411,7 +3632,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Colorado DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Dispensaries",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "CO State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Georgia",
@@ -1443,7 +3707,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Georgia DDS",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "GA State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Ohio",
@@ -1476,7 +3783,50 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "Apple/Google Wallet"
+      "walletTech": "Apple/Google Wallet",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Ohio BMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "OH State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "California",
@@ -1509,7 +3859,59 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "CA DMV Wallet"
+      "walletTech": "CA DMV Wallet",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Digital ID",
+        "Physical Driver License"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "California DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Digital ID",
+            "Physical Driver License"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "ABC / Retailers",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport"
+          ]
+        },
+        "Government Services": {
+          "agency": "CA State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        },
+        "Law Enforcement": {
+          "agency": "Police / Sheriff",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Utah",
@@ -1542,7 +3944,50 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "GET Mobile App"
+      "walletTech": "GET Mobile App",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Utah DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "UT State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Iowa",
@@ -1575,7 +4020,50 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "Iowa Mobile ID"
+      "walletTech": "Iowa Mobile ID",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Iowa DOT",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "IA State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Virginia",
@@ -1608,7 +4096,50 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "VA MiD App"
+      "walletTech": "VA MiD App",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Virginia DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "VA State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Nevada",
@@ -1640,7 +4171,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Nevada DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars / Dispensaries",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "NV State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Vermont",
@@ -1673,7 +4247,50 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "Apple/Google Wallet"
+      "walletTech": "Apple/Google Wallet",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Vermont DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "VT State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "New York",
@@ -1706,7 +4323,61 @@
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
       "credentialFormat": "mDL",
-      "walletTech": "NY MiD App"
+      "walletTech": "NY MiD App",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID",
+        "Enhanced ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "NY DMV",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID",
+            "Enhanced ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Enhanced ID",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Border Crossing (Land/Sea)": {
+          "agency": "CBP",
+          "acceptedTypes": [
+            "Enhanced ID",
+            "Passport",
+            "Passport Card"
+          ]
+        },
+        "Government Services": {
+          "agency": "NY State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "New Jersey",
@@ -1737,7 +4408,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "New Jersey MVC",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "NJ State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     },
     {
       "name": "Texas",
@@ -1768,7 +4482,50 @@
       ],
       "credentialType": "Platform Wallet",
       "walletType": "Platform",
-      "credentialFormat": "mDL"
+      "credentialFormat": "mDL",
+      "issuedCredentialTypes": [
+        "mDL",
+        "Physical Driver License",
+        "State ID"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Texas DPS",
+          "type": "State",
+          "credentials": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      ],
+      "acceptedCredentials": {
+        "TSA Airport Security": {
+          "agency": "TSA",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "Passport",
+            "Passport Card",
+            "Global Entry"
+          ]
+        },
+        "Age Verification": {
+          "agency": "Retailers / Bars",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License"
+          ]
+        },
+        "Government Services": {
+          "agency": "TX State Agencies",
+          "acceptedTypes": [
+            "mDL",
+            "Physical Driver License",
+            "State ID"
+          ]
+        }
+      }
     }
   ],
   "nodeviceSolutions": [

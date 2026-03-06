@@ -1,0 +1,1928 @@
+{
+  "meta": {
+    "title": "Global Digital ID Landscape",
+    "description": "Jurisdictional scan of digital ID systems worldwide",
+    "lastUpdated": "2026-03-02",
+    "preparedFor": "BC Government Digital Trust Initiative"
+  },
+  "stats": {
+    "countries": "20+",
+    "users": "1.4B",
+    "subnationals": "30+",
+    "euDeadline": "2026"
+  },
+  "jurisdictions": [
+    {
+      "name": "Finland",
+      "flag": "fi",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "wallet",
+      "isSubnational": false,
+      "url": "https://dvv.fi/en/european-digital-identity-wallet",
+      "technology": "Findy + EUDI Wallet",
+      "techStack": [
+        "Findy",
+        "MyData",
+        "EUDI Wallet",
+        "Verifiable Credentials"
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "description": "Findy network + EUDI Wallet launching end 2026. Wallet will hold credentials from government, banks, other issuers.",
+      "details": [
+        "Findy network",
+        "MyData model",
+        "EUDI Wallet 2026"
+      ],
+      "nodevice": [
+        "Physical ID"
+      ],
+      "metrics": [
+        {
+          "label": "Wallet",
+          "value": "End 2026"
+        }
+      ],
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "Findy / EUDI"
+    },
+    {
+      "name": "Austroads",
+      "flag": "au",
+      "region": "apac",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://austroads.gov.au/drivers-and-vehicles/digital-trust-service",
+      "technology": "Digital Trust Service - National Digital Credential",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Interoperability framework"
+      ],
+      "credentialType": "Government Wallet",
+      "description": "National digital trust service for interoperable digital credentials across Australia and NZ.",
+      "details": [
+        "National framework",
+        "mDL interoperability",
+        "All states/territories"
+      ],
+      "nodevice": [
+        "Physical licence"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Dev"
+        }
+      ],
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "Digital Trust Service (Austroads/NEVDIS/Mattr)"
+    },
+    {
+      "name": "Australia",
+      "flag": "au",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "cloud",
+      "isSubnational": false,
+      "url": "https://www.myid.gov.au/",
+      "technology": "Cloud-native federated identity (myID)",
+      "techStack": [
+        "OIDC",
+        "FIDO2",
+        "Facial verification"
+      ],
+      "description": "Federal system. Voluntary myID for 76+ services. Cloud-based. States have additional programs.",
+      "details": [
+        "myID app",
+        "Identity strength levels (Basic/Standard/High)",
+        "Facial verification",
+        "76+ services as of Jan 2025"
+      ],
+      "nodevice": [
+        "myGov service centres",
+        "In-person proofing with passport/ID"
+      ],
+      "metrics": [
+        {
+          "label": "Services",
+          "value": "76+"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Browser/Cloud",
+      "credentialFormat": "OIDC",
+      "walletTech": "myID"
+    },
+    {
+      "name": "Brazil",
+      "flag": "br",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.gov.br/ids/",
+      "technology": "Gov.br 3-tier system + new national ID card with QR",
+      "techStack": [
+        "OAuth 2.0",
+        "QR codes",
+        "REST API"
+      ],
+      "description": "Since 2017. New national ID (Carteira de Identidade Nacional) replacing RG. 166M Gold accounts.",
+      "details": [
+        "New national ID with QR",
+        "Gov.br accounts (Bronze/Silver/Gold)",
+        "166M Gold users",
+        "250M+ authentications/month"
+      ],
+      "nodevice": [
+        "Physical RG (old)",
+        "NIN slip"
+      ],
+      "metrics": [
+        {
+          "label": "Gold users",
+          "value": "166M"
+        },
+        {
+          "label": "Auth/Mo",
+          "value": "250M+"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Government",
+      "walletTech": "Gov.br / Digital CIN",
+      "credentialFormat": "OIDC"
+    },
+    {
+      "name": "China",
+      "flag": "cn",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "cloud",
+      "isSubnational": false,
+      "url": "https://www.mps.gov.cn/",
+      "technology": "Cyber ID / Web ID (voluntary)",
+      "techStack": [
+        "Facial recognition",
+        "\u8eab\u4efd\u7ed1\u5b9a",
+        "WeChat integration"
+      ],
+      "description": "Launched July 2025. Voluntary online identity linked to physical ID. 16M downloads, 6M credentials applied.",
+      "details": [
+        "Voluntary (not mandatory)",
+        "Linked to physical ID card",
+        "WeChat/Taobao integration",
+        "16M downloads, 6M applied"
+      ],
+      "nodevice": [
+        "Physical ID card (required)"
+      ],
+      "metrics": [
+        {
+          "label": "Launch",
+          "value": "Jul 2025"
+        },
+        {
+          "label": "Downloads",
+          "value": "16M"
+        },
+        {
+          "label": "Applied",
+          "value": "6M"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Browser/Cloud",
+      "credentialFormat": "OIDC",
+      "walletTech": "National Online Identity Auth App (MPS/CAC)"
+    },
+    {
+      "name": "Estonia",
+      "flag": "ee",
+      "region": "eu",
+      "status": "production",
+      "issuanceModel": "multiple",
+      "isSubnational": false,
+      "url": "https://e-estonia.com/",
+      "technology": "PKI-based with multiple credentials + government wallet",
+      "techStack": [
+        "PKI",
+        "X-Road",
+        "Mobile-ID",
+        "Smart-ID",
+        "mRiik"
+      ],
+      "description": "Mandatory since 2002. 99%+ coverage. ID card + Mobile-ID + Smart-ID + mRiik app.",
+      "details": [
+        "ID card + Mobile ID + Smart ID",
+        "X-Road",
+        "e-Residency",
+        "mRiik (mState) app"
+      ],
+      "nodevice": [
+        "Physical cards",
+        "Code card"
+      ],
+      "metrics": [
+        {
+          "label": "Coverage",
+          "value": "99%+"
+        }
+      ],
+      "credentialType": "Bank credentials",
+      "walletType": "Government",
+      "walletTech": "mRiik / Mobile ID / Smart-ID",
+      "credentialFormat": "PKI"
+    },
+    {
+      "name": "European Union",
+      "flag": "eu",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "wallet",
+      "isSubnational": false,
+      "url": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en",
+      "technology": "EUDI Wallet (eIDAS 2.0) - framework + 27 national wallets",
+      "techStack": [
+        "eIDAS 2.0",
+        "OpenID4VP",
+        "ISO 18013-5",
+        "W3C Verifiable Credentials"
+      ],
+      "description": "Regulation mandates all 27 member states to issue EUDI Wallets by end 2026. One wallet can hold credentials from multiple issuers (government, banks, universities).",
+      "details": [
+        "User-controlled wallet",
+        "ISO 18013-5 mDL compatible",
+        "350+ orgs in pilots",
+        "2nd wave pilots 2025"
+      ],
+      "nodevice": [
+        "Physical ID cards"
+      ],
+      "metrics": [
+        {
+          "label": "Members",
+          "value": "27"
+        },
+        {
+          "label": "Deadline",
+          "value": "Dec 2026"
+        }
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "EUDI Wallet SDK"
+    },
+    {
+      "name": "Germany",
+      "flag": "de",
+      "region": "eu",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/Online-Ausweisfunktion/online-ausweisfunktion_node.html",
+      "technology": "NFC-enabled ID card (Online-Ausweisfunktion) + EUDI Wallet in dev",
+      "techStack": [
+        "PKI",
+        "NFC",
+        "eIDAS",
+        "SAML"
+      ],
+      "description": "eID in ID cards since 2010. EUDI Wallet sandbox launched, gradually usable by early 2027.",
+      "details": [
+        "eID function in card",
+        "NFC smartphone",
+        "EUDI Wallet sandbox",
+        "75+ companies in MoU"
+      ],
+      "nodevice": [
+        "Physical card"
+      ],
+      "metrics": [
+        {
+          "label": "eID since",
+          "value": "2010"
+        },
+        {
+          "label": "EUDI",
+          "value": "Early 2027"
+        }
+      ],
+      "credentialType": "PKI-based",
+      "walletType": "Government",
+      "credentialFormat": "PKI",
+      "walletTech": "EUDI Wallet (Bundesdruckerei)"
+    },
+    {
+      "name": "India",
+      "flag": "in",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://uidai.gov.in/",
+      "technology": "Biometric-based with OTP fallback",
+      "techStack": [
+        "Biometric (fingerprint/iris)",
+        "OTP",
+        "eKYC API",
+        "Aadhaar XML"
+      ],
+      "description": "Worlds largest. One Aadhaar per resident linked to biometrics.",
+      "details": [
+        "One Aadhaar",
+        "Fingerprints + iris",
+        "Face auth",
+        "DigiLocker",
+        "eKYC API"
+      ],
+      "nodevice": [
+        "OTP fallback",
+        "Face auth",
+        "100K+ centres",
+        "Banking correspondents"
+      ],
+      "metrics": [
+        {
+          "label": "Enrolled",
+          "value": "1.3B+"
+        },
+        {
+          "label": "eKYC/Month",
+          "value": "446M"
+        }
+      ],
+      "credentialType": "Biometric Central Database",
+      "walletType": "Platform",
+      "walletTech": "mAadhaar / DigiLocker / Google Wallet",
+      "credentialFormat": "Biometric"
+    },
+    {
+      "name": "Israel",
+      "flag": "il",
+      "region": "me",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://en.wikipedia.org/wiki/Israeli_identity_card",
+      "technology": "Biometric smart cards + government portal",
+      "techStack": [
+        "Biometric smart card",
+        "PKI",
+        "Government portal"
+      ],
+      "description": "Teudat Zehut (ID card) mandatory. Digital services via gov.il portal.",
+      "details": [
+        "One per person (mandatory)",
+        "Biometric ID card",
+        "Gov.il digital services"
+      ],
+      "nodevice": [
+        "Physical ID card"
+      ],
+      "metrics": [
+        {
+          "label": "Card",
+          "value": "Mandatory"
+        }
+      ],
+      "credentialType": "PKI-based",
+      "walletType": "Government",
+      "walletTech": "Gov.ID / Teudat Zehut App",
+      "credentialFormat": "PKI"
+    },
+    {
+      "name": "Kenya",
+      "flag": "ke",
+      "region": "africa",
+      "status": "production",
+      "issuanceModel": "cloud",
+      "isSubnational": false,
+      "url": "https://www.ecitizen.go.ke/",
+      "technology": "Cloud-based browser access",
+      "techStack": [
+        "Browser-based",
+        "Central database",
+        "SMS integration"
+      ],
+      "description": "Browser-based. One National ID. SIM-NIN linked.",
+      "details": [
+        "One National ID",
+        "Browser (any device)"
+      ],
+      "nodevice": [
+        "Huduma centres"
+      ],
+      "metrics": [
+        {
+          "label": "Access",
+          "value": "Browser"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Browser/Cloud",
+      "credentialFormat": "OIDC",
+      "walletTech": "eCitizen Wallet"
+    },
+    {
+      "name": "Malaysia",
+      "flag": "my",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.digitalid.my/",
+      "technology": "PKI-based with centralized registration",
+      "techStack": [
+        "PKI",
+        "FIDO2",
+        "MyKad integration"
+      ],
+      "description": "Targeting 15M users by end 2025. Mandatory for telcos from Dec 2025, government services from 2026.",
+      "details": [
+        "One per person",
+        "Mobile app",
+        "FIDO2 support",
+        "Required for telco apps Dec 2025"
+      ],
+      "nodevice": [
+        "Government kiosks",
+        "Face-to-face verification"
+      ],
+      "metrics": [
+        {
+          "label": "Target",
+          "value": "15M"
+        },
+        {
+          "label": "Mandate",
+          "value": "2026"
+        }
+      ],
+      "credentialType": "PKI-based",
+      "walletType": "Government",
+      "walletTech": "MyDigital ID / MyDigital ID Superapp",
+      "credentialFormat": "PKI"
+    },
+    {
+      "name": "Nigeria",
+      "flag": "ng",
+      "region": "africa",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://nimc.gov.ng/",
+      "technology": "Biometric central database",
+      "techStack": [
+        "Biometric capture",
+        "Central database",
+        "NIN slip"
+      ],
+      "description": "127M+ enrolled. 73M+ blocked from mobile for lacking ID.",
+      "details": [
+        "One NIN per person",
+        "Biometric capture"
+      ],
+      "nodevice": [
+        "NIN slip (paper)"
+      ],
+      "metrics": [
+        {
+          "label": "Enrolled",
+          "value": "127M+"
+        },
+        {
+          "label": "Blocked",
+          "value": "73M+"
+        }
+      ],
+      "credentialType": "Biometric Central Database",
+      "walletType": "Government",
+      "walletTech": "NIMC Mobile Digital ID / USSD *346#",
+      "credentialFormat": "Biometric"
+    },
+    {
+      "name": "Oman",
+      "flag": "om",
+      "region": "me",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://gov.om/en/w/digital-identity-service-from-rop",
+      "technology": "PKI smart cards + digital wallet app",
+      "techStack": [
+        "PKI",
+        "Smart card",
+        "Facial recognition",
+        "QR codes"
+      ],
+      "description": "PKI smart cards. Tawahul program 94%. Digital wallet app since Sep 2025.",
+      "details": [
+        "One per person",
+        "PKI card",
+        "Digital wallet app",
+        "Facial biometrics"
+      ],
+      "nodevice": [
+        "Physical card"
+      ],
+      "metrics": [
+        {
+          "label": "Program",
+          "value": "Tawahul"
+        }
+      ],
+      "credentialType": "PKI-based",
+      "walletType": "Government",
+      "walletTech": "Digital Identity Service (ROP)",
+      "credentialFormat": "PKI"
+    },
+    {
+      "name": "Qatar",
+      "flag": "qa",
+      "region": "me",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.mcit.gov.qa/en/services/national-authentication-service/",
+      "technology": "Multiple sector systems + digital wallet",
+      "techStack": [
+        "National Authentication System",
+        "Sector-specific credentials",
+        "Digital wallet",
+        "QR codes"
+      ],
+      "description": "QDI app for digital wallet. Stores passport, ID card, national address, driving license.",
+      "details": [
+        "One per person",
+        "Digital wallet app",
+        "Healthcare"
+      ],
+      "nodevice": [
+        "Physical documents"
+      ],
+      "metrics": [
+        {
+          "label": "Services",
+          "value": "Healthcare"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Government",
+      "walletTech": "QDI (Qatar Digital Identity)",
+      "credentialFormat": "OIDC"
+    },
+    {
+      "name": "Saudi Arabia",
+      "flag": "sa",
+      "region": "me",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://sdaia.gov.sa/",
+      "technology": "Framework established + digital wallet app",
+      "techStack": [
+        "Nafath",
+        "National database",
+        "Verification API",
+        "Tawakkalna super app"
+      ],
+      "description": "SDAIA framework launched. Digital ID law 2026. Nafath + Tawakkalna super app.",
+      "details": [
+        "SDAIA framework",
+        "Nafath verification",
+        "Tawakkalna (10M+ users)"
+      ],
+      "nodevice": [
+        "Physical ID"
+      ],
+      "metrics": [
+        {
+          "label": "Framework",
+          "value": "Active"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Government",
+      "walletTech": "Nafath / Tawakkalna",
+      "credentialFormat": "OIDC"
+    },
+    {
+      "name": "Singapore",
+      "flag": "sg",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "cloud",
+      "isSubnational": false,
+      "url": "https://www.singpass.gov.sg/",
+      "technology": "Cloud-native with MyInfo",
+      "techStack": [
+        "OIDC",
+        "MyInfo",
+        "SingPass app",
+        "QR login"
+      ],
+      "description": "5M+ users, 2,700 services across 800+ agencies.",
+      "details": [
+        "One account",
+        "Multi-device",
+        "MyInfo",
+        "Digital IC"
+      ],
+      "nodevice": [
+        "QR (feature phones)"
+      ],
+      "metrics": [
+        {
+          "label": "Users",
+          "value": "5M+"
+        },
+        {
+          "label": "Services",
+          "value": "2,700"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Browser/Cloud",
+      "credentialFormat": "OIDC",
+      "walletTech": "SingPass App"
+    },
+    {
+      "name": "South Korea",
+      "flag": "kr",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.gov.kr/",
+      "technology": "Mobile-based certificates + platform wallets",
+      "techStack": [
+        "Mobile certificate",
+        "Public certificate",
+        "App-based",
+        "Samsung Wallet"
+      ],
+      "description": "Nationwide rollout March 2025. PASS app + Samsung Wallet integration.",
+      "details": [
+        "One per person",
+        "Mobile app",
+        "Certificate auth",
+        "Samsung Wallet (15+ banks)"
+      ],
+      "nodevice": [
+        "Physical ID cards"
+      ],
+      "metrics": [
+        {
+          "label": "Launch",
+          "value": "Mar 2025"
+        }
+      ],
+      "credentialType": "Mobile Certificate",
+      "walletType": "Platform",
+      "walletTech": "PASS / Samsung Wallet",
+      "credentialFormat": "Certificate"
+    },
+    {
+      "name": "Sweden",
+      "flag": "se",
+      "region": "eu",
+      "status": "production",
+      "issuanceModel": "multiple",
+      "isSubnational": false,
+      "url": "https://www.bankid.com/en/",
+      "technology": "Bank-issued PKI certificates + private wallet apps",
+      "techStack": [
+        "PKI",
+        "BankID",
+        "Mobile app",
+        "Browser plugin",
+        "Freja eID"
+      ],
+      "description": "94% of smartphone users. 7.6B transactions in 2024. Multiple BankIDs from different banks.",
+      "details": [
+        "Multiple BankIDs per person",
+        "Cross-platform (mobile/desktop)",
+        "Bank-issued",
+        "7.6B uses in 2024",
+        "Freja eID alternative"
+      ],
+      "nodevice": [
+        "Physical ID cards (passport/ID card)"
+      ],
+      "metrics": [
+        {
+          "label": "Users",
+          "value": "94% smartphone"
+        },
+        {
+          "label": "Uses 2024",
+          "value": "7.6B"
+        }
+      ],
+      "credentialType": "Bank credentials",
+      "walletType": "Platform",
+      "walletTech": "BankID / Freja eID",
+      "credentialFormat": "PKI"
+    },
+    {
+      "name": "Italy",
+      "flag": "it",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.agid.gov.it/en/it-wallet",
+      "technology": "It Wallet (EUDI-compliant)",
+      "techStack": [
+        "eIDAS",
+        "SPID",
+        "OpenID Connect",
+        "Wallet SDK"
+      ],
+      "description": "It Wallet preview launched. Full launch expected 2025-2026 in line with EUDI timeline.",
+      "details": [
+        "It Wallet preview",
+        "SPID existing",
+        "50K pilot users"
+      ],
+      "nodevice": [
+        "Physical ID (SPID)"
+      ],
+      "metrics": [
+        {
+          "label": "Preview",
+          "value": "2024"
+        },
+        {
+          "label": "Full",
+          "value": "2025-26"
+        }
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "IT-Wallet"
+    },
+    {
+      "name": "Spain",
+      "flag": "es",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://clave.gob.es/en/clave",
+      "technology": "Cl@ve + EUDI Wallet",
+      "techStack": [
+        "Cl@ve (OIDC)",
+        "DNIe (PKI)",
+        "EUDI Wallet"
+      ],
+      "description": "Cl@ve system existing. EUDI Wallet in development.",
+      "details": [
+        "Cl@ve system",
+        "EUDI Wallet dev"
+      ],
+      "nodevice": [
+        "Physical DNIe"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Dev"
+        }
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "CL@VE"
+    },
+    {
+      "name": "France",
+      "flag": "fr",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://france-identite.gouv.fr/",
+      "technology": "France Identit\u00e9 + EUDI Wallet",
+      "techStack": [
+        "France Identit\u00e9",
+        "NFC",
+        "EUDI Wallet"
+      ],
+      "description": "France Identit\u00e9 (digital ID card) exists. EUDI Wallet in development.",
+      "details": [
+        "France Identit\u00e9",
+        "EUDI Wallet dev"
+      ],
+      "nodevice": [
+        "Physical ID card"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Dev"
+        }
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "France Identit\u00e9"
+    },
+    {
+      "name": "Netherlands",
+      "flag": "nl",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.nldigitalgovernment.nl/overview/identity/id-wallet/",
+      "technology": "EUDI Wallet (Digid upgrade)",
+      "techStack": [
+        "DigID",
+        "OIDC",
+        "EUDI Wallet"
+      ],
+      "description": "DigiD existing. EUDI Wallet expected end 2026.",
+      "details": [
+        "DigiD",
+        "EUDI Wallet 2026"
+      ],
+      "nodevice": [
+        "Physical ID"
+      ],
+      "metrics": [
+        {
+          "label": "EUDI",
+          "value": "End 2026"
+        }
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "DigiD / EUDI"
+    },
+    {
+      "name": "Portugal",
+      "flag": "pt",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www2.gov.pt/en/temas/cidadania-e-documentos/cartao-de-cidadao",
+      "technology": "EUDI Wallet + eID",
+      "techStack": [
+        "eID card",
+        "Authentication",
+        "EUDI Wallet"
+      ],
+      "description": "One of first to launch EUDI Wallet pilot. Target 2025-2026.",
+      "details": [
+        "EUDI pilot",
+        "eID card"
+      ],
+      "nodevice": [
+        "Physical eID"
+      ],
+      "metrics": [
+        {
+          "label": "Target",
+          "value": "2025-26"
+        }
+      ],
+      "credentialType": "Government Wallet (Multi-credential)",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "PT Wallet"
+    },
+    {
+      "name": "Taiwan",
+      "flag": "tw",
+      "region": "apac",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://civictech.moda.gov.tw/en/what-is-the-taiwan-digital-identity-wallet/",
+      "technology": "Wallet architecture",
+      "techStack": [
+        "Wallet app",
+        "T-Flow",
+        "Mobile credential"
+      ],
+      "description": "Prototype revealed March 2025. Target launch end 2026.",
+      "details": [
+        "One per person",
+        "Digital wallet",
+        "Prototype revealed"
+      ],
+      "nodevice": [
+        "Physical cards"
+      ],
+      "metrics": [
+        {
+          "label": "Target",
+          "value": "End 2026"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "TW DIW (MODA)"
+    },
+    {
+      "name": "United Arab Emirates",
+      "flag": "ae",
+      "region": "me",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.uaepass.ae/",
+      "technology": "Cloud-based centralized + platform wallet",
+      "techStack": [
+        "UAE Pass app",
+        "Emirates ID integration",
+        "Biometric",
+        "Apple Wallet / Google Wallet"
+      ],
+      "description": "12K+ services. One per person linked to Emirates ID. Available in Apple Wallet.",
+      "details": [
+        "One UAE Pass",
+        "Linked to Emirates ID",
+        "Apple Wallet support"
+      ],
+      "nodevice": [
+        "Emirates ID card"
+      ],
+      "metrics": [
+        {
+          "label": "Services",
+          "value": "12K+"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Platform",
+      "walletTech": "UAE Pass / Apple Wallet",
+      "credentialFormat": "Biometric"
+    },
+    {
+      "name": "United Kingdom",
+      "flag": "gb",
+      "region": "eu",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": false,
+      "url": "https://www.gov.uk/government/collections/uk-digital-identity-and-attributes-trust-framework",
+      "technology": "Centralized with attribute sharing",
+      "techStack": [
+        "OIDC",
+        "GOV.UK Wallet",
+        "Trust framework",
+        "Attribute sharing"
+      ],
+      "description": "Announced Sept 25, 2025. Mandatory for work by 2029.",
+      "details": [
+        "One ID per person",
+        "Trust framework",
+        "GOV.UK Wallet"
+      ],
+      "nodevice": [
+        "Passport fallback"
+      ],
+      "metrics": [
+        {
+          "label": "Announced",
+          "value": "Sept 2025"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Browser/Cloud",
+      "credentialFormat": "OIDC",
+      "walletTech": "GOV.UK One Login"
+    },
+    {
+      "name": "British Columbia",
+      "flag": "ca",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Canada",
+      "url": "https://www2.gov.bc.ca/gov/content/governments/government-id/bc-wallet",
+      "technology": "Mobile wallet with credential",
+      "techStack": [
+        "Verifiable Credentials",
+        "OpenID Connect",
+        "ISO 18013-5",
+        "LDS"
+      ],
+      "description": "Person credential LIVE in BC Wallet.",
+      "details": [
+        "One Person credential",
+        "BC Wallet app"
+      ],
+      "nodevice": [
+        "Service BC"
+      ],
+      "metrics": [
+        {
+          "label": "Credential",
+          "value": "Person"
+        },
+        {
+          "label": "Status",
+          "value": "Live"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "Credo.js"
+    },
+    {
+      "name": "Alberta",
+      "flag": "ca",
+      "region": "na",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Canada",
+      "url": "https://account.alberta.ca/",
+      "technology": "Digital wallet + mobile health credential",
+      "techStack": [
+        "Verifiable Credentials",
+        "Health credential"
+      ],
+      "description": "Launching digital wallet with health card. New combined plastic card in 2025.",
+      "details": [
+        "Alberta Wallet app",
+        "Mobile health credential",
+        "Combined ID card 2025"
+      ],
+      "nodevice": [
+        "In-person registry"
+      ],
+      "metrics": [
+        {
+          "label": "Launch",
+          "value": "2025"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": " Alberta Wallet App"
+    },
+    {
+      "name": "Ontario",
+      "flag": "ca",
+      "region": "na",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Canada",
+      "url": "https://www.ontario.ca/page/digital-ontario",
+      "technology": "Digital ID program (on hold) + third-party app",
+      "techStack": [
+        "TBD",
+        "eID-Me"
+      ],
+      "description": "Digital ID program halted in 2024. eID-Me (Bluink) available as third-party option.",
+      "details": [
+        "Program on hold",
+        "Wallet for DL + health card planned",
+        "eID-Me available"
+      ],
+      "nodevice": [
+        "Physical ID"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "On Hold"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Platform",
+      "walletTech": "eID-Me (Bluink)",
+      "credentialFormat": "OIDC"
+    },
+    {
+      "name": "Quebec",
+      "flag": "ca",
+      "region": "na",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Canada",
+      "url": "https://www.quebec.ca/gouvernement/identite-numerique",
+      "technology": "SQIN program (suspended) + third-party app",
+      "techStack": [
+        "TBD",
+        "eID-Me"
+      ],
+      "description": "Identit\u00e9 num\u00e9rique Qu\u00e9bec project suspended March 2025. eID-Me available as third-party option.",
+      "details": [
+        "Program suspended",
+        "Bill 82 passed",
+        "eID-Me available"
+      ],
+      "nodevice": [
+        "Physical cards"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Suspended"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Platform",
+      "credentialFormat": "OIDC",
+      "walletTech": "eID-Me (Bluink)"
+    },
+    {
+      "name": "Manitoba",
+      "flag": "ca",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Canada",
+      "url": "https://www.manitoba.ca/health/mhsip/digitalhealthcard.html",
+      "technology": "Digital Health Card via MB Wallet app",
+      "techStack": [
+        "Verifiable Credentials",
+        "Health card"
+      ],
+      "description": "Digital Health Card available via MB Wallet app. Physical ID cards also available.",
+      "details": [
+        "MB Wallet app",
+        "Digital Health Card",
+        "Physical ID via MPI"
+      ],
+      "nodevice": [
+        "Physical card (MPI)"
+      ],
+      "metrics": [
+        {
+          "label": "Digital",
+          "value": "Health Card"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "MB Wallet App"
+    },
+    {
+      "name": "Saskatchewan",
+      "flag": "ca",
+      "region": "na",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Canada",
+      "url": "https://sgi.sk.ca/photo-id",
+      "technology": "Digital ID roadmap (paused) + third-party app",
+      "techStack": [
+        "TBD",
+        "eID-Me"
+      ],
+      "description": "RFP for digital ID issued. eID-Me available as third-party option since 2020.",
+      "details": [
+        "Digital ID roadmap",
+        "RFP in progress",
+        "eID-Me available since 2020"
+      ],
+      "nodevice": [
+        "Physical ID"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Exploring"
+        }
+      ],
+      "credentialType": "OIDC-style authentication",
+      "walletType": "Platform",
+      "credentialFormat": "OIDC",
+      "walletTech": "eID-Me (Bluink)"
+    },
+    {
+      "name": "New South Wales",
+      "flag": "au",
+      "region": "apac",
+      "status": "development",
+      "issuanceModel": "cloud",
+      "isSubnational": true,
+      "parent": "Australia",
+      "url": "https://www.service.nsw.gov.au/services/nsw-digital-id",
+      "technology": "Digital ID pilot program",
+      "techStack": [
+        "OIDC",
+        "Digital ID",
+        "Photo card"
+      ],
+      "description": "Pilot program testing digital identity. Digital photo card for 16-21 launch March 2026.",
+      "details": [
+        "Pilot program",
+        "Digital photo card 2026"
+      ],
+      "nodevice": [
+        "Service NSW centres"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Pilot"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Browser/Cloud",
+      "credentialFormat": "OIDC",
+      "walletTech": "Service NSW"
+    },
+    {
+      "name": "Victoria",
+      "flag": "au",
+      "region": "apac",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "Australia",
+      "url": "https://www.vic.gov.au/do-more-go-digital-driver-licence-service-victoria",
+      "technology": "Digital driver licence via ServiceVic/myVicRoads",
+      "techStack": [
+        "Digital license",
+        "ServiceVic app"
+      ],
+      "description": "Digital driver licence available via myVicRoads and ServiceVic apps. Full licence holders.",
+      "details": [
+        "Digital driver licence",
+        "myVicRoads app",
+        "ServiceVic app"
+      ],
+      "nodevice": [
+        "Physical licence"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Live"
+        }
+      ],
+      "credentialType": "Government Wallet",
+      "walletType": "Government",
+      "credentialFormat": "Verifiable Credentials",
+      "walletTech": "myVicRoads / ServiceVic"
+    },
+    {
+      "name": "Louisiana",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://lawallet.com/",
+      "technology": "Mobile Driver License (LA Wallet app)",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "First state mDL (2018). Now accepted at TSA + federal buildings.",
+      "details": [
+        "One mDL per person",
+        "LA Wallet app",
+        "Apple + Google Play"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2018"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "LA Wallet"
+    },
+    {
+      "name": "Arizona",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.azdot.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "mDL 2020. Apple + Google Wallet.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2020"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    },
+    {
+      "name": "Maryland",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://mva.maryland.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "Apple + Google Wallet.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2021"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    },
+    {
+      "name": "Colorado",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.colorado.gov/dmv",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "Apple + Google Wallet.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2022"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    },
+    {
+      "name": "Georgia",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://dds.georgia.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "Apple + Google Wallet.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2022"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    },
+    {
+      "name": "Ohio",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.bmv.ohio.gov/",
+      "technology": "Mobile Driver License (Apple only)",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple Wallet"
+      ],
+      "description": "Apple Wallet only.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Platform",
+          "value": "Apple"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "Apple/Google Wallet"
+    },
+    {
+      "name": "California",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.dmv.ca.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple Wallet"
+      ],
+      "description": "Apple Wallet Dec 2023.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "Dec 2023"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "CA DMV Wallet"
+    },
+    {
+      "name": "Utah",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://dld.utah.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "State app"
+      ],
+      "description": "State app.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2023"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "GET Mobile App"
+    },
+    {
+      "name": "Iowa",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://iowadot.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "State app"
+      ],
+      "description": "State app.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2023"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "Iowa Mobile ID"
+    },
+    {
+      "name": "Virginia",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.dmv.virginia.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "Apple + Google Wallet.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2024"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "VA MiD App"
+    },
+    {
+      "name": "Nevada",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://dmv.nv.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "Apple + Google Wallet.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2024"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    },
+    {
+      "name": "Vermont",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://dmv.vermont.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "State app"
+      ],
+      "description": "State app.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Since",
+          "value": "2024"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "Apple/Google Wallet"
+    },
+    {
+      "name": "New York",
+      "flag": "us",
+      "region": "na",
+      "status": "production",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://dmv.ny.gov/",
+      "technology": "Mobile Driver License",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL",
+        "Apple/Google Wallet"
+      ],
+      "description": "200K+ enrollments March 2025.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Enrolled",
+          "value": "200K+"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL",
+      "walletTech": "NY MiD App"
+    },
+    {
+      "name": "New Jersey",
+      "flag": "us",
+      "region": "na",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.nj.gov/mvc/",
+      "technology": "Mobile Driver License (planned)",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL"
+      ],
+      "description": "Law passed 2025.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Spec"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    },
+    {
+      "name": "Texas",
+      "flag": "us",
+      "region": "na",
+      "status": "development",
+      "issuanceModel": "single",
+      "isSubnational": true,
+      "parent": "United States",
+      "url": "https://www.txdps.gov/",
+      "technology": "Mobile Driver License (in development)",
+      "techStack": [
+        "ISO 18013-5",
+        "mDL"
+      ],
+      "description": "In development.",
+      "details": [
+        "One mDL per person"
+      ],
+      "nodevice": [
+        "Physical license"
+      ],
+      "metrics": [
+        {
+          "label": "Status",
+          "value": "Spec"
+        }
+      ],
+      "credentialType": "Platform Wallet",
+      "walletType": "Platform",
+      "credentialFormat": "mDL"
+    }
+  ],
+  "nodeviceSolutions": [
+    {
+      "name": "QR on Plastic",
+      "description": "Static/dynamic QR codes on physical cards",
+      "examples": [
+        "Greece",
+        "Brazil"
+      ]
+    },
+    {
+      "name": "Government Kiosks",
+      "description": "In-person biometric verification",
+      "examples": [
+        "India (100K+)",
+        "Kenya Huduma"
+      ]
+    },
+    {
+      "name": "OTP Fallback",
+      "description": "SMS/email alternative",
+      "examples": [
+        "India",
+        "Various"
+      ]
+    },
+    {
+      "name": "Community Access",
+      "description": "Shared devices in rural areas",
+      "examples": [
+        "India banking correspondents",
+        "Kenya Huduma"
+      ]
+    },
+    {
+      "name": "Paper Documents",
+      "description": "Physical with digital verification",
+      "examples": [
+        "Nigeria NIN slip",
+        "Aadhaar PVC"
+      ]
+    },
+    {
+      "name": "Service Exclusion",
+      "description": "Mandatory ID for essential services",
+      "examples": [
+        "Nigeria (73M blocked)"
+      ]
+    }
+  ],
+  "techCategories": [
+    {
+      "name": "PKI",
+      "description": "Public Key Infrastructure - certificate-based authentication"
+    },
+    {
+      "name": "Biometric",
+      "description": "Fingerprint, iris, or facial recognition"
+    },
+    {
+      "name": "OIDC",
+      "description": "OpenID Connect - identity layer on OAuth 2.0"
+    },
+    {
+      "name": "ISO 18013-5",
+      "description": "International standard for mobile Driver Licenses (mDL)"
+    },
+    {
+      "name": "Verifiable Credentials",
+      "description": "W3C standard for tamper-evident credentials"
+    },
+    {
+      "name": "FIDO2",
+      "description": "Fast Identity Online - passwordless authentication"
+    },
+    {
+      "name": "NFC",
+      "description": "Near Field Communication - tap to authenticate"
+    },
+    {
+      "name": "QR Code",
+      "description": "Quick Response codes for credential presentation"
+    },
+    {
+      "name": "Central Database",
+      "description": "Government-managed identity database"
+    }
+  ],
+  "interoperability": {
+    "eu_cross_border": {
+      "name": "EUDI Cross-Border",
+      "type": "framework",
+      "members": [
+        "European Union",
+        "Finland",
+        "Italy",
+        "Spain",
+        "France",
+        "Netherlands",
+        "Portugal",
+        "Germany"
+      ],
+      "description": "EUDI Wallet enables cross-border identity verification across EU member states"
+    },
+    "nordic": {
+      "name": "Nordic Interoperability",
+      "type": "framework",
+      "members": [
+        "Sweden",
+        "Estonia",
+        "Denmark",
+        "Norway",
+        "Iceland"
+      ],
+      "description": "Nordic countries have existing digital ID interoperability"
+    },
+    "us_tsa": {
+      "name": "US TSA Acceptance",
+      "type": "acceptance",
+      "members": [
+        "Louisiana",
+        "Arizona",
+        "Maryland",
+        "Colorado",
+        "Georgia",
+        "Ohio",
+        "California",
+        "Utah",
+        "Iowa",
+        "Virginia",
+        "Nevada",
+        "Vermont",
+        "New York"
+      ],
+      "description": "TSA accepts mDL at airport checkpoints"
+    },
+    "aus_nz": {
+      "name": "Australia/New Zealand",
+      "type": "future",
+      "members": [
+        "Austroads",
+        "New Zealand"
+      ],
+      "description": "Parallel development with potential future interoperability"
+    },
+    "eu_canada": {
+      "name": "EU-Canada MoU",
+      "type": "agreement",
+      "members": [
+        "European Union",
+        "Canada"
+      ],
+      "description": "MoU signed Dec 2025 on mutual recognition pilots"
+    }
+  }
+}

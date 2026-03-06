@@ -132,7 +132,38 @@
     .modal-link a { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: var(--accent); color: var(--bg); text-decoration: none; border-radius: 5px; font-weight: 500; font-size: 0.75rem; }
     @media (max-width: 600px) { .container { padding: 20px 12px; } .cards { grid-template-columns: 1fr; } }
     .loading { text-align: center; padding: 40px; color: var(--text-dim); }
-  </style>
+  
+    .authority-card, .acceptance-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .authority-card:last-child, .acceptance-card:last-child {
+      margin-bottom: 0;
+    }
+    .authority-name, .acceptance-usecase {
+      font-weight: 600;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+    }
+    .authority-type, .acceptance-agency {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .cred-badge {
+      display: inline-block;
+      background: var(--accent-color);
+      color: white;
+      font-size: 0.6rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+</style>
 </head>
 <body>
   <div class="container">
@@ -142,6 +173,8 @@
       </div>
       <div class="toolbar-right">
         <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+        <a href="map.html" class="toolbar-link">🗺️ Map</a>
+        <a href="usecases.html" class="toolbar-link">🔐 Use Cases</a>
         <a href="summary.html" class="toolbar-link">Summary</a>
       </div>
     </div>
@@ -180,7 +213,10 @@
         <div class="modal-section"><h3>Details</h3><ul class="modal-list" id="modalDetails"></ul></div>
         <div class="modal-section"><h3>No-Device</h3><ul class="modal-list" id="modalNoDevice"></ul></div>
         <div class="modal-section"><h3>Metrics</h3><div class="modal-grid" id="modalStats"></div></div>
-        <div class="modal-section" id="modalLinkSection"><div class="modal-link"><a id="modalLink" href="#" target="_blank">Visit Website</a></div></div>
+        
+        <div class="modal-section" id="modalIssuingSection" style="display:none;"><h3>Issuing Authorities</h3><div id="modalIssuing"></div></div>
+        <div class="modal-section" id="modalAcceptedSection" style="display:none;"><h3>Accepted Credentials</h3><div id="modalAccepted"></div></div>
+<div class="modal-section" id="modalLinkSection"><div class="modal-link"><a id="modalLink" href="#" target="_blank">Visit Website</a></div></div>
       </div>
     </div>
   </div>
@@ -346,6 +382,26 @@
       document.getElementById('modalDetails').innerHTML = j.details.map(d => `<li>${d}</li>`).join('');
       document.getElementById('modalNoDevice').innerHTML = j.nodevice.map(n => `<li>${n}</li>`).join('');
       document.getElementById('modalStats').innerHTML = j.metrics.map(m => `<div class="modal-stat"><div class="modal-stat-value">${m.value}</div><div class="modal-stat-label">${m.label}</div></div>`).join('');
+      // Issuing Authorities
+      if (j.issuingAuthorities && j.issuingAuthorities.length > 0) {
+        document.getElementById('modalIssuingSection').style.display = 'block';
+        document.getElementById('modalIssuing').innerHTML = j.issuingAuthorities.map(a => 
+          `<div class="authority-card"><div class="authority-name">${a.name}</div><div class="authority-type">${a.type}</div><div class="authority-creds">${a.credentials.map(c => `<span class="cred-badge">${c}</span>`).join('')}</div></div>`
+        ).join('');
+      } else {
+        document.getElementById('modalIssuingSection').style.display = 'none';
+      }
+
+      // Accepted Credentials
+      if (j.acceptedCredentials && Object.keys(j.acceptedCredentials).length > 0) {
+        document.getElementById('modalAcceptedSection').style.display = 'block';
+        document.getElementById('modalAccepted').innerHTML = Object.entries(j.acceptedCredentials).map(([useCase, data]) => 
+          `<div class="acceptance-card"><div class="acceptance-usecase">${useCase}</div><div class="acceptance-agency"><strong>Agency:</strong> ${data.agency}</div><div class="acceptance-types"><strong>Accepted:</strong> ${data.acceptedTypes.map(t => `<span class="cred-badge">${t}</span>`).join('')}</div></div>`
+        ).join('');
+      } else {
+        document.getElementById('modalAcceptedSection').style.display = 'none';
+      }
+
       if (j.url) { document.getElementById('modalLink').href = j.url; document.getElementById('modalLinkSection').style.display = 'block'; }
       else document.getElementById('modalLinkSection').style.display = 'none';
       document.getElementById('modal').classList.add('active');
