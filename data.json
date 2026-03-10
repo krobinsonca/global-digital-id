@@ -3655,8 +3655,7 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "Credo.js",
       "issuedCredentialTypes": [
-        "BC Services Card",
-        "BCID"
+        "BC Services Card"
       ],
       "issuingAuthorities": [
         {
@@ -3664,13 +3663,6 @@
           "type": "Provincial",
           "credentials": [
             "BC Services Card",
-            "BCID"
-          ]
-        },
-        {
-          "name": "ICBC",
-          "type": "Provincial Crown Corp",
-          "credentials": [
             "BCID"
           ]
         }
@@ -3703,7 +3695,7 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 1
     },
     {
       "name": "Quebec",
