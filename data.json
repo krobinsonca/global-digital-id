@@ -218,8 +218,7 @@
         "eID",
         "Mobile Certificate",
         "EUDI Wallet",
-        "Bank ID",
-        "Health Card"
+        "Bank ID"
       ],
       "issuingAuthorities": [
         {
@@ -280,7 +279,7 @@
           ]
         }
       },
-      "digitalScore": 80.0,
+      "digitalScore": 100.0,
       "digitalCount": 4
     },
     {
@@ -328,7 +327,6 @@
         "BankID",
         "Freja eID",
         "EUDI Wallet",
-        "Health Card",
         "Digital Driving License"
       ],
       "issuingAuthorities": [
@@ -400,7 +398,7 @@
           ]
         }
       },
-      "digitalScore": 80.0,
+      "digitalScore": 100.0,
       "digitalCount": 4
     },
     {
@@ -445,9 +443,7 @@
       "issuedCredentialTypes": [
         "EUDI Wallet",
         "National eIDs",
-        "Digital Driving License",
-        "Health Credentials",
-        "Professional Credentials"
+        "Digital Driving License"
       ],
       "issuingAuthorities": [
         {
@@ -498,7 +494,7 @@
           ]
         }
       },
-      "digitalScore": 60.0,
+      "digitalScore": 100.0,
       "digitalCount": 3
     },
     {
@@ -535,9 +531,7 @@
       "walletTech": "PT Wallet",
       "issuedCredentialTypes": [
         "Chave M\u00f3vel Digital",
-        "Cart\u00e3o de Cidad\u00e3o",
         "EUDI Wallet",
-        "Health Card",
         "Digital Driving License"
       ],
       "issuingAuthorities": [
@@ -604,7 +598,7 @@
           ]
         }
       },
-      "digitalScore": 60.0,
+      "digitalScore": 100.0,
       "digitalCount": 3
     },
     {
@@ -644,9 +638,7 @@
       "credentialFormat": "Certificate",
       "issuedCredentialTypes": [
         "PASS Mobile ID",
-        "Resident Registration Card",
-        "Digital Driver License",
-        "Passport"
+        "Digital Driver License"
       ],
       "issuingAuthorities": [
         {
@@ -705,7 +697,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 2
     },
     {
@@ -742,8 +734,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "Service NSW",
       "issuedCredentialTypes": [
-        "Digital Driver License",
-        "Proof of Age Card"
+        "Digital Driver License"
       ],
       "issuingAuthorities": [
         {
@@ -782,7 +773,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -819,8 +810,7 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "myVicRoads / ServiceVic",
       "issuedCredentialTypes": [
-        "Digital Driver License",
-        "Proof of Age Card"
+        "Digital Driver License"
       ],
       "issuingAuthorities": [
         {
@@ -859,7 +849,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -897,8 +887,7 @@
       "credentialFormat": "mDL",
       "walletTech": "LA Wallet",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -938,7 +927,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -973,8 +962,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1014,7 +1002,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1049,8 +1037,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1090,7 +1077,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1125,8 +1112,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1166,7 +1152,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1201,8 +1187,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1242,7 +1227,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1278,8 +1263,7 @@
       "credentialFormat": "mDL",
       "walletTech": "Apple/Google Wallet",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1319,7 +1303,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1355,8 +1339,7 @@
       "credentialFormat": "mDL",
       "walletTech": "GET Mobile App",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1396,7 +1379,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1432,8 +1415,7 @@
       "credentialFormat": "mDL",
       "walletTech": "Iowa Mobile ID",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1473,7 +1455,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1509,8 +1491,7 @@
       "credentialFormat": "mDL",
       "walletTech": "VA MiD App",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1550,7 +1531,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1585,8 +1566,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1626,7 +1606,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1662,8 +1642,7 @@
       "credentialFormat": "mDL",
       "walletTech": "Apple/Google Wallet",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1703,7 +1682,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1737,8 +1716,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1778,7 +1756,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1812,8 +1790,7 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -1853,7 +1830,7 @@
           ]
         }
       },
-      "digitalScore": 50.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -1897,10 +1874,7 @@
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
         "Gov.br",
-        "RG",
-        "CNH Digital",
-        "CPF",
-        "Passport"
+        "CNH Digital"
       ],
       "issuingAuthorities": [
         {
@@ -1969,7 +1943,7 @@
           ]
         }
       },
-      "digitalScore": 40.0,
+      "digitalScore": 100.0,
       "digitalCount": 2
     },
     {
@@ -2011,10 +1985,8 @@
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
         "e-Residency",
-        "ID-kaart",
         "Digital ID",
-        "Mobile-ID",
-        "Smart-ID"
+        "Mobile-ID"
       ],
       "issuingAuthorities": [
         {
@@ -2068,8 +2040,8 @@
           ]
         }
       },
-      "digitalScore": 40.0,
-      "digitalCount": 2
+      "digitalScore": 100.0,
+      "digitalCount": 3
     },
     {
       "name": "Germany",
@@ -2111,11 +2083,8 @@
       "credentialFormat": "PKI",
       "walletTech": "EUDI Wallet (Bundesdruckerei)",
       "issuedCredentialTypes": [
-        "Personalausweis",
         "EUDI Wallet",
-        "Digital Driver License",
-        "Health Card (eGK)",
-        "Passport"
+        "Digital Driver License"
       ],
       "issuingAuthorities": [
         {
@@ -2174,7 +2143,7 @@
           ]
         }
       },
-      "digitalScore": 40.0,
+      "digitalScore": 100.0,
       "digitalCount": 2
     },
     {
@@ -2216,10 +2185,7 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "IT-Wallet",
       "issuedCredentialTypes": [
-        "SPID",
-        "CIE",
         "EUDI Wallet",
-        "Health Card (TS)",
         "Digital Driving License"
       ],
       "issuingAuthorities": [
@@ -2286,7 +2252,7 @@
           ]
         }
       },
-      "digitalScore": 40.0,
+      "digitalScore": 100.0,
       "digitalCount": 2
     },
     {
@@ -2322,10 +2288,8 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "CL@VE",
       "issuedCredentialTypes": [
-        "DNIe",
         "Cl@ve",
         "EUDI Wallet",
-        "Health Card",
         "Digital Driving License"
       ],
       "issuingAuthorities": [
@@ -2393,8 +2357,8 @@
           ]
         }
       },
-      "digitalScore": 40.0,
-      "digitalCount": 2
+      "digitalScore": 100.0,
+      "digitalCount": 3
     },
     {
       "name": "France",
@@ -2430,9 +2394,7 @@
       "walletTech": "France Identit\u00e9",
       "issuedCredentialTypes": [
         "FranceConnect",
-        "CNIe",
         "EUDI Wallet",
-        "Health Card (Carte Vitale)",
         "Digital Driving License"
       ],
       "issuingAuthorities": [
@@ -2498,8 +2460,8 @@
           ]
         }
       },
-      "digitalScore": 40.0,
-      "digitalCount": 2
+      "digitalScore": 100.0,
+      "digitalCount": 3
     },
     {
       "name": "Netherlands",
@@ -2535,10 +2497,8 @@
       "walletTech": "DigiD / EUDI",
       "issuedCredentialTypes": [
         "DigiD",
-        "eHerkenning",
         "EUDI Wallet",
-        "Digital Driving License",
-        "Health Card"
+        "Digital Driving License"
       ],
       "issuingAuthorities": [
         {
@@ -2604,8 +2564,8 @@
           ]
         }
       },
-      "digitalScore": 40.0,
-      "digitalCount": 2
+      "digitalScore": 100.0,
+      "digitalCount": 3
     },
     {
       "name": "Australia",
@@ -2643,9 +2603,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "myID",
       "issuedCredentialTypes": [
-        "Digital ID (myGovID)",
-        "Passport",
-        "Proof of Age Card"
+        "Digital ID (myGovID)"
       ],
       "issuingAuthorities": [
         {
@@ -2709,7 +2667,7 @@
           ]
         }
       },
-      "digitalScore": 33.3,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -2746,9 +2704,7 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": " Alberta Wallet App",
       "issuedCredentialTypes": [
-        "Alberta eID",
-        "Driver License",
-        "Provincial ID"
+        "Alberta eID"
       ],
       "issuingAuthorities": [
         {
@@ -2793,7 +2749,7 @@
           ]
         }
       },
-      "digitalScore": 33.3,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -2830,9 +2786,7 @@
       "walletTech": "eID-Me (Bluink)",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "ONeID",
-        "Driver License",
-        "Photo Card"
+        "ONeID"
       ],
       "issuingAuthorities": [
         {
@@ -2871,7 +2825,7 @@
           ]
         }
       },
-      "digitalScore": 33.3,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -2907,9 +2861,7 @@
       "credentialFormat": "mDL",
       "walletTech": "NY MiD App",
       "issuedCredentialTypes": [
-        "mDL",
-        "State ID",
-        "Enhanced ID"
+        "mDL"
       ],
       "issuingAuthorities": [
         {
@@ -2959,7 +2911,7 @@
           ]
         }
       },
-      "digitalScore": 33.3,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -2996,10 +2948,7 @@
       "walletTech": "Gov.ID / Teudat Zehut App",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "Teudat Zehut",
-        "Digital ID",
-        "Driver License",
-        "Passport"
+        "Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -3051,7 +3000,7 @@
           ]
         }
       },
-      "digitalScore": 25.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3094,10 +3043,7 @@
       "walletTech": "MyDigital ID / MyDigital ID Superapp",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "MyKad",
-        "MyDigital ID",
-        "Passport",
-        "Driver License"
+        "MyDigital ID"
       ],
       "issuingAuthorities": [
         {
@@ -3148,7 +3094,7 @@
           ]
         }
       },
-      "digitalScore": 25.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3187,10 +3133,7 @@
       "walletTech": "Digital Identity Service (ROP)",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "National ID",
-        "Digital ID",
-        "Passport",
-        "Driver License"
+        "Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -3233,7 +3176,7 @@
           ]
         }
       },
-      "digitalScore": 25.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3271,10 +3214,7 @@
       "walletTech": "QDI (Qatar Digital Identity)",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "Qatar ID",
-        "Digital ID",
-        "Passport",
-        "Driver License"
+        "Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -3317,7 +3257,7 @@
           ]
         }
       },
-      "digitalScore": 25.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3360,10 +3300,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "SingPass App",
       "issuedCredentialTypes": [
-        "Singpass",
-        "NRIC",
-        "Digital Identity",
-        "Passport"
+        "Digital Identity"
       ],
       "issuingAuthorities": [
         {
@@ -3416,7 +3353,7 @@
           ]
         }
       },
-      "digitalScore": 25.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3454,10 +3391,7 @@
       "walletTech": "UAE Pass / Apple Wallet",
       "credentialFormat": "Biometric",
       "issuedCredentialTypes": [
-        "Emirates ID",
-        "Digital ID (UAE Pass)",
-        "Passport",
-        "Driver License"
+        "Digital ID (UAE Pass)"
       ],
       "issuingAuthorities": [
         {
@@ -3513,7 +3447,7 @@
           ]
         }
       },
-      "digitalScore": 25.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3559,11 +3493,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "National Online Identity Auth App (MPS/CAC)",
       "issuedCredentialTypes": [
-        "Resident Identity Card",
-        "Digital ID (CTID)",
-        "Passport",
-        "Driver License",
-        "Social Security Card"
+        "Digital ID (CTID)"
       ],
       "issuingAuthorities": [
         {
@@ -3621,7 +3551,7 @@
           ]
         }
       },
-      "digitalScore": 20.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3659,11 +3589,7 @@
       "walletTech": "Nafath / Tawakkalna",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "National ID",
-        "Absher Digital ID",
-        "Passport",
-        "Driver License",
-        "Iqama"
+        "Absher Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -3710,7 +3636,7 @@
           ]
         }
       },
-      "digitalScore": 20.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3747,11 +3673,7 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "TW DIW (MODA)",
       "issuedCredentialTypes": [
-        "National ID",
-        "Digital ID",
-        "Passport",
-        "Driver License",
-        "Health Card"
+        "Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -3802,7 +3724,7 @@
           ]
         }
       },
-      "digitalScore": 20.0,
+      "digitalScore": 100.0,
       "digitalCount": 1
     },
     {
@@ -3849,12 +3771,7 @@
       "walletTech": "mAadhaar / DigiLocker / Google Wallet",
       "credentialFormat": "Biometric",
       "issuedCredentialTypes": [
-        "Aadhaar",
-        "PAN Card",
-        "Passport",
-        "Driver License",
-        "Voter ID",
-        "Health ID (ABHA)"
+        "Aadhaar"
       ],
       "issuingAuthorities": [
         {
@@ -3944,8 +3861,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 1
     },
     {
       "name": "Kenya",
@@ -3980,11 +3897,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "eCitizen Wallet",
       "issuedCredentialTypes": [
-        "Maisha Card",
-        "National ID",
-        "Passport",
-        "Driver License",
-        "NHIF Card"
+        "Maisha Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -4049,8 +3962,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 1
     },
     {
       "name": "Nigeria",
@@ -4089,11 +4002,8 @@
       "walletTech": "NIMC Mobile Digital ID / USSD *346#",
       "credentialFormat": "Biometric",
       "issuedCredentialTypes": [
-        "NIN",
-        "BVN",
-        "International Passport",
-        "Driver License",
-        "Voter's Card"
+        "NIN Mobile App",
+        "Digital ID (NIMC)"
       ],
       "issuingAuthorities": [
         {
@@ -4166,8 +4076,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 2
     },
     {
       "name": "United Kingdom",
@@ -4204,9 +4114,8 @@
       "credentialFormat": "OIDC",
       "walletTech": "GOV.UK One Login",
       "issuedCredentialTypes": [
-        "UK One Login",
-        "Driving License",
-        "Biometric Residence Permit"
+        "GOV.UK Verify",
+        "Digital Identity"
       ],
       "issuingAuthorities": [
         {
@@ -4269,8 +4178,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 2
     },
     {
       "name": "British Columbia",
@@ -4364,8 +4273,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 2
     },
     {
       "name": "Quebec",
@@ -4401,8 +4310,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "eID-Me (Bluink)",
       "issuedCredentialTypes": [
-        "RAMQ Card",
-        "Provincial ID"
+        "Qu\u00e9bec Num\u00e9rique"
       ],
       "issuingAuthorities": [
         {
@@ -4453,8 +4361,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 1
     },
     {
       "name": "Manitoba",
@@ -4490,8 +4398,7 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "MB Wallet App",
       "issuedCredentialTypes": [
-        "Driver License",
-        "Provincial ID"
+        "Manitoba eID"
       ],
       "issuingAuthorities": [
         {
@@ -4528,8 +4435,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 1
     },
     {
       "name": "Saskatchewan",
@@ -4565,8 +4472,7 @@
       "credentialFormat": "OIDC",
       "walletTech": "eID-Me (Bluink)",
       "issuedCredentialTypes": [
-        "Driver License",
-        "Provincial ID"
+        "Saskatchewan Digital ID"
       ],
       "issuingAuthorities": [
         {
@@ -4603,8 +4509,8 @@
           ]
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 1
     }
   ],
   "nodeviceSolutions": [
