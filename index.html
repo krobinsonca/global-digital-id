@@ -5,165 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Digital ID Landscape</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    /* Dark mode (default) - WCAG AA compliant */
-    :root { 
-      --bg: #0c0c0f; 
-      --bg-elevated: #141418; 
-      --bg-card: #1a1a1f; 
-      --bg-hover: #222228; 
-      --border: #2a2a32; 
-      --text: #ffffff; 
-      --text-dim: #c0c0c8; 
-      --text-mute: #8a8a96; 
-      --accent: #e8c547; 
-      --success: #4ade80; 
-      --warning: #fbbf24; 
-      --info: #60a5fa; 
-      --radius: 6px; 
-      --radius-lg: 12px; 
-    }
-    
-    /* Light mode - WCAG AA compliant */
-    [data-theme="light"] { 
-      --bg: #f8f9fc; 
-      --bg-elevated: #ffffff; 
-      --bg-card: #ffffff; 
-      --bg-hover: #eef0f5; 
-      --border: #d8dce6; 
-      --text: #1a1a1f; 
-      --text-dim: #4a4a55; 
-      --text-mute: #6a6a78; 
-      --accent: #b8960d; 
-      --success: #16a34a; 
-      --warning: #d97706; 
-      --info: #2563eb; 
-    }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; transition: background 0.2s, color 0.2s; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px; }
-    h1 { font-size: 1.4rem; font-weight: 600; margin: 0; }
-    
-    /* Theme toggle */
-    .theme-toggle { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 10px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
-    .theme-toggle:hover { border-color: var(--accent); }
-    
-    /* Toolbar */
-    .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .toolbar h1 { font-size: 1.4rem; }
-    .toolbar-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; }
-    .toolbar-link:hover { text-decoration: underline; }
-    .toolbar-left { display: flex; align-items: center; gap: 12px; }
-    .toolbar-right { display: flex; align-items: center; gap: 12px; }
-    
-    /* Toolbar bar with filters */
-    .toolbar-bar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
-    .search-input { flex: 1; min-width: 150px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; color: var(--text); font-size: 0.85rem; }
-    .search-input:focus { outline: none; border-color: var(--accent); }
-    .search-input::placeholder { color: var(--text-mute); }
-    .sort-select { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; color: var(--text); font-size: 0.8rem; }
-    
-    /* Exec bar */
-    .exec-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
-    .exec-bar-stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 16px; display: flex; align-items: center; gap: 8px; }
-    .exec-bar-stat-value { font-weight: 600; color: var(--accent); }
-    .exec-bar-stat-label { font-size: 0.75rem; color: var(--text-dim); }
-    
-    /* Filters */
-    .filters-bar { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
-    .filter-group { display: flex; gap: 3px; background: var(--bg-elevated); padding: 3px; border-radius: var(--radius); border: 1px solid var(--border); }
-    .filter-btn { padding: 5px 10px; background: transparent; border: none; border-radius: 4px; color: var(--text-dim); font-family: inherit; font-size: 0.7rem; cursor: pointer; }
-    .filter-btn:hover { color: var(--text); }
-    .filter-btn.active { background: var(--accent); color: var(--bg); font-weight: 500; }
-    .filter-label { font-size: 0.65rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px; }
-    .legend { display: flex; gap: 14px; margin-bottom: 16px; font-size: 0.7rem; color: var(--text-dim); }
-    .legend-item { display: flex; align-items: center; gap: 5px; }
-    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .legend-dot.prod { background: var(--success); }
-    .legend-dot.spec { background: var(--warning); }
-    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 36px; }
-    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; cursor: pointer; transition: all 0.2s; }
-    .card:hover { border-color: var(--accent); transform: translateY(-1px); }
-    .card.is-subnational { margin-left: 16px; border-left: 3px solid var(--info); }
-    .card-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
-    .card-title-group { display: flex; align-items: center; gap: 8px; }
-    .card-flag { width: 28px; height: 20px; border-radius: 2px; }
-    .card-title { font-weight: 600; font-size: 0.9rem; }
-    .card-subtitle { font-size: 0.7rem; color: var(--text-dim); }
-    .card-badges { display: flex; gap: 3px; }
-    .badge { padding: 2px 6px; border-radius: 8px; font-size: 0.55rem; font-weight: 500; text-transform: uppercase; }
-    .badge-prod { background: rgba(74, 222, 128, 0.15); color: var(--success); }
-    .badge-spec { background: rgba(251, 191, 36, 0.15); color: var(--warning); }
-    .badge-sub { background: rgba(96, 165, 250, 0.15); color: var(--info); }
-    .card-model { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 4px; padding: 5px 7px; background: var(--bg-hover); border-radius: 4px; }
-    .card-model strong { color: var(--text); }
-    .card-tech { font-size: 0.65rem; color: var(--accent); margin-bottom: 6px; }
-    .card-desc { font-size: 0.75rem; color: var(--text-dim); line-height: 1.4; }
-    .card-meta { display: flex; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--text-mute); }
-    .parent-jurisdiction { font-size: 0.6rem; color: var(--info); margin-bottom: 3px; text-transform: uppercase; }
-    .section { margin-top: 32px; }
-    .section-title { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-    .section-desc { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 14px; }
-    .nodevice-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-    .nodevice-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px; }
-    .nodevice-name { font-weight: 600; font-size: 0.8rem; margin-bottom: 2px; }
-    .nodevice-examples { font-size: 0.7rem; color: var(--text-dim); }
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 100; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 20px; }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-    .modal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); width: 100%; max-width: 460px; max-height: 85vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.2s; }
-    .modal-overlay.active .modal { transform: scale(1); }
-    .modal-header { padding: 14px 14px 0; display: flex; align-items: center; justify-content: space-between; }
-    .modal-title { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-    .modal-flag { width: 28px; height: 20px; border-radius: 2px; }
-    .modal-close { background: none; border: none; color: var(--text-mute); font-size: 1.2rem; cursor: pointer; }
-    .modal-body { padding: 14px; }
-    .modal-section { margin-bottom: 14px; }
-    .modal-section:last-child { margin-bottom: 0; }
-    .modal-section h3 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 7px; }
-    .modal-section p, .modal-section li { color: var(--text-dim); font-size: 0.8rem; line-height: 1.5; }
-    .modal-list { list-style: none; font-size: 0.75rem; }
-    .modal-list li { padding: 5px 0; border-bottom: 1px solid var(--border); }
-    .modal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
-    .modal-stat { background: var(--bg-card); padding: 8px; border-radius: var(--radius); }
-    .modal-stat-value { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
-    .modal-stat-label { font-size: 0.6rem; color: var(--text-mute); }
-    .modal-link { margin-top: 10px; }
-    .modal-link a { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: var(--accent); color: var(--bg); text-decoration: none; border-radius: 5px; font-weight: 500; font-size: 0.75rem; }
-    @media (max-width: 600px) { .container { padding: 20px 12px; } .cards { grid-template-columns: 1fr; } }
-    .loading { text-align: center; padding: 40px; color: var(--text-dim); }
-  
-    .authority-card, .acceptance-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 8px;
-    }
-    .authority-card:last-child, .acceptance-card:last-child {
-      margin-bottom: 0;
-    }
-    .authority-name, .acceptance-usecase {
-      font-weight: 600;
-      font-size: 0.75rem;
-      margin-bottom: 4px;
-    }
-    .authority-type, .acceptance-agency {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .cred-badge {
-      display: inline-block;
-      background: var(--accent-color);
-      color: white;
-      font-size: 0.6rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      margin-right: 4px;
-      margin-bottom: 4px;
-    }
-</style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
@@ -208,15 +50,20 @@
         <button class="modal-close" onclick="closeModal()">x</button>
       </div>
       <div class="modal-body">
-        <div class="modal-section"><p id="modalDesc"></p></div>
-        <div class="modal-section"><h3>Technology</h3><p id="modalTech"></p></div>
-        <div class="modal-section"><h3>Details</h3><ul class="modal-list" id="modalDetails"></ul></div>
-        <div class="modal-section"><h3>No-Device</h3><ul class="modal-list" id="modalNoDevice"></ul></div>
-        <div class="modal-section"><h3>Metrics</h3><div class="modal-grid" id="modalStats"></div></div>
-        
-        <div class="modal-section" id="modalIssuingSection" style="display:none;"><h3>Issuing Authorities</h3><div id="modalIssuing"></div></div>
-        <div class="modal-section" id="modalAcceptedSection" style="display:none;"><h3>Accepted Credentials</h3><div id="modalAccepted"></div></div>
-<div class="modal-section" id="modalLinkSection"><div class="modal-link"><a id="modalLink" href="#" target="_blank">Visit Website</a></div></div>
+        <div class="modal-grid">
+          <div class="modal-left">
+            <div class="modal-section"><p id="modalDesc"></p></div>
+            <div class="modal-section"><h3>Technology</h3><p id="modalTech"></p></div>
+            <div class="modal-section"><h3>Details</h3><ul class="modal-list" id="modalDetails"></ul></div>
+            <div class="modal-section" id="modalIssuingSection" style="display:none;"><h3>Issuing Authorities</h3><div id="modalIssuing"></div></div>
+          </div>
+          <div class="modal-right">
+            <div class="modal-section"><h3>No-Device</h3><ul class="modal-list" id="modalNoDevice"></ul></div>
+            <div class="modal-section"><h3>Metrics</h3><div class="modal-grid" id="modalStats" style="grid-template-columns: 1fr;"></div></div>
+            <div class="modal-section" id="modalAcceptedSection" style="display:none;"><h3>Accepted Credentials</h3><div id="modalAccepted"></div></div>
+          </div>
+        </div>
+        <div class="modal-section" id="modalLinkSection" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);"><div class="modal-link"><a id="modalLink" href="#" target="_blank">🔗 Visit Official Website</a></div></div>
       </div>
     </div>
   </div>

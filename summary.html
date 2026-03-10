@@ -5,174 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Executive Summary — Global Digital ID Landscape</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
-  <style>
-    /* Dark mode (default) - WCAG AA compliant */
-    :root {
-      --bg: #0c0c0f;
-      --bg-elevated: #141418;
-      --bg-card: #1a1a1f;
-      --bg-hover: #222228;
-      --border: #2a2a32;
-      --text: #ffffff;
-      --text-dim: #c0c0c8;
-      --text-mute: #8a8a96;
-      --accent: #e8c547;
-      --success: #4ade80;
-      --warning: #fbbf24;
-      --info: #60a5fa;
-    }
-    
-    /* Light mode - WCAG AA compliant */
-    [data-theme="light"] {
-      --bg: #f8f9fc;
-      --bg-elevated: #ffffff;
-      --bg-card: #ffffff;
-      --bg-hover: #eef0f5;
-      --border: #d8dce6;
-      --text: #1a1a1f;
-      --text-dim: #4a4a55;
-      --text-mute: #6a6a78;
-      --accent: #b8960d;
-      --success: #16a34a;
-      --warning: #d97706;
-      --info: #2563eb;
-    }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      padding: 40px 20px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .container { max-width: 900px; margin: 0 auto; }
-    
-    /* Theme toggle */
-    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
-    .theme-toggle { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
-    .theme-toggle:hover { border-color: var(--accent); }
-    
-    h1 { font-size: 2rem; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .subtitle { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 40px; }
-    
-    .back { color: var(--accent); text-decoration: none; font-size: 0.9rem; display: inline-block; margin-bottom: 24px; }
-    .back:hover { text-decoration: underline; }
-    
-    /* Key Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 48px;
-    }
-    @media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-    .stat-card {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center;
-    }
-    .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--accent); }
-    .stat-label { color: var(--text-dim); font-size: 0.85rem; margin-top: 4px; }
-    
-    /* Insights */
-    .section { margin-bottom: 40px; }
-    .section-title { 
-      font-size: 1.1rem; 
-      font-weight: 600; 
-      margin-bottom: 16px; 
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .insight-card {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 12px;
-      border-left: 4px solid var(--accent);
-    }
-    .insight-card h3 { font-size: 1rem; margin-bottom: 6px; }
-    .insight-card p { color: var(--text-dim); font-size: 0.9rem; }
-    
-    /* Key Systems */
-    .systems-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 12px;
-    }
-    .system-card {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .system-flag img { width: 28px; height: 20px; border-radius: 2px; }
-    .system-info { flex: 1; }
-    .system-name { font-weight: 600; font-size: 0.95rem; }
-    .system-status {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .system-status.prod { background: rgba(74,222,128,0.15); color: var(--success); }
-    .system-status.dev { background: rgba(251,191,36,0.15); color: var(--warning); }
-    .system-model { font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
-    
-    /* Model breakdown */
-    .model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
-    @media (max-width: 600px) { .model-grid { grid-template-columns: 1fr; } }
-    .model-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .model-title { font-weight: 600; font-size: 1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-    .model-count { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
-    .model-desc { font-size: 0.8rem; color: var(--text-dim); margin-top: 4px; }
-    .model-examples { font-size: 0.75rem; color: var(--accent); margin-top: 8px; }
-    
-    /* Tech Stack breakdown */
-    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 40px; }
-    .tech-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-    .tech-count { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
-    .tech-name { font-size: 0.9rem; font-weight: 600; margin-top: 4px; }
-    .tech-desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
-    
-    /* No-device */
-    .nodevice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-    .nodevice-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
-    .nodevice-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
-    .nodevice-desc { font-size: 0.75rem; color: var(--text-dim); }
-    .nodevice-examples { font-size: 0.7rem; color: var(--accent); margin-top: 6px; }
-    .nodevice-summary { font-size: 0.75rem; color: var(--text-dim); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
-    
-    /* Footer */
-    .footer {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-dim);
-      font-size: 0.8rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div>
-        <a href="index.html" class="back">← Back to Registry</a>
-        <h1>Global Digital ID Landscape</h1>
-        <p class="subtitle">Executive Summary — At a Glance</p>
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <h1>📊 Global Digital ID Landscape</h1>
       </div>
-      <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+      <div class="toolbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+        <a href="index.html" class="toolbar-link">← Back to Registry</a>
+        <a href="map.html" class="toolbar-link">🗺️ Map</a>
+        <a href="usecases.html" class="toolbar-link">🔐 Use Cases</a>
+      </div>
     </div>
+    <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px;">Executive Summary — At a Glance</p>
     
     <!-- Key Stats -->
     <div class="stats-grid" id="stats"></div>

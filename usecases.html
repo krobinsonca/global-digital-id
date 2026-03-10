@@ -4,185 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Multi-Credential Use Cases - BC Government Digital Trust</title>
-  <style>
-    :root {
-      --bg-color: #0a0a0f;
-      --card-bg: #1a1a2e;
-      --text-color: #e0e0e0;
-      --text-muted: #888;
-      --accent-color: #00d4ff;
-      --accent-green: #00ff88;
-      --accent-yellow: #ffcc00;
-      --accent-purple: #bf5af2;
-      --border-color: #333;
-    }
-    [data-theme="light"] {
-      --bg-color: #f5f5f5;
-      --card-bg: #ffffff;
-      --text-color: #1a1a1a;
-      --text-muted: #666;
-      --border-color: #ddd;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      min-height: 100vh;
-    }
-    .header {
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border-color);
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .header h1 { font-size: 1.2rem; font-weight: 600; }
-    .header-controls { display: flex; gap: 10px; align-items: center; }
-    .theme-toggle, .back-btn, .view-btn {
-      background: var(--accent-color);
-      color: #000;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .back-btn, .view-btn { background: var(--text-muted); color: var(--text-color); }
-    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-    }
-    .stat-value { font-size: 2rem; font-weight: 700; color: var(--accent-color); }
-    .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-top: 5px; }
-    .section-title { font-size: 1rem; font-weight: 600; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; }
-    .section-title::before { content: ''; width: 4px; height: 20px; background: var(--accent-color); border-radius: 2px; }
-    .usecase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 15px;
-      margin-bottom: 30px;
-    }
-    .usecase-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 18px;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: pointer;
-    }
-    .usecase-card:hover { border-color: var(--accent-color); transform: translateY(-2px); }
-    .usecase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .usecase-title { font-size: 0.95rem; font-weight: 600; }
-    .usecase-count { font-size: 0.7rem; padding: 3px 10px; background: var(--accent-color); color: #000; border-radius: 10px; font-weight: 600; }
-    .usecase-agency { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; }
-    .credential-flow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .cred-pill {
-      font-size: 0.7rem;
-      padding: 4px 10px;
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .cred-pill::before { content: '✓'; color: var(--accent-green); font-weight: 700; }
-    .jurisdiction-list { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); }
-    .jurisdiction-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-    .jur-tag { font-size: 0.65rem; padding: 2px 8px; background: var(--accent-purple); color: #fff; border-radius: 4px; opacity: 0.8; }
-    .filter-bar {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .filter-label { font-size: 0.75rem; color: var(--text-muted); margin-right: 5px; }
-    .filter-select {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-    }
-    .search-input {
-      flex: 1;
-      min-width: 200px;
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .modal.active { display: flex; }
-    .modal-content {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      max-width: 800px;
-      width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-      padding: 25px;
-    }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
-    .modal-title { font-size: 1.2rem; font-weight: 600; }
-    .modal-close { background: none; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer; }
-    .modal-section { margin-bottom: 20px; }
-    .modal-section h3 { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; }
-    .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; }
-    .detail-item { background: var(--bg-color); padding: 12px; border-radius: 8px; }
-    .detail-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 5px; }
-    .detail-value { font-size: 0.85rem; }
-    .loading { text-align: center; padding: 40px; color: var(--text-muted); }
-    @media (max-width: 768px) {
-      .usecase-grid { grid-template-columns: 1fr; }
-      .filter-bar { flex-direction: column; align-items: stretch; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="header">
-    <h1>🔐 Multi-Credential Use Cases</h1>
-    <div class="header-controls">
-      <button class="view-btn" onclick="window.location.href='map.html'">🗺️ Map View</button>
-      <button class="back-btn" onclick="window.location.href='index.html'">← Back to List</button>
-      <button class="theme-toggle" id="themeToggle">🌙</button>
+  <div class="toolbar">
+      <div class="toolbar-left">
+        <h1>🔐 Multi-Credential Use Cases</h1>
+      </div>
+      <div class="toolbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+        <a href="map.html" class="toolbar-link">🗺️ Map</a>
+        <a href="index.html" class="toolbar-link">← Back to List</a>
+      </div>
     </div>
-  </div>
 
-  <div class="container">
+  <div class="container" style="max-width: 1400px;">
     <div class="stats-grid" id="statsGrid"></div>
 
     <div class="filter-bar">
