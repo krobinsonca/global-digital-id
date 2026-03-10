@@ -60,7 +60,7 @@
 
     async function loadData() {
       try {
-        const resp = await fetch('data.json');
+        const resp = await fetch('data.json?t=' + Date.now());
         appData = await resp.json();
         processUseCases();
         initUI();
@@ -208,16 +208,10 @@
     }
 
     function getFlag(code) {
-      if (!code) return '🏳️';
-      const flags = {
-        'us': '🇺🇸', 'ca': '🇨🇦', 'mx': '🇲🇽', 'gb': '🇬🇧', 'fr': '🇫🇷', 'de': '🇩🇪',
-        'it': '🇮🇹', 'es': '🇪🇸', 'pt': '🇵🇹', 'nl': '🇳🇱', 'se': '🇸🇪', 'fi': '🇫🇮',
-        'ee': '🇪🇪', 'cn': '🇨🇳', 'in': '🇮🇳', 'jp': '🇯🇵', 'kr': '🇰🇷', 'sg': '🇸🇬',
-        'au': '🇦🇺', 'nz': '🇳🇿', 'il': '🇮🇱', 'ae': '🇦🇪', 'sa': '🇸🇦', 'om': '🇴🇲',
-        'qa': '🇶🇦', 'ng': '🇳🇬', 'ke': '🇰🇪', 'br': '🇧🇷', 'ar': '🇦🇷'
-      };
-      return flags[code.toLowerCase()] || '🏳️';
+      if (!code) return "<img src=\"https://flagcdn.com/w40/xx.png\" alt=\"Unknown\" style=\"width:28px;height:20px;border-radius:2px;\">";
+      return `<img src="https://flagcdn.com/w40/${code}.png" srcset="https://flagcdn.com/w80/${code}.png 2x" alt="${code.toUpperCase()}" style="width:28px;height:20px;border-radius:2px;">`;
     }
+
 
     // Close modal on outside click
     document.getElementById('detailModal').addEventListener('click', (e) => {
