@@ -3662,8 +3662,7 @@
           "name": "BC Ministry of Citizens' Services",
           "type": "Provincial",
           "credentials": [
-            "BC Services Card",
-            "BCID"
+            "BC Services Card"
           ]
         }
       ],
@@ -3788,9 +3787,7 @@
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "MB Wallet App",
-      "issuedCredentialTypes": [
-        "Manitoba eID"
-      ],
+      "issuedCredentialTypes": [],
       "issuingAuthorities": [],
       "acceptedCredentials": {
         "Provincial Government Services": {
@@ -3806,8 +3803,8 @@
           "acceptedTypes": []
         }
       },
-      "digitalScore": 100.0,
-      "digitalCount": 1
+      "digitalScore": 0.0,
+      "digitalCount": 0
     },
     {
       "name": "Saskatchewan",
@@ -3842,9 +3839,7 @@
       "walletType": "Platform",
       "credentialFormat": "OIDC",
       "walletTech": "eID-Me (Bluink)",
-      "issuedCredentialTypes": [
-        "Saskatchewan Digital ID"
-      ],
+      "issuedCredentialTypes": [],
       "issuingAuthorities": [],
       "acceptedCredentials": {
         "Provincial Government Services": {
@@ -3860,8 +3855,8 @@
           "acceptedTypes": []
         }
       },
-      "digitalScore": 100.0,
-      "digitalCount": 1
+      "digitalScore": 0.0,
+      "digitalCount": 0
     }
   ],
   "nodeviceSolutions": [
