@@ -2478,11 +2478,10 @@
         "TBD",
         "eID-Me"
       ],
-      "description": "Digital ID program halted in 2024. eID-Me (Bluink) available as third-party option.",
+      "description": "Digital ID program halted in 2024. No government digital ID program.",
       "details": [
         "Program on hold",
-        "Wallet for DL + health card planned",
-        "eID-Me available"
+        "Wallet for DL + health card planned"
       ],
       "nodevice": [
         "Physical ID"
@@ -2495,7 +2494,7 @@
       ],
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
-      "walletTech": "eID-Me (Bluink)",
+      "walletTech": "None (third-party eID-Me only)",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
         "ONeID"
@@ -3710,11 +3709,10 @@
         "TBD",
         "eID-Me"
       ],
-      "description": "Identit\u00e9 num\u00e9rique Qu\u00e9bec project suspended March 2025. eID-Me available as third-party option.",
+      "description": "Identit\u00e9 num\u00e9rique Qu\u00e9bec project suspended March 2025. No government digital ID program.",
       "details": [
         "Program suspended",
-        "Bill 82 passed",
-        "eID-Me available"
+        "Bill 82 passed"
       ],
       "nodevice": [
         "Physical cards"
@@ -3728,7 +3726,7 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "credentialFormat": "OIDC",
-      "walletTech": "eID-Me (Bluink)",
+      "walletTech": "None (third-party eID-Me only)",
       "issuedCredentialTypes": [
         "Qu\u00e9bec Num\u00e9rique"
       ],
@@ -3787,8 +3785,18 @@
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "MB Wallet App",
-      "issuedCredentialTypes": [],
-      "issuingAuthorities": [],
+      "issuedCredentialTypes": [
+        "Digital Health Card"
+      ],
+      "issuingAuthorities": [
+        {
+          "name": "Manitoba Health",
+          "type": "Provincial",
+          "credentials": [
+            "Digital Health Card"
+          ]
+        }
+      ],
       "acceptedCredentials": {
         "Provincial Government Services": {
           "agency": "Manitoba Government",
@@ -3803,8 +3811,8 @@
           "acceptedTypes": []
         }
       },
-      "digitalScore": 0.0,
-      "digitalCount": 0
+      "digitalScore": 100.0,
+      "digitalCount": 1
     },
     {
       "name": "Saskatchewan",
@@ -3823,8 +3831,7 @@
       "description": "RFP for digital ID issued. eID-Me available as third-party option since 2020.",
       "details": [
         "Digital ID roadmap",
-        "RFP in progress",
-        "eID-Me available since 2020"
+        "RFP in progress"
       ],
       "nodevice": [
         "Physical ID"
@@ -3838,7 +3845,7 @@
       "credentialType": "OIDC-style authentication",
       "walletType": "Platform",
       "credentialFormat": "OIDC",
-      "walletTech": "eID-Me (Bluink)",
+      "walletTech": "None (third-party eID-Me only)",
       "issuedCredentialTypes": [],
       "issuingAuthorities": [],
       "acceptedCredentials": {
