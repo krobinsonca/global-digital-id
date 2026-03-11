@@ -44,13 +44,15 @@
     <div class="usecase-grid" id="usecaseGrid"></div>
   </div>
 
-  <div class="modal" id="detailModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-title" id="modalTitle"></div>
-        <button class="modal-close" onclick="closeModal()">&times;</button>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="detailModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title" id="modalTitle"></div>
+          <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div id="modalBody"></div>
       </div>
-      <div id="modalBody"></div>
     </div>
   </div>
 
@@ -200,11 +202,11 @@
         </div>
       `;
 
-      document.getElementById('detailModal').classList.add('active');
+      document.getElementById('modalOverlay').classList.add('active');
     }
 
     function closeModal() {
-      document.getElementById('detailModal').classList.remove('active');
+      document.getElementById('modalOverlay').classList.remove('active');
     }
 
     function getFlag(code) {
@@ -214,8 +216,8 @@
 
 
     // Close modal on outside click
-    document.getElementById('detailModal').addEventListener('click', (e) => {
-      if (e.target.id === 'detailModal') closeModal();
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target.id === 'modalOverlay') closeModal();
     });
 
     loadData();
