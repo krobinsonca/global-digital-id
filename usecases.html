@@ -185,7 +185,7 @@
         <div class="modal-section">
           <h3>🪪 Accepted Credential Types</h3>
           <div class="credential-flow">
-            ${[...uc.credentials].map(ct => `<span class="cred-pill">${ct}</span>`).join('')}
+            ${[...uc.credentials].map(ct => renderCredential(ct)).join('')}
           </div>
         </div>
         <div class="modal-section">
@@ -212,6 +212,33 @@
     function getFlag(code) {
       if (!code) return "<img src=\"https://flagcdn.com/w40/xx.png\" alt=\"Unknown\" style=\"width:28px;height:20px;border-radius:2px;\">";
       return `<img src="https://flagcdn.com/w40/${code}.png" srcset="https://flagcdn.com/w80/${code}.png 2x" alt="${code.toUpperCase()}" style="width:28px;height:20px;border-radius:2px;">`;
+    }
+
+    function getStatusBadge(status) {
+      const colors = {
+        'production': 'var(--success)',
+        'pilot': 'var(--warning)',
+        'development': 'var(--info)',
+        'unknown': 'var(--text-mute)'
+      };
+      const labels = {
+        'production': 'Production',
+        'pilot': 'Pilot',
+        'development': 'Development',
+        'unknown': 'Unknown'
+      };
+      const color = colors[status] || colors['unknown'];
+      const label = labels[status] || labels['unknown'];
+      return `<span style="font-size:0.65rem;padding:2px 8px;background:${color};color:#fff;border-radius:4px;">${label}</span>`;
+    }
+
+    function renderCredential(cred) {
+      if (typeof cred === 'string') {
+        return `<span class="cred-pill">${cred}</span>`;
+      }
+      const status = cred.status || 'unknown';
+      const type = cred.type || cred;
+      return `<span class="cred-pill" style="display:inline-flex;align-items:center;gap:4px;">${type} ${getStatusBadge(status)}</span>`;
     }
 
 

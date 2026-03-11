@@ -16,7 +16,7 @@
       "name": "Austroads",
       "flag": "au",
       "region": "apac",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://austroads.gov.au/drivers-and-vehicles/digital-trust-service",
@@ -46,8 +46,22 @@
       "credentialFormat": "mDL",
       "walletTech": "Digital Trust Service (Austroads/NEVDIS/Mattr)",
       "issuedCredentialTypes": [
-        "Digital Driver License",
-        "National Digital Credential"
+        {
+          "type": "Digital Driver License",
+          "status": "production",
+          "issuer": "State/Territory Transport Authorities",
+          "issuerUrl": "https://austroads.gov.au/",
+          "verificationNetwork": "Digital Trust Service / State Apps",
+          "networkUrl": "https://austroads.gov.au/drivers-and-vehicles/digital-trust-service"
+        },
+        {
+          "type": "National Digital Credential",
+          "status": "development",
+          "issuer": "State/Territory Transport Authorities",
+          "issuerUrl": "https://austroads.gov.au/",
+          "verificationNetwork": "Digital Trust Service / State Apps",
+          "networkUrl": "https://austroads.gov.au/drivers-and-vehicles/digital-trust-service"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -87,13 +101,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "State/Territory Transport Authorities",
+      "primaryIssuerUrl": "https://austroads.gov.au/",
+      "primaryNetwork": "Digital Trust Service / State Apps",
+      "primaryNetworkUrl": "https://austroads.gov.au/drivers-and-vehicles/digital-trust-service"
     },
     {
       "name": "California",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -122,8 +140,22 @@
       "credentialFormat": "mDL",
       "walletTech": "CA DMV Wallet",
       "issuedCredentialTypes": [
-        "mDL",
-        "Digital ID"
+        {
+          "type": "mDL",
+          "status": "production",
+          "issuer": "California DMV",
+          "issuerUrl": "https://www.dmv.ca.gov/",
+          "verificationNetwork": "Direct API / ISO 18013-5",
+          "networkUrl": "https://www.dmv.ca.gov/"
+        },
+        {
+          "type": "Digital ID",
+          "status": "development",
+          "issuer": "California DMV",
+          "issuerUrl": "https://www.dmv.ca.gov/",
+          "verificationNetwork": "Direct API / ISO 18013-5",
+          "networkUrl": "https://www.dmv.ca.gov/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -162,13 +194,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "California DMV",
+      "primaryIssuerUrl": "https://www.dmv.ca.gov/",
+      "primaryNetwork": "Direct API / ISO 18013-5",
+      "primaryNetworkUrl": "https://www.dmv.ca.gov/"
     },
     {
       "name": "Finland",
       "flag": "fi",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "wallet",
       "isSubnational": false,
       "url": "https://dvv.fi/en/european-digital-identity-wallet",
@@ -199,10 +235,38 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "Findy / EUDI",
       "issuedCredentialTypes": [
-        "eID",
-        "Mobile Certificate",
-        "EUDI Wallet",
-        "Bank ID"
+        {
+          "type": "eID",
+          "status": "production",
+          "issuer": "DVV (Digital and Population Data Agency)",
+          "issuerUrl": "https://dvv.fi/",
+          "verificationNetwork": "Finnish Trust Network",
+          "networkUrl": "https://dvv.fi/en/european-digital-identity-wallet"
+        },
+        {
+          "type": "Mobile Certificate",
+          "status": "production",
+          "issuer": "DVV (Digital and Population Data Agency)",
+          "issuerUrl": "https://dvv.fi/",
+          "verificationNetwork": "Finnish Trust Network",
+          "networkUrl": "https://dvv.fi/en/european-digital-identity-wallet"
+        },
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "DVV (Digital and Population Data Agency)",
+          "issuerUrl": "https://dvv.fi/",
+          "verificationNetwork": "Finnish Trust Network",
+          "networkUrl": "https://dvv.fi/en/european-digital-identity-wallet"
+        },
+        {
+          "type": "Bank ID",
+          "status": "production",
+          "issuer": "DVV (Digital and Population Data Agency)",
+          "issuerUrl": "https://dvv.fi/",
+          "verificationNetwork": "Finnish Trust Network",
+          "networkUrl": "https://dvv.fi/en/european-digital-identity-wallet"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -263,13 +327,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 4
+      "digitalCount": 4,
+      "primaryIssuer": "DVV (Digital and Population Data Agency)",
+      "primaryIssuerUrl": "https://dvv.fi/",
+      "primaryNetwork": "Finnish Trust Network",
+      "primaryNetworkUrl": "https://dvv.fi/en/european-digital-identity-wallet"
     },
     {
       "name": "Sweden",
       "flag": "se",
       "region": "eu",
-      "status": "production",
+      "status": "mixed",
       "issuanceModel": "multiple",
       "isSubnational": false,
       "url": "https://www.bankid.com/en/",
@@ -307,10 +375,38 @@
       "walletTech": "BankID / Freja eID",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "BankID",
-        "Freja eID",
-        "EUDI Wallet",
-        "Digital Driving License"
+        {
+          "type": "BankID",
+          "status": "production",
+          "issuer": "Swedish Banks / Freja ID AB",
+          "issuerUrl": "https://www.bankid.com/",
+          "verificationNetwork": "BankID / Sweden Connect",
+          "networkUrl": "https://docs.swedenconnect.se/"
+        },
+        {
+          "type": "Freja eID",
+          "status": "production",
+          "issuer": "Swedish Banks / Freja ID AB",
+          "issuerUrl": "https://www.bankid.com/",
+          "verificationNetwork": "BankID / Sweden Connect",
+          "networkUrl": "https://docs.swedenconnect.se/"
+        },
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "Swedish Banks / Freja ID AB",
+          "issuerUrl": "https://www.bankid.com/",
+          "verificationNetwork": "BankID / Sweden Connect",
+          "networkUrl": "https://docs.swedenconnect.se/"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "Swedish Banks / Freja ID AB",
+          "issuerUrl": "https://www.bankid.com/",
+          "verificationNetwork": "BankID / Sweden Connect",
+          "networkUrl": "https://docs.swedenconnect.se/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -380,13 +476,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 4
+      "digitalCount": 4,
+      "primaryIssuer": "Swedish Banks / Freja ID AB",
+      "primaryIssuerUrl": "https://www.bankid.com/",
+      "primaryNetwork": "BankID / Sweden Connect",
+      "primaryNetworkUrl": "https://docs.swedenconnect.se/"
     },
     {
       "name": "European Union",
       "flag": "eu",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "wallet",
       "isSubnational": false,
       "url": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en",
@@ -422,9 +522,30 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "EUDI Wallet SDK",
       "issuedCredentialTypes": [
-        "EUDI Wallet",
-        "National eIDs",
-        "Digital Driving License"
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "EU Commission",
+          "issuerUrl": "https://commission.europa.eu/",
+          "verificationNetwork": "EUDI Network / eIDAS 2.0",
+          "networkUrl": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en"
+        },
+        {
+          "type": "National eIDs",
+          "status": "production",
+          "issuer": "EU Commission",
+          "issuerUrl": "https://commission.europa.eu/",
+          "verificationNetwork": "EUDI Network / eIDAS 2.0",
+          "networkUrl": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "EU Commission",
+          "issuerUrl": "https://commission.europa.eu/",
+          "verificationNetwork": "EUDI Network / eIDAS 2.0",
+          "networkUrl": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -467,13 +588,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 3
+      "digitalCount": 3,
+      "primaryIssuer": "EU Commission",
+      "primaryIssuerUrl": "https://commission.europa.eu/",
+      "primaryNetwork": "EUDI Network / eIDAS 2.0",
+      "primaryNetworkUrl": "https://commission.europa.eu/topics/digital-economy-and-society/european-digital-identity_en"
     },
     {
       "name": "Portugal",
       "flag": "pt",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www2.gov.pt/en/temas/cidadania-e-documentos/cartao-de-cidadao",
@@ -502,16 +627,37 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "PT Wallet",
       "issuedCredentialTypes": [
-        "Chave M\u00f3vel Digital",
-        "EUDI Wallet",
-        "Digital Driving License"
+        {
+          "type": "Chave Móvel Digital",
+          "status": "production",
+          "issuer": "Agency for Administrative Modernization",
+          "issuerUrl": "https://www2.gov.pt/",
+          "verificationNetwork": "Chave Móvel Digital / eIDAS",
+          "networkUrl": "https://www2.gov.pt/en/temas/cidadania-e-documentos/cartao-de-cidadao"
+        },
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "Agency for Administrative Modernization",
+          "issuerUrl": "https://www2.gov.pt/",
+          "verificationNetwork": "Chave Móvel Digital / eIDAS",
+          "networkUrl": "https://www2.gov.pt/en/temas/cidadania-e-documentos/cartao-de-cidadao"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "Agency for Administrative Modernization",
+          "issuerUrl": "https://www2.gov.pt/",
+          "verificationNetwork": "Chave Móvel Digital / eIDAS",
+          "networkUrl": "https://www2.gov.pt/en/temas/cidadania-e-documentos/cartao-de-cidadao"
+        }
       ],
       "issuingAuthorities": [
         {
           "name": "AMA (Agency for Modernization)",
           "type": "National",
           "credentials": [
-            "Chave M\u00f3vel Digital",
+            "Chave Móvel Digital",
             "EUDI Wallet"
           ]
         },
@@ -534,7 +680,7 @@
         "Government Services": {
           "agency": "ePortugal",
           "acceptedTypes": [
-            "Chave M\u00f3vel Digital",
+            "Chave Móvel Digital",
             "EUDI Wallet"
           ]
         },
@@ -542,7 +688,7 @@
           "agency": "SNS",
           "acceptedTypes": [
             "Health Card",
-            "Chave M\u00f3vel Digital"
+            "Chave Móvel Digital"
           ]
         },
         "Travel": {
@@ -554,18 +700,22 @@
         "Banking": {
           "agency": "Portuguese Banks",
           "acceptedTypes": [
-            "Chave M\u00f3vel Digital"
+            "Chave Móvel Digital"
           ]
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 3
+      "digitalCount": 3,
+      "primaryIssuer": "Agency for Administrative Modernization",
+      "primaryIssuerUrl": "https://www2.gov.pt/",
+      "primaryNetwork": "Chave Móvel Digital / eIDAS",
+      "primaryNetworkUrl": "https://www2.gov.pt/en/temas/cidadania-e-documentos/cartao-de-cidadao"
     },
     {
       "name": "South Korea",
       "flag": "kr",
       "region": "apac",
-      "status": "production",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.gov.kr/",
@@ -597,8 +747,22 @@
       "walletTech": "PASS / Samsung Wallet",
       "credentialFormat": "Certificate",
       "issuedCredentialTypes": [
-        "PASS Mobile ID",
-        "Digital Driver License"
+        {
+          "type": "PASS Mobile ID",
+          "status": "production",
+          "issuer": "Ministry of Government Administration",
+          "issuerUrl": "https://www.gov.kr/",
+          "verificationNetwork": "PASS / Mobile ID",
+          "networkUrl": "https://www.gov.kr/"
+        },
+        {
+          "type": "Digital Driver License",
+          "status": "pilot",
+          "issuer": "Ministry of Government Administration",
+          "issuerUrl": "https://www.gov.kr/",
+          "verificationNetwork": "PASS / Mobile ID",
+          "networkUrl": "https://www.gov.kr/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -645,7 +809,11 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "Ministry of Government Administration",
+      "primaryIssuerUrl": "https://www.gov.kr/",
+      "primaryNetwork": "PASS / Mobile ID",
+      "primaryNetworkUrl": "https://www.gov.kr/"
     },
     {
       "name": "New South Wales",
@@ -681,7 +849,10 @@
       "credentialFormat": "OIDC",
       "walletTech": "Service NSW",
       "issuedCredentialTypes": [
-        "Digital Driver License"
+        {
+          "type": "Digital Driver License",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -719,7 +890,7 @@
       "name": "Victoria",
       "flag": "au",
       "region": "apac",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "Australia",
@@ -749,7 +920,10 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "myVicRoads / ServiceVic",
       "issuedCredentialTypes": [
-        "Digital Driver License"
+        {
+          "type": "Digital Driver License",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -787,7 +961,7 @@
       "name": "Louisiana",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -818,7 +992,10 @@
       "credentialFormat": "mDL",
       "walletTech": "LA Wallet",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -856,7 +1033,7 @@
       "name": "Arizona",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -884,7 +1061,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -922,7 +1102,7 @@
       "name": "Maryland",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -950,7 +1130,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -988,7 +1171,7 @@
       "name": "Colorado",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1016,7 +1199,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1054,7 +1240,7 @@
       "name": "Georgia",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1082,7 +1268,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1120,7 +1309,7 @@
       "name": "Ohio",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1149,7 +1338,10 @@
       "credentialFormat": "mDL",
       "walletTech": "Apple/Google Wallet",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1187,7 +1379,7 @@
       "name": "Utah",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1216,7 +1408,10 @@
       "credentialFormat": "mDL",
       "walletTech": "GET Mobile App",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1254,7 +1449,7 @@
       "name": "Iowa",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1283,7 +1478,10 @@
       "credentialFormat": "mDL",
       "walletTech": "Iowa Mobile ID",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1321,7 +1519,7 @@
       "name": "Virginia",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1350,7 +1548,10 @@
       "credentialFormat": "mDL",
       "walletTech": "VA MiD App",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1388,7 +1589,7 @@
       "name": "Nevada",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1416,7 +1617,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1454,7 +1658,7 @@
       "name": "Vermont",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -1483,7 +1687,10 @@
       "credentialFormat": "mDL",
       "walletTech": "Apple/Google Wallet",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1548,7 +1755,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1613,7 +1823,10 @@
       "walletType": "Platform",
       "credentialFormat": "mDL",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1687,8 +1900,22 @@
       "walletTech": "Gov.br / Digital CIN",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "Gov.br",
-        "CNH Digital"
+        {
+          "type": "Gov.br",
+          "status": "production",
+          "issuer": "Federal Government (Gov.br)",
+          "issuerUrl": "https://www.gov.br/",
+          "verificationNetwork": "Gov.br / ICP-Brasil",
+          "networkUrl": "https://www.gov.br/pt-br"
+        },
+        {
+          "type": "CNH Digital",
+          "status": "production",
+          "issuer": "Federal Government (Gov.br)",
+          "issuerUrl": "https://www.gov.br/",
+          "verificationNetwork": "Gov.br / ICP-Brasil",
+          "networkUrl": "https://www.gov.br/pt-br"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1744,7 +1971,11 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "Federal Government (Gov.br)",
+      "primaryIssuerUrl": "https://www.gov.br/",
+      "primaryNetwork": "Gov.br / ICP-Brasil",
+      "primaryNetworkUrl": "https://www.gov.br/pt-br"
     },
     {
       "name": "Estonia",
@@ -1784,9 +2015,30 @@
       "walletTech": "mRiik / Mobile ID / Smart-ID",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "e-Residency",
-        "Digital ID",
-        "Mobile-ID"
+        {
+          "type": "e-Residency",
+          "status": "production",
+          "issuer": "RIA (Information System Authority)",
+          "issuerUrl": "https://www.id.ee/",
+          "verificationNetwork": "X-Road / eID",
+          "networkUrl": "https://e-estonia.com/"
+        },
+        {
+          "type": "Digital ID",
+          "status": "production",
+          "issuer": "RIA (Information System Authority)",
+          "issuerUrl": "https://www.id.ee/",
+          "verificationNetwork": "X-Road / eID",
+          "networkUrl": "https://e-estonia.com/"
+        },
+        {
+          "type": "Mobile-ID",
+          "status": "production",
+          "issuer": "RIA (Information System Authority)",
+          "issuerUrl": "https://www.id.ee/",
+          "verificationNetwork": "X-Road / eID",
+          "networkUrl": "https://e-estonia.com/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1827,13 +2079,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 3
+      "digitalCount": 3,
+      "primaryIssuer": "RIA (Information System Authority)",
+      "primaryIssuerUrl": "https://www.id.ee/",
+      "primaryNetwork": "X-Road / eID",
+      "primaryNetworkUrl": "https://e-estonia.com/"
     },
     {
       "name": "Germany",
       "flag": "de",
       "region": "eu",
-      "status": "production",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/Online-Ausweisfunktion/online-ausweisfunktion_node.html",
@@ -1869,8 +2125,22 @@
       "credentialFormat": "PKI",
       "walletTech": "EUDI Wallet (Bundesdruckerei)",
       "issuedCredentialTypes": [
-        "EUDI Wallet",
-        "Digital Driver License"
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "BSI (Federal Office for Information Security)",
+          "issuerUrl": "https://www.bsi.bund.de/",
+          "verificationNetwork": "eIDAS / Online-Ausweis",
+          "networkUrl": "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/online-ausweisfunktion_node.html"
+        },
+        {
+          "type": "Digital Driver License",
+          "status": "pilot",
+          "issuer": "BSI (Federal Office for Information Security)",
+          "issuerUrl": "https://www.bsi.bund.de/",
+          "verificationNetwork": "eIDAS / Online-Ausweis",
+          "networkUrl": "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/online-ausweisfunktion_node.html"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -1912,13 +2182,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "BSI (Federal Office for Information Security)",
+      "primaryIssuerUrl": "https://www.bsi.bund.de/",
+      "primaryNetwork": "eIDAS / Online-Ausweis",
+      "primaryNetworkUrl": "https://www.bsi.bund.de/EN/Themen/Oeffentliche-Verwaltung/Elektronische-Identitaeten/online-ausweisfunktion_node.html"
     },
     {
       "name": "Italy",
       "flag": "it",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.agid.gov.it/en/it-wallet",
@@ -1953,8 +2227,22 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "IT-Wallet",
       "issuedCredentialTypes": [
-        "EUDI Wallet",
-        "Digital Driving License"
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "AgID (Digital Italy)",
+          "issuerUrl": "https://www.agid.gov.it/",
+          "verificationNetwork": "SPID / CIE / EUDI",
+          "networkUrl": "https://www.agid.gov.it/en/it-wallet"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "AgID (Digital Italy)",
+          "issuerUrl": "https://www.agid.gov.it/",
+          "verificationNetwork": "SPID / CIE / EUDI",
+          "networkUrl": "https://www.agid.gov.it/en/it-wallet"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2003,13 +2291,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "AgID (Digital Italy)",
+      "primaryIssuerUrl": "https://www.agid.gov.it/",
+      "primaryNetwork": "SPID / CIE / EUDI",
+      "primaryNetworkUrl": "https://www.agid.gov.it/en/it-wallet"
     },
     {
       "name": "Spain",
       "flag": "es",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://clave.gob.es/en/clave",
@@ -2038,9 +2330,30 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "CL@VE",
       "issuedCredentialTypes": [
-        "Cl@ve",
-        "EUDI Wallet",
-        "Digital Driving License"
+        {
+          "type": "Cl@ve",
+          "status": "production",
+          "issuer": "Ministry of Economic Affairs",
+          "issuerUrl": "https://clave.gob.es/",
+          "verificationNetwork": "Cl@ve / eIDAS",
+          "networkUrl": "https://clave.gob.es/"
+        },
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "Ministry of Economic Affairs",
+          "issuerUrl": "https://clave.gob.es/",
+          "verificationNetwork": "Cl@ve / eIDAS",
+          "networkUrl": "https://clave.gob.es/"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "Ministry of Economic Affairs",
+          "issuerUrl": "https://clave.gob.es/",
+          "verificationNetwork": "Cl@ve / eIDAS",
+          "networkUrl": "https://clave.gob.es/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2076,7 +2389,7 @@
       ],
       "acceptedCredentials": {
         "Government Services": {
-          "agency": "Administraci\u00f3n Digital",
+          "agency": "Administración Digital",
           "acceptedTypes": [
             "Cl@ve",
             "EUDI Wallet"
@@ -2103,25 +2416,29 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 3
+      "digitalCount": 3,
+      "primaryIssuer": "Ministry of Economic Affairs",
+      "primaryIssuerUrl": "https://clave.gob.es/",
+      "primaryNetwork": "Cl@ve / eIDAS",
+      "primaryNetworkUrl": "https://clave.gob.es/"
     },
     {
       "name": "France",
       "flag": "fr",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://france-identite.gouv.fr/",
-      "technology": "France Identit\u00e9 + EUDI Wallet",
+      "technology": "France Identité + EUDI Wallet",
       "techStack": [
-        "France Identit\u00e9",
+        "France Identité",
         "NFC",
         "EUDI Wallet"
       ],
-      "description": "France Identit\u00e9 (digital ID card) exists. EUDI Wallet in development.",
+      "description": "France Identité (digital ID card) exists. EUDI Wallet in development.",
       "details": [
-        "France Identit\u00e9",
+        "France Identité",
         "EUDI Wallet dev"
       ],
       "nodevice": [
@@ -2136,11 +2453,32 @@
       "credentialType": "Government Wallet (Multi-credential)",
       "walletType": "Government",
       "credentialFormat": "Verifiable Credentials",
-      "walletTech": "France Identit\u00e9",
+      "walletTech": "France Identité",
       "issuedCredentialTypes": [
-        "FranceConnect",
-        "EUDI Wallet",
-        "Digital Driving License"
+        {
+          "type": "FranceConnect",
+          "status": "production",
+          "issuer": "France Identité",
+          "issuerUrl": "https://france-identite.gouv.fr/",
+          "verificationNetwork": "FranceConnect",
+          "networkUrl": "https://franceconnect.gouv.fr/"
+        },
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "France Identité",
+          "issuerUrl": "https://france-identite.gouv.fr/",
+          "verificationNetwork": "FranceConnect",
+          "networkUrl": "https://franceconnect.gouv.fr/"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "France Identité",
+          "issuerUrl": "https://france-identite.gouv.fr/",
+          "verificationNetwork": "FranceConnect",
+          "networkUrl": "https://franceconnect.gouv.fr/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2195,13 +2533,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 3
+      "digitalCount": 3,
+      "primaryIssuer": "France Identité",
+      "primaryIssuerUrl": "https://france-identite.gouv.fr/",
+      "primaryNetwork": "FranceConnect",
+      "primaryNetworkUrl": "https://franceconnect.gouv.fr/"
     },
     {
       "name": "Netherlands",
       "flag": "nl",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.nldigitalgovernment.nl/overview/identity/id-wallet/",
@@ -2230,9 +2572,30 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "DigiD / EUDI",
       "issuedCredentialTypes": [
-        "DigiD",
-        "EUDI Wallet",
-        "Digital Driving License"
+        {
+          "type": "DigiD",
+          "status": "production",
+          "issuer": "Ministry of Interior",
+          "issuerUrl": "https://www.nldigitalgovernment.nl/",
+          "verificationNetwork": "DigiD / eHerkenning",
+          "networkUrl": "https://www.nldigitalgovernment.nl/"
+        },
+        {
+          "type": "EUDI Wallet",
+          "status": "development",
+          "issuer": "Ministry of Interior",
+          "issuerUrl": "https://www.nldigitalgovernment.nl/",
+          "verificationNetwork": "DigiD / eHerkenning",
+          "networkUrl": "https://www.nldigitalgovernment.nl/"
+        },
+        {
+          "type": "Digital Driving License",
+          "status": "pilot",
+          "issuer": "Ministry of Interior",
+          "issuerUrl": "https://www.nldigitalgovernment.nl/",
+          "verificationNetwork": "DigiD / eHerkenning",
+          "networkUrl": "https://www.nldigitalgovernment.nl/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2293,13 +2656,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 3
+      "digitalCount": 3,
+      "primaryIssuer": "Ministry of Interior",
+      "primaryIssuerUrl": "https://www.nldigitalgovernment.nl/",
+      "primaryNetwork": "DigiD / eHerkenning",
+      "primaryNetworkUrl": "https://www.nldigitalgovernment.nl/"
     },
     {
       "name": "Australia",
       "flag": "au",
       "region": "apac",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "cloud",
       "isSubnational": false,
       "url": "https://www.myid.gov.au/",
@@ -2331,7 +2698,10 @@
       "credentialFormat": "OIDC",
       "walletTech": "myID",
       "issuedCredentialTypes": [
-        "Digital ID (myGovID)"
+        {
+          "type": "Digital ID (myGovID)",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2351,7 +2721,7 @@
       "name": "Alberta",
       "flag": "ca",
       "region": "na",
-      "status": "development",
+      "status": "production",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "Canada",
@@ -2381,7 +2751,14 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": " Alberta Wallet App",
       "issuedCredentialTypes": [
-        "Alberta eID"
+        {
+          "type": "Alberta eID",
+          "status": "production",
+          "issuer": "Government of Alberta",
+          "issuerUrl": "https://www.alberta.ca/",
+          "verificationNetwork": "Alberta Wallet / Verifiable Credentials",
+          "networkUrl": "https://www.alberta.ca/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2409,7 +2786,11 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 1
+      "digitalCount": 1,
+      "primaryIssuer": "Government of Alberta",
+      "primaryIssuerUrl": "https://www.alberta.ca/",
+      "primaryNetwork": "Alberta Wallet / Verifiable Credentials",
+      "primaryNetworkUrl": "https://www.alberta.ca/"
     },
     {
       "name": "Ontario",
@@ -2444,7 +2825,10 @@
       "walletTech": "None (third-party eID-Me only)",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "ONeID"
+        {
+          "type": "ONeID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2470,7 +2854,7 @@
       "name": "New York",
       "flag": "us",
       "region": "na",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": true,
       "parent": "United States",
@@ -2499,7 +2883,10 @@
       "credentialFormat": "mDL",
       "walletTech": "NY MiD App",
       "issuedCredentialTypes": [
-        "mDL"
+        {
+          "type": "mDL",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2537,7 +2924,7 @@
       "name": "Israel",
       "flag": "il",
       "region": "me",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://en.wikipedia.org/wiki/Israeli_identity_card",
@@ -2567,7 +2954,10 @@
       "walletTech": "Gov.ID / Teudat Zehut App",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "Digital ID"
+        {
+          "type": "Digital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2613,7 +3003,7 @@
       "name": "Malaysia",
       "flag": "my",
       "region": "apac",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.digitalid.my/",
@@ -2649,7 +3039,10 @@
       "walletTech": "MyDigital ID / MyDigital ID Superapp",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "MyDigital ID"
+        {
+          "type": "MyDigital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2689,7 +3082,7 @@
       "name": "Oman",
       "flag": "om",
       "region": "me",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://gov.om/en/w/digital-identity-service-from-rop",
@@ -2721,7 +3114,10 @@
       "walletTech": "Digital Identity Service (ROP)",
       "credentialFormat": "PKI",
       "issuedCredentialTypes": [
-        "Digital ID"
+        {
+          "type": "Digital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2761,7 +3157,7 @@
       "name": "Qatar",
       "flag": "qa",
       "region": "me",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.mcit.gov.qa/en/services/national-authentication-service/",
@@ -2792,7 +3188,10 @@
       "walletTech": "QDI (Qatar Digital Identity)",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "Digital ID"
+        {
+          "type": "Digital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2832,7 +3231,7 @@
       "name": "Singapore",
       "flag": "sg",
       "region": "apac",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "cloud",
       "isSubnational": false,
       "url": "https://www.singpass.gov.sg/",
@@ -2868,7 +3267,10 @@
       "credentialFormat": "OIDC",
       "walletTech": "SingPass App",
       "issuedCredentialTypes": [
-        "Digital Identity"
+        {
+          "type": "Digital Identity",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2900,7 +3302,7 @@
       "name": "United Arab Emirates",
       "flag": "ae",
       "region": "me",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.uaepass.ae/",
@@ -2931,7 +3333,10 @@
       "walletTech": "UAE Pass / Apple Wallet",
       "credentialFormat": "Biometric",
       "issuedCredentialTypes": [
-        "Digital ID (UAE Pass)"
+        {
+          "type": "Digital ID (UAE Pass)",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -2979,14 +3384,14 @@
       "name": "China",
       "flag": "cn",
       "region": "apac",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "cloud",
       "isSubnational": false,
       "url": "https://www.mps.gov.cn/",
       "technology": "Cyber ID / Web ID (voluntary)",
       "techStack": [
         "Facial recognition",
-        "\u8eab\u4efd\u7ed1\u5b9a",
+        "身份绑定",
         "WeChat integration"
       ],
       "description": "Launched July 2025. Voluntary online identity linked to . 16M downloads, 6M credentials applied.",
@@ -3018,7 +3423,10 @@
       "credentialFormat": "OIDC",
       "walletTech": "National Online Identity Auth App (MPS/CAC)",
       "issuedCredentialTypes": [
-        "Digital ID (CTID)"
+        {
+          "type": "Digital ID (CTID)",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3095,7 +3503,10 @@
       "walletTech": "Nafath / Tawakkalna",
       "credentialFormat": "OIDC",
       "issuedCredentialTypes": [
-        "Absher Digital ID"
+        {
+          "type": "Absher Digital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3165,7 +3576,10 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "TW DIW (MODA)",
       "issuedCredentialTypes": [
-        "Digital ID"
+        {
+          "type": "Digital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3252,7 +3666,14 @@
       "walletTech": "mAadhaar / DigiLocker / Google Wallet",
       "credentialFormat": "Biometric",
       "issuedCredentialTypes": [
-        "Aadhaar"
+        {
+          "type": "Aadhaar",
+          "status": "production",
+          "issuer": "UIDAI",
+          "issuerUrl": "https://uidai.gov.in/",
+          "verificationNetwork": "Aadhaar / DigiLocker",
+          "networkUrl": "https://www.digilocker.gov.in/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3312,13 +3733,17 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 1
+      "digitalCount": 1,
+      "primaryIssuer": "UIDAI",
+      "primaryIssuerUrl": "https://uidai.gov.in/",
+      "primaryNetwork": "Aadhaar / DigiLocker",
+      "primaryNetworkUrl": "https://www.digilocker.gov.in/"
     },
     {
       "name": "Kenya",
       "flag": "ke",
       "region": "africa",
-      "status": "production",
+      "status": "development",
       "issuanceModel": "cloud",
       "isSubnational": false,
       "url": "https://www.ecitizen.go.ke/",
@@ -3347,7 +3772,10 @@
       "credentialFormat": "OIDC",
       "walletTech": "eCitizen Wallet",
       "issuedCredentialTypes": [
-        "Maisha Digital ID"
+        {
+          "type": "Maisha Digital ID",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [],
       "acceptedCredentials": {},
@@ -3391,8 +3819,22 @@
       "walletTech": "NIMC Mobile Digital ID / USSD *346#",
       "credentialFormat": "Biometric",
       "issuedCredentialTypes": [
-        "NIN Mobile App",
-        "Digital ID (NIMC)"
+        {
+          "type": "NIN Mobile App",
+          "status": "production",
+          "issuer": "NIMC",
+          "issuerUrl": "https://nimc.gov.ng/",
+          "verificationNetwork": "NIN Mobile / Digital ID",
+          "networkUrl": "https://nimc.gov.ng/"
+        },
+        {
+          "type": "Digital ID (NIMC)",
+          "status": "production",
+          "issuer": "NIMC",
+          "issuerUrl": "https://nimc.gov.ng/",
+          "verificationNetwork": "NIN Mobile / Digital ID",
+          "networkUrl": "https://nimc.gov.ng/"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3406,13 +3848,17 @@
       ],
       "acceptedCredentials": {},
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "NIMC",
+      "primaryIssuerUrl": "https://nimc.gov.ng/",
+      "primaryNetwork": "NIN Mobile / Digital ID",
+      "primaryNetworkUrl": "https://nimc.gov.ng/"
     },
     {
       "name": "United Kingdom",
       "flag": "gb",
       "region": "eu",
-      "status": "development",
+      "status": "mixed",
       "issuanceModel": "single",
       "isSubnational": false,
       "url": "https://www.gov.uk/government/collections/uk-digital-identity-and-attributes-trust-framework",
@@ -3443,13 +3889,31 @@
       "credentialFormat": "OIDC",
       "walletTech": "GOV.UK One Login",
       "issuedCredentialTypes": [
-        "GOV.UK Verify",
-        "Digital Identity"
+        {
+          "type": "GOV.UK Verify",
+          "status": "production",
+          "issuer": "GOV.UK (Cabinet Office)",
+          "issuerUrl": "https://www.gov.uk/",
+          "verificationNetwork": "GOV.UK Verify / One Login",
+          "networkUrl": "https://www.gov.uk/"
+        },
+        {
+          "type": "Digital Identity",
+          "status": "development",
+          "issuer": "GOV.UK (Cabinet Office)",
+          "issuerUrl": "https://www.gov.uk/",
+          "verificationNetwork": "GOV.UK Verify / One Login",
+          "networkUrl": "https://www.gov.uk/"
+        }
       ],
       "issuingAuthorities": [],
       "acceptedCredentials": {},
       "digitalScore": 100.0,
-      "digitalCount": 2
+      "digitalCount": 2,
+      "primaryIssuer": "GOV.UK (Cabinet Office)",
+      "primaryIssuerUrl": "https://www.gov.uk/",
+      "primaryNetwork": "GOV.UK Verify / One Login",
+      "primaryNetworkUrl": "https://www.gov.uk/"
     },
     {
       "name": "British Columbia",
@@ -3490,7 +3954,14 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "Credo.js",
       "issuedCredentialTypes": [
-        "BC Services Card"
+        {
+          "type": "BC Services Card",
+          "status": "production",
+          "issuer": "BC Digital Trust (Government)",
+          "issuerUrl": "https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/digital-trust",
+          "verificationNetwork": "BC Wallet / Verifiable Credentials",
+          "networkUrl": "https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/digital-trust"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3522,7 +3993,11 @@
         }
       },
       "digitalScore": 100.0,
-      "digitalCount": 1
+      "digitalCount": 1,
+      "primaryIssuer": "BC Digital Trust (Government)",
+      "primaryIssuerUrl": "https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/digital-trust",
+      "primaryNetwork": "BC Wallet / Verifiable Credentials",
+      "primaryNetworkUrl": "https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/digital-trust"
     },
     {
       "name": "Quebec",
@@ -3538,7 +4013,7 @@
         "TBD",
         "eID-Me"
       ],
-      "description": "Identit\u00e9 num\u00e9rique Qu\u00e9bec project suspended March 2025. No government digital ID program.",
+      "description": "Identité numérique Québec project suspended March 2025. No government digital ID program.",
       "details": [
         "Program suspended",
         "Bill 82 passed"
@@ -3557,7 +4032,10 @@
       "credentialFormat": "OIDC",
       "walletTech": "None (third-party eID-Me only)",
       "issuedCredentialTypes": [
-        "Qu\u00e9bec Num\u00e9rique"
+        {
+          "type": "Québec Numérique",
+          "status": "unknown"
+        }
       ],
       "issuingAuthorities": [],
       "acceptedCredentials": {},
@@ -3598,7 +4076,14 @@
       "credentialFormat": "Verifiable Credentials",
       "walletTech": "MB Wallet App",
       "issuedCredentialTypes": [
-        "Digital Health Card"
+        {
+          "type": "Digital Health Card",
+          "status": "production",
+          "issuer": "Manitoba Health",
+          "issuerUrl": "https://www.manitoba.ca/health/",
+          "verificationNetwork": "MB Wallet / Verifiable Credentials",
+          "networkUrl": "https://www.manitoba.ca/health/mhsip/digitalhealthcard.html"
+        }
       ],
       "issuingAuthorities": [
         {
@@ -3611,7 +4096,11 @@
       ],
       "acceptedCredentials": {},
       "digitalScore": 100.0,
-      "digitalCount": 1
+      "digitalCount": 1,
+      "primaryIssuer": "Manitoba Health",
+      "primaryIssuerUrl": "https://www.manitoba.ca/health/",
+      "primaryNetwork": "MB Wallet / Verifiable Credentials",
+      "primaryNetworkUrl": "https://www.manitoba.ca/health/mhsip/digitalhealthcard.html"
     },
     {
       "name": "Saskatchewan",

@@ -233,7 +233,7 @@
       if (j.issuingAuthorities && j.issuingAuthorities.length > 0) {
         document.getElementById('modalIssuingSection').style.display = 'block';
         document.getElementById('modalIssuing').innerHTML = j.issuingAuthorities.map(a => 
-          `<div class="authority-card"><div class="authority-name">${a.name}</div><div class="authority-type">${a.type}</div><div class="authority-creds">${a.credentials.map(c => `<span class="cred-badge">${c}</span>`).join('')}</div></div>`
+          `<div class="authority-card"><div class="authority-name">${a.name}</div><div class="authority-type">${a.type}</div><div class="authority-creds">${(a.credentials || []).map(c => renderCredential(c)).join('')}</div></div>`
         ).join('');
       } else {
         document.getElementById('modalIssuingSection').style.display = 'none';
@@ -243,7 +243,7 @@
       if (j.acceptedCredentials && Object.keys(j.acceptedCredentials).length > 0) {
         document.getElementById('modalAcceptedSection').style.display = 'block';
         document.getElementById('modalAccepted').innerHTML = Object.entries(j.acceptedCredentials).map(([useCase, data]) => 
-          `<div class="acceptance-card"><div class="acceptance-usecase">${useCase}</div><div class="acceptance-agency"><strong>Agency:</strong> ${data.agency}</div><div class="acceptance-types"><strong>Accepted:</strong> ${data.acceptedTypes.map(t => `<span class="cred-badge">${t}</span>`).join('')}</div></div>`
+          `<div class="acceptance-card"><div class="acceptance-usecase">${useCase}</div><div class="acceptance-agency"><strong>Agency:</strong> ${data.agency}</div><div class="acceptance-types"><strong>Accepted:</strong> ${(data.acceptedTypes || []).map(t => renderCredential(t)).join('')}</div></div>`
         ).join('');
       } else {
         document.getElementById('modalAcceptedSection').style.display = 'none';
@@ -259,6 +259,35 @@
     
     function getFlag(code) {
       return `<img src="https://flagcdn.com/w40/${code}.png" srcset="https://flagcdn.com/w80/${code}.png 2x" alt="${code.toUpperCase()}" style="width:28px;height:20px;border-radius:2px;">`;
+    }
+
+    function getStatusBadge(status) {
+      const colors = {
+        'production': 'var(--success)',
+        'pilot': 'var(--warning)',
+        'development': 'var(--info)',
+        'unknown': 'var(--text-mute)'
+      };
+      const labels = {
+        'production': 'Production',
+        'pilot': 'Pilot',
+        'development': 'Development',
+        'unknown': 'Unknown'
+      };
+      const color = colors[status] || colors['unknown'];
+      const label = labels[status] || labels['unknown'];
+      return `<span style="font-size:0.65rem;padding:2px 8px;background:${color};color:#fff;border-radius:4px;">${label}</span>`;
+    }
+
+    function renderCredential(cred) {
+      if (typeof cred === 'string') {
+        return `<span class="cred-badge">${cred}</span>`;
+      }
+      const status = cred.status || 'unknown';
+      const type = cred.type || cred;
+      const issuer = cred.issuer ? `<div style="font-size:0.65rem;color:var(--text-mute);margin-top:2px;">${cred.issuer}</div>` : '';
+      const network = cred.verificationNetwork ? `<div style="font-size:0.6rem;color:var(--text-dim);">via ${cred.verificationNetwork}</div>` : '';
+      return `<div style="border:1px solid var(--border);border-radius:6px;padding:8px;margin-bottom:6px;background:var(--bg-card);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><span style="font-weight:500;font-size:0.75rem;">${type}</span>${getStatusBadge(status)}</div>${issuer}${network}</div>`;
     }
     
     // Search and sort
