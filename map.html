@@ -303,7 +303,7 @@
           <h3><span class="flag">${getFlag(j.flag)}</span> ${j.name} <span class="status ${j.status === 'development' ? 'dev' : ''}">${j.status}</span></h3>
           <p>${j.description?.substring(0, 80) || ''}...</p>
           <div class="credential-tags">
-            ${(j.issuedCredentialTypes || []).slice(0, 5).map(ct => `<span class="cred-tag">${ct}</span>`).join('')}
+            ${(j.issuedCredentialTypes || []).slice(0, 5).map(ct => `<span class="cred-tag">${ct.type}</span>`).join('')}
           </div>
         </div>
       `).join('');
@@ -327,7 +327,7 @@
           <h3><span class="flag">${getFlag(j.flag)}</span> ${j.name}</h3>
           <p><strong>Status:</strong> ${j.status}</p>
           <p><strong>Technology:</strong> ${j.technology}</p>
-          ${j.issuedCredentialTypes ? `<p><strong>Issues:</strong> ${j.issuedCredentialTypes.join(', ')}</p>` : ''}
+          ${j.issuedCredentialTypes ? `<p><strong>Issues:</strong> ${j.issuedCredentialTypes.map(ct => ct.type).join(', ')}</p>` : ''}
           ${j.issuingAuthorities ? `
             <p><strong>Issuing Authorities:</strong></p>
             <ul style="font-size: 0.75rem; margin-left: 15px;">
