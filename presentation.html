@@ -206,20 +206,46 @@
   let current = 1;
   const total = 2;
   
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ') {
-      current = current < total ? current + 1 : 1;
-      showSlide();
-    } else if (e.key === 'ArrowLeft') {
-      current = current > 1 ? current - 1 : total;
-      showSlide();
-    }
-  });
-  
   function showSlide() {
     document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
     document.getElementById('slide' + current).classList.add('active');
   }
+  
+  function nextSlide() {
+    current = current < total ? current + 1 : 1;
+    showSlide();
+  }
+  
+  function prevSlide() {
+    current = current > 1 ? current - 1 : total;
+    showSlide();
+  }
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+      nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+      prevSlide();
+    }
+  });
+  
+  // Click navigation - left side for prev, right side for next
+  document.addEventListener('click', (e) => {
+    const width = window.innerWidth;
+    if (e.clientX < width / 2) {
+      prevSlide();
+    } else {
+      nextSlide();
+    }
+  });
+  
+  // Make nav indicator clickable
+  document.querySelector('.nav').style.cursor = 'pointer';
+  document.querySelector('.nav').addEventListener('click', (e) => {
+    e.stopPropagation();
+    nextSlide();
+  });
 </script>
 
 </body>
