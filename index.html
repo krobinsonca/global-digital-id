@@ -190,8 +190,7 @@
           return a.name.localeCompare(b.name);
         }
         if (sortBy === 'status') {
-          const statusOrder = { 'production': 0, 'mixed': 1, 'pilot': 2, 'development': 3, 'unknown': 4 };
-          if (a.status !== b.status) return (statusOrder[a.status] ?? 5) - (statusOrder[b.status] ?? 5);
+          if (a.status !== b.status) return a.status === 'production' ? -1 : 1;
           return a.name.localeCompare(b.name);
         }
         return 0;
@@ -268,30 +267,7 @@
         'pilot': 'var(--warning)',
         'development': 'var(--info)',
         'unknown': 'var(--text-mute)'
-      }
-    function renderCredential(cred) {
-        // Handle string format (backward compat)
-        if (typeof cred === 'string') {
-            return `<span class="cred-pill">${cred}</span>`;
-        }
-
-        // Handle object format
-        const statusBadge = getStatusBadge(cred.status);
-        const issuerInfo = cred.issuer ? `<div class="cred-meta">🏛️ ${cred.issuer}</div>` : '';
-        const networkInfo = cred.verificationNetwork ? `<div class="cred-meta">🔗 ${cred.verificationNetwork}</div>` : '';
-
-        return `
-            <div class="cred-pill cred-pill-detailed">
-                <div class="cred-header">
-                    <span class="cred-name">${cred.type}</span>
-                    ${statusBadge}
-                </div>
-                ${issuerInfo}
-                ${networkInfo}
-            </div>
-        `;
-    }
-;
+      };
       const labels = {
         'production': 'Production',
         'pilot': 'Pilot',
@@ -303,48 +279,9 @@
       return `<span style="font-size:0.65rem;padding:2px 8px;background:${color};color:#fff;border-radius:4px;">${label}</span>`;
     }
 
-    (cred) {
-        // Handle string format (backward compat)
-        if (typeof cred === 'string') {
-            return `<span class="cred-pill">${cred}</span>`;
-        }
-
-        // Handle object format
-        const statusBadge = getStatusBadge(cred.status);
-        const issuerInfo = cred.issuer ? `<div class="cred-meta">🏛️ ${cred.issuer}</div>` : '';
-        const networkInfo = cred.verificationNetwork ? `<div class="cred-meta">🔗 ${cred.verificationNetwork}</div>` : '';
-
-        return `
-            <div class="cred-pill cred-pill-detailed">
-                <div class="cred-header">
-                    <span class="cred-name">${cred.type}</span>
-                    ${statusBadge}
-                </div>
-                ${issuerInfo}
-                ${networkInfo}
-            </div>
-        `;
-    }
-
-    </span>`;
-    }
-
-    // Handle object format
-    const statusBadge = getStatusBadge(cred.status);
-    const issuerInfo = cred.issuer ? `<div class="cred-meta">🏛️ ${cred.issuer}</div>` : '';
-    const networkInfo = cred.verificationNetwork ? `<div class="cred-meta">🔗 ${cred.verificationNetwork}</div>` : '';
-
-    return `
-        <div class="cred-pill cred-pill-detailed">
-            <div class="cred-header">
-                <span class="cred-name">${cred.type}</span>
-                ${statusBadge}
-            </div>
-            ${issuerInfo}
-            ${networkInfo}
-        </div>
-    `;
-}</span>`;
+    function renderCredential(cred) {
+      if (typeof cred === 'string') {
+        return `<span class="cred-badge">${cred}</span>`;
       }
       const status = cred.status || 'unknown';
       const type = cred.type || cred;
