@@ -5,7 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Digital ID Map - BC Government Digital Trust</title>
   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="toolbar">
+      <div class="toolbar-left">
+        <h1>🌍 Global Digital ID Map</h1>
+      </div>
+      <div class="toolbar-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+        <a href="index.html" class="toolbar-link">← Back to List</a>
+        <a href="usecases.html" class="toolbar-link">🔐 Use Cases</a>
+      </div>
+    </div>
 
+  <div class="main-container">
+    <div class="map-container">
+      <div class="stats-bar" id="statsBar"></div>
+      <svg class="map-svg" id="worldMap" viewBox="0 0 1000 500"></svg>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <div class="sidebar">
+      <div class="filter-section">
+        <h3>Filter by Status</h3>
+        <div class="filter-btns" id="statusFilters"></div>
+      </div>
+      <div class="filter-section">
+        <h3>Filter by Region</h3>
+        <div class="filter-btns" id="regionFilters"></div>
+      </div>
+      <h3 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Jurisdictions</h3>
+      <div id="jurisdictionList" class="loading">Loading...</div>
+    </div>
+  </div>
+
+  <script>
     // ============= HELPER FUNCTIONS =============
 
     function getStatusBadge(status) {
@@ -57,41 +91,6 @@
 
     // ============= END HELPERS =============
 
-</head>
-<body>
-  <div class="toolbar">
-      <div class="toolbar-left">
-        <h1>🌍 Global Digital ID Map</h1>
-      </div>
-      <div class="toolbar-right">
-        <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
-        <a href="index.html" class="toolbar-link">← Back to List</a>
-        <a href="usecases.html" class="toolbar-link">🔐 Use Cases</a>
-      </div>
-    </div>
-
-  <div class="main-container">
-    <div class="map-container">
-      <div class="stats-bar" id="statsBar"></div>
-      <svg class="map-svg" id="worldMap" viewBox="0 0 1000 500"></svg>
-      <div class="legend" id="legend"></div>
-    </div>
-
-    <div class="sidebar">
-      <div class="filter-section">
-        <h3>Filter by Status</h3>
-        <div class="filter-btns" id="statusFilters"></div>
-      </div>
-      <div class="filter-section">
-        <h3>Filter by Region</h3>
-        <div class="filter-btns" id="regionFilters"></div>
-      </div>
-      <h3 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Jurisdictions</h3>
-      <div id="jurisdictionList" class="loading">Loading...</div>
-    </div>
-  </div>
-
-  <script>
     let appData = null;
     let filterStatus = 'all';
     let filterRegion = 'all';
