@@ -208,14 +208,14 @@
     }
 
     function getCoords(jurisdiction) {
-      // Try by flag code first
-      if (jurisdiction.flag && coordinates[jurisdiction.flag.toLowerCase()]) {
-        return coordinates[jurisdiction.flag.toLowerCase()];
-      }
-      // Try by name (lowercase)
+      // Try by name first (subnationals override country flags)
       const nameKey = jurisdiction.name.toLowerCase();
       if (coordinates[nameKey]) {
         return coordinates[nameKey];
+      }
+      // Then try by flag code (for national-level)
+      if (jurisdiction.flag && coordinates[jurisdiction.flag.toLowerCase()]) {
+        return coordinates[jurisdiction.flag.toLowerCase()];
       }
       // Default to center of region
       const regionCenters = {
