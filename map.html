@@ -3,179 +3,383 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Digital ID Map - BC Government Digital Trust</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <title>Global Digital ID - Political Map</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .map-page { display: flex; flex-direction: column; height: 100vh; }
-    .map-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .map-header h1 { font-size: 1.5rem; margin: 0; }
-    .map-header .header-actions { display: flex; gap: 10px; align-items: center; }
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #334155;
+      --border-color: #475569;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-green: #22c55e;
+      --accent-yellow: #eab308;
+      --accent-blue: #3b82f6;
+      --accent-gray: #6b7280;
+      --accent-purple: #8b5cf6;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    
+    .map-page { display: flex; flex-direction: column; min-height: 100vh; }
+    
+    .map-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: var(--bg-secondary);
+    }
+    
+    .map-header h1 { font-size: 1.4rem; margin: 0; font-weight: 600; }
+    .map-header .subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+    
+    .header-actions { display: flex; gap: 8px; align-items: center; }
+    
+    .btn {
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .btn:hover { border-color: var(--accent-blue); background: var(--border-color); }
+    .btn.active { background: var(--accent-blue); border-color: var(--accent-blue); }
+    
     .map-body { display: flex; flex: 1; overflow: hidden; }
-    .map-container { flex: 1; position: relative; }
-    #map { height: 100%; width: 100%; }
-    .map-sidebar { width: 380px; border-left: 1px solid var(--border-color); display: flex; flex-direction: column; background: var(--bg-color); }
-    .sidebar-header { padding: 15px; border-bottom: 1px solid var(--border-color); }
-    .sidebar-header h2 { margin: 0 0 10px 0; font-size: 1.1rem; }
-    .filter-group { margin-bottom: 10px; }
-    .filter-group label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .filter-btns { display: flex; flex-wrap: wrap; gap: 5px; }
-    .filter-btn { padding: 6px 12px; font-size: 0.8rem; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 4px; cursor: pointer; transition: all 0.2s; }
-    .filter-btn:hover { border-color: var(--accent-color); }
-    .filter-btn.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
-    .sidebar-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 15px; border-bottom: 1px solid var(--border-color); }
-    .stat-box { text-align: center; padding: 8px; background: var(--card-bg); border-radius: 6px; }
-    .stat-box .stat-num { font-size: 1.3rem; font-weight: 700; color: var(--accent-color); }
-    .stat-box .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
-    .jurisdiction-list { flex: 1; overflow-y: auto; padding: 10px; }
-    .jurisdiction-card { padding: 12px; margin-bottom: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
-    .jurisdiction-card:hover { border-color: var(--accent-color); transform: translateX(3px); }
-    .jurisdiction-card.active { border-color: var(--accent-color); background: var(--hover-bg); }
-    .jurisdiction-card h3 { margin: 0 0 6px 0; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
-    .jurisdiction-card p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
-    .status-badge { display: inline-block; padding: 2px 6px; font-size: 0.65rem; border-radius: 3px; text-transform: uppercase; font-weight: 600; }
+    
+    /* Political Map Container */
+    .political-map {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      background: var(--bg-primary);
+    }
+    
+    .region-section {
+      margin-bottom: 32px;
+    }
+    
+    .region-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border-color);
+    }
+    
+    .region-flag { font-size: 1.5rem; }
+    .region-title { font-size: 1.1rem; font-weight: 600; color: var(--text-primary); }
+    .region-count { font-size: 0.8rem; color: var(--text-muted); background: var(--bg-card); padding: 2px 8px; border-radius: 12px; }
+    
+    .jurisdiction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    
+    .jururisdiction-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .jurisdiction-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    .jurisdiction-card.active {
+      border-color: var(--accent-blue);
+      background: var(--bg-secondary);
+    }
+    
+    .jur-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .jur-flag { font-size: 1.3rem; }
+    .jur-name { font-size: 0.95rem; font-weight: 600; flex: 1; }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.65rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    
     .status-production { background: var(--accent-green); color: #000; }
     .status-pilot { background: var(--accent-yellow); color: #000; }
     .status-development { background: var(--accent-blue); color: #fff; }
-    .status-specification { background: var(--text-muted); color: #fff; }
-    .status-unknown { background: #666; color: #fff; }
-    .cred-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-    .cred-tag { font-size: 0.65rem; padding: 2px 6px; background: var(--bg-color); border-radius: 3px; color: var(--text-muted); }
-    .flag { font-size: 1.1rem; }
-    .region-tag { font-size: 0.6rem; padding: 2px 5px; background: var(--border-color); border-radius: 3px; margin-left: auto; }
-    /* Leaflet popup styling - force explicit colors */
-    .leaflet-popup-content-wrapper { 
-      background: #1a1a2e !important; 
-      color: #e0e0e0 !important; 
-      border-radius: 8px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+    .status-specification, .status-unknown { background: var(--accent-gray); color: #fff; }
+    
+    .jur-type {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
     }
-    .leaflet-popup-content { margin: 12px; color: #e0e0e0; }
-    .leaflet-popup-tip { background: #1a1a2e; }
-    .leaflet-popup-close-button { color: #e0e0e0 !important; }
-    .leaflet-container a.leaflet-popup-close-button:hover { color: #fff !important; }
-    .popup-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; color: #e0e0e0; }
-    .popup-section { margin-bottom: 10px; }
-    .popup-section h4 { font-size: 0.7rem; text-transform: uppercase; color: #888 !important; margin: 0 0 4px 0; letter-spacing: 0.5px; }
-    .popup-section p { font-size: 0.85rem; margin: 0; color: #ccc !important; }
-    .popup-link { color: #4da6ff !important; text-decoration: none; }
-    .popup-link:hover { text-decoration: underline; }
-    .popup-creds { display: flex; flex-wrap: wrap; gap: 4px; }
-    .popup-cred { font-size: 0.75rem; padding: 3px 8px; background: #2a2a3e; border-radius: 4px; color: #ccc; }
+    
+    .jur-creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    
+    .cred-tag {
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      background: var(--bg-secondary);
+      border-radius: 3px;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+    
+    /* Detail Panel */
+    .detail-panel {
+      width: 400px;
+      border-left: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .detail-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+    
+    .detail-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .detail-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    .detail-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    
+    .detail-section {
+      margin-bottom: 20px;
+    }
+    
+    .detail-section h4 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .detail-section p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .authority-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .authority-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    
+    .authority-icon { font-size: 1rem; }
+    
+    .tech-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    
+    .cred-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    
+    .cred-item {
+      padding: 6px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    
+    /* Filters Bar */
+    .filters-bar {
+      display: flex;
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+    }
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .filter-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .filter-btns {
+      display: flex;
+      gap: 6px;
+    }
+    
+    .filter-btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .filter-btn:hover { border-color: var(--accent-blue); }
+    .filter-btn.active { background: var(--accent-blue); border-color: var(--accent-blue); }
+    
+    /* Stats Bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 12px;
+      background: var(--bg-card);
+      border-radius: 8px;
+    }
+    
+    .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent-blue); }
+    .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+    
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
       .map-body { flex-direction: column; }
-      .map-sidebar { width: 100%; height: 40%; border-left: none; border-top: 1px solid var(--border-color); }
+      .detail-panel { width: 100%; height: auto; max-height: 400px; border-left: none; border-top: 1px solid var(--border-color); }
     }
   </style>
 </head>
 <body>
   <div class="map-page">
     <div class="map-header">
-      <h1>🌍 Global Digital ID Map</h1>
+      <div>
+        <h1>🌍 Global Digital ID Landscape</h1>
+        <div class="subtitle">Political overview of digital identity initiatives worldwide</div>
+      </div>
       <div class="header-actions">
-        <button class="filter-btn theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
-        <a href="index.html" class="filter-btn">← List</a>
-        <a href="usecases.html" class="filter-btn">🔐 Use Cases</a>
+        <a href="index.html" class="btn">← List View</a>
+        <a href="usecases.html" class="btn">🔐 Use Cases</a>
+      </div>
+    </div>
+    
+    <div class="stats-bar" id="statsBar"></div>
+    
+    <div class="filters-bar">
+      <div class="filter-group">
+        <span class="filter-label">Status:</span>
+        <div class="filter-btns" id="statusFilters"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Region:</span>
+        <div class="filter-btns" id="regionFilters"></div>
       </div>
     </div>
     
     <div class="map-body">
-      <div class="map-container">
-        <div id="map"></div>
-      </div>
+      <div class="political-map" id="politicalMap"></div>
       
-      <div class="map-sidebar">
-        <div class="sidebar-header">
-          <h2>Jurisdictions</h2>
-          <div class="filter-group">
-            <label>Status</label>
-            <div class="filter-btns" id="statusFilters"></div>
-          </div>
-          <div class="filter-group">
-            <label>Region</label>
-            <div class="filter-btns" id="regionFilters"></div>
-          </div>
+      <div class="detail-panel" id="detailPanel" style="display:none;">
+        <div class="detail-header">
+          <div class="detail-title" id="detailTitle"></div>
+          <div class="detail-subtitle" id="detailSubtitle"></div>
         </div>
-        
-        <div class="sidebar-stats" id="statsBar"></div>
-        
-        <div class="jurisdiction-list" id="jurisdictionList"></div>
+        <div class="detail-content" id="detailContent"></div>
       </div>
     </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Capital city coordinates for jurisdictions (government issuers = capital city)
-    // Countries - national capitals
-    const coordinates = {
-      // Countries
-      "us": { lat: 38.9072, lng: -77.0369 }, // Washington DC
-      "ca": { lat: 45.4215, lng: -75.6972 }, // Ottawa
-      "mx": { lat: 19.4326, lng: -99.1332 }, // Mexico City
-      "gb": { lat: 51.5074, lng: -0.1278 }, // London
-      "fr": { lat: 48.8566, lng: 2.3522 }, // Paris
-      "de": { lat: 52.5200, lng: 13.4050 }, // Berlin
-      "it": { lat: 41.9028, lng: 12.4964 }, // Rome
-      "es": { lat: 40.4168, lng: -3.7038 }, // Madrid
-      "pt": { lat: 38.7223, lng: -9.1393 }, // Lisbon
-      "nl": { lat: 52.3676, lng: 4.9041 }, // Amsterdam
-      "se": { lat: 59.3293, lng: 18.0686 }, // Stockholm
-      "fi": { lat: 60.1699, lng: 24.9384 }, // Helsinki
-      "ee": { lat: 59.4370, lng: 24.7536 }, // Tallinn
-      "cn": { lat: 39.9042, lng: 116.4074 }, // Beijing
-      "in": { lat: 28.6139, lng: 77.2090 }, // New Delhi
-      "jp": { lat: 35.6762, lng: 139.6503 }, // Tokyo
-      "kr": { lat: 37.5665, lng: 126.9780 }, // Seoul
-      "sg": { lat: 1.3521, lng: 103.8198 }, // Singapore
-      "au": { lat: -35.2809, lng: 149.1300 }, // Canberra
-      "nz": { lat: -41.2865, lng: 174.7762 }, // Wellington
-      "il": { lat: 31.7683, lng: 35.2137 }, // Jerusalem
-      "ae": { lat: 24.4539, lng: 54.3773 }, // Abu Dhabi
-      "sa": { lat: 24.7136, lng: 46.6753 }, // Riyadh
-      "om": { lat: 23.5880, lng: 58.3829 }, // Muscat
-      "qa": { lat: 25.2854, lng: 51.5310 }, // Doha
-      "ng": { lat: 9.0820, lng: 7.4891 }, // Abuja
-      "ke": { lat: -1.2921, lng: 36.8219 }, // Nairobi
-      "br": { lat: -15.7975, lng: -47.8919 }, // Brasilia
-      "ar": { lat: -34.6037, lng: -58.3816 }, // Buenos Aires
-      "my": { lat: 3.1390, lng: 101.6869 }, // Kuala Lumpur
-      "tw": { lat: 25.0330, lng: 121.5654 }, // Taipei
-      "eu": { lat: 50.8503, lng: 4.3547 }, // Brussels (EU HQ)
-
-      // US States - state capitals
-      "california": { lat: 38.5816, lng: -121.4944 }, // Sacramento
-      "texas": { lat: 30.2672, lng: -97.7431 }, // Austin
-      "florida": { lat: 30.4383, lng: -84.2807 }, // Tallahassee
-      "new york": { lat: 42.6526, lng: -73.7562 }, // Albany
-      "louisiana": { lat: 30.9843, lng: -91.9623 }, // Baton Rouge
-      "arizona": { lat: 33.4484, lng: -112.0740 }, // Phoenix
-      "colorado": { lat: 39.7392, lng: -104.9903 }, // Denver
-      "georgia": { lat: 32.1656, lng: -81.8913 }, // Atlanta
-      "ohio": { lat: 39.9612, lng: -82.9988 }, // Columbus
-      "utah": { lat: 40.7608, lng: -111.8910 }, // Salt Lake City
-      "iowa": { lat: 41.8780, lng: -93.0977 }, // Des Moines
-      "virginia": { lat: 37.4316, lng: -78.6569 }, // Richmond
-      "nevada": { lat: 39.1635, lng: -119.7674 }, // Carson City
-      "vermont": { lat: 44.5588, lng: -72.5778 }, // Montpelier
-      "new jersey": { lat: 40.2206, lng: -74.7697 }, // Trenton
-
-      // Canada - provincial capitals
-      "alberta": { lat: 53.5461, lng: -113.4938 }, // Edmonton
-      "ontario": { lat: 43.6532, lng: -79.3832 }, // Toronto
-      "quebec": { lat: 46.8139, lng: -71.2080 }, // Quebec City
-      "british columbia": { lat: 48.4284, lng: -123.3656 }, // Victoria
-      "manitoba": { lat: 49.8951, lng: -97.1384 }, // Winnipeg
-      "saskatchewan": { lat: 52.1332, lng: -106.6700 }, // Regina
-
-      // Australia - state capitals
-      "new south wales": { lat: -33.8688, lng: 151.2093 }, // Sydney
-      "victoria": { lat: -37.8136, lng: 144.9631 }, // Melbourne
-      "queensland": { lat: -27.4698, lng: 153.0251 }, // Brisbane
-      "western australia": { lat: -31.9505, lng: 115.8605 }, // Perth
-      "south australia": { lat: -34.9285, lng: 138.6007 }, // Adelaide
-      "tasmania": { lat: -42.8821, lng: 147.3272 }, // Hobart
+    // Region display names and flags
+    const regionInfo = {
+      'na': { name: 'North America', flag: '🌎' },
+      'eu': { name: 'Europe', flag: '🇪🇺' },
+      'apac': { name: 'Asia Pacific', flag: '🌏' },
+      'me': { name: 'Middle East', flag: '🌍' },
+      'af': { name: 'Africa', flag: '🌍' },
+      'sa': { name: 'South America', flag: '🌎' }
     };
 
     // Flag emoji mapping
@@ -188,16 +392,6 @@
       'tw': '🇹🇼', 'eu': '🇪🇺'
     };
 
-    // Status colors
-    const statusColors = {
-      'production': '#22c55e',
-      'pilot': '#eab308',
-      'development': '#3b82f6',
-      'specification': '#6b7280',
-      'unknown': '#6b7280'
-    };
-
-    let map, markers = [];
     let appData = null;
     let filterStatus = 'all';
     let filterRegion = 'all';
@@ -207,229 +401,185 @@
       return flags[code?.toLowerCase()] || '🏳️';
     }
 
-    function getCoords(jurisdiction) {
-      // Try by name first (subnationals override country flags)
-      const nameKey = jurisdiction.name.toLowerCase();
-      if (coordinates[nameKey]) {
-        return coordinates[nameKey];
+    function getJurisdictionType(jur) {
+      // Determine if national or subnational
+      const subnationalRegions = ['california', 'texas', 'florida', 'new york', 'louisiana', 'arizona', 'colorado', 'georgia', 'ohio', 'utah', 'iowa', 'virginia', 'nevada', 'vermont', 'new jersey', 'alberta', 'ontario', 'quebec', 'british columbia', 'manitoba', 'saskatchewan', 'new south wales', 'victoria', 'queensland', 'western australia', 'south australia', 'tasmania'];
+      const nameLower = jur.name.toLowerCase();
+      if (subnationalRegions.some(r => nameLower.includes(r))) {
+        return 'Subnational';
       }
-      // Then try by flag code (for national-level)
-      if (jurisdiction.flag && coordinates[jurisdiction.flag.toLowerCase()]) {
-        return coordinates[jurisdiction.flag.toLowerCase()];
-      }
-      // Default to center of region
-      const regionCenters = {
-        'na': { lat: 45.0, lng: -100.0 },
-        'eu': { lat: 50.0, lng: 10.0 },
-        'apac': { lat: 20.0, lng: 120.0 },
-        'me': { lat: 25.0, lng: 50.0 },
-        'af': { lat: 5.0, lng: 20.0 },
-        'sa': { lat: -15.0, lng: -60.0 }
-      };
-      return regionCenters[jurisdiction.region] || { lat: 0, lng: 0 };
+      return 'National';
     }
 
     async function loadData() {
       try {
         const resp = await fetch('data.json');
         appData = await resp.json();
-        initMap();
+        render();
       } catch(e) {
         console.error('Error loading data:', e);
       }
     }
 
-    function initMap() {
-      // Initialize Leaflet
-      map = L.map('map').setView([20, 0], 2);
-      
-      // Add OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(map);
-
-      // Theme toggle
-      const themeToggle = document.getElementById('themeToggle');
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
-      
-      // Adjust map for dark mode
-      if (savedTheme === 'dark') {
-        // Use a darker tile or CSS filter
-      }
-
-      themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeToggle.textContent = next === 'light' ? '☀️' : '🌙';
-      });
-
-      // Render filters
-      renderFilters();
-      
-      // Initial render
-      render();
-    }
-
-    function renderFilters() {
+    function render() {
       const jur = appData.jurisdictions;
       
-      // Stats
-      const total = jur.length;
-      const production = jur.filter(j => j.status === 'production').length;
-      const development = jur.filter(j => j.status === 'development').length;
-      const pilot = jur.filter(j => j.status === 'pilot').length;
-      
-      document.getElementById('statsBar').innerHTML = `
-        <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-lbl">Total</div></div>
-        <div class="stat-box"><div class="stat-num">${production}</div><div class="stat-lbl">Prod</div></div>
-        <div class="stat-box"><div class="stat-num">${pilot}</div><div class="stat-lbl">Pilot</div></div>
-        <div class="stat-box"><div class="stat-num">${development}</div><div class="stat-lbl">Dev</div></div>
-      `;
-
-      // Status filters
-      const statuses = [...new Set(jur.map(j => j.status))];
-      document.getElementById('statusFilters').innerHTML = `
-        <button class="filter-btn active" data-filter="all">All</button>
-        ${statuses.map(s => `<button class="filter-btn" data-filter="${s}">${s.charAt(0).toUpperCase() + s.slice(1)}</button>`).join('')}
-      `;
-
-      // Region filters
-      const regions = [...new Set(jur.map(j => j.region))];
-      document.getElementById('regionFilters').innerHTML = `
-        <button class="filter-btn active" data-region="all">All</button>
-        ${regions.map(r => `<button class="filter-btn" data-region="${r}">${r.toUpperCase()}</button>`).join('')}
-      `;
-
-      // Filter handlers
-      document.querySelectorAll('#statusFilters .filter-btn').forEach(btn => {
-        btn.onclick = () => {
-          document.querySelectorAll('#statusFilters .filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          filterStatus = btn.dataset.filter;
-          render();
-        };
-      });
-
-      document.querySelectorAll('#regionFilters .filter-btn').forEach(btn => {
-        btn.onclick = () => {
-          document.querySelectorAll('#regionFilters .filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          filterRegion = btn.dataset.region;
-          render();
-        };
-      });
-    }
-
-    function render() {
-      const filtered = appData.jurisdictions.filter(j => {
+      // Filter
+      const filtered = jur.filter(j => {
         const statusMatch = filterStatus === 'all' || j.status === filterStatus;
         const regionMatch = filterRegion === 'all' || j.region === filterRegion;
         return statusMatch && regionMatch;
       });
 
-      // Clear markers
-      markers.forEach(m => map.removeLayer(m));
-      markers = [];
+      // Stats
+      const total = jur.length;
+      const production = jur.filter(j => j.status === 'production').length;
+      const pilot = jur.filter(j => j.status === 'pilot').length;
+      const development = jur.filter(j => j.status === 'development').length;
+      const spec = jur.filter(j => j.status === 'specification').length;
+      
+      document.getElementById('statsBar').innerHTML = `
+        <div class="stat-item"><div class="stat-value">${total}</div><div class="stat-label">Total</div></div>
+        <div class="stat-item"><div class="stat-value" style="color:#22c55e">${production}</div><div class="stat-label">Production</div></div>
+        <div class="stat-item"><div class="stat-value" style="color:#eab308">${pilot}</div><div class="stat-label">Pilot</div></div>
+        <div class="stat-item"><div class="stat-value" style="color:#3b82f6">${development}</div><div class="stat-label">Development</div></div>
+        <div class="stat-item"><div class="stat-value" style="color:#6b7280">${spec}</div><div class="stat-label">Specification</div></div>
+      `;
 
-      // Add markers
-      filtered.forEach(j => {
-        const coords = getCoords(j);
-        const color = statusColors[j.status] || statusColors.unknown;
-        
-        // Create custom marker
-        const icon = L.divIcon({
-          className: 'custom-marker',
-          html: `<div style="
-            width: 16px; 
-            height: 16px; 
-            background: ${color}; 
-            border: 2px solid #fff; 
-            border-radius: 50%; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-          "></div>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8]
-        });
+      // Status filters
+      const statuses = [...new Set(jur.map(j => j.status))];
+      document.getElementById('statusFilters').innerHTML = `
+        <button class="filter-btn ${filterStatus === 'all' ? 'active' : ''}" data-filter="all">All</button>
+        ${statuses.map(s => `<button class="filter-btn ${filterStatus === s ? 'active' : ''}" data-filter="${s}">${s.charAt(0).toUpperCase() + s.slice(1)}</button>`).join('')}
+      `;
 
-        const marker = L.marker([coords.lat, coords.lng], { icon })
-          .addTo(map)
-          .on('click', () => showPopup(j));
+      // Region filters
+      const regions = [...new Set(jur.map(j => j.region))];
+      document.getElementById('regionFilters').innerHTML = `
+        <button class="filter-btn ${filterRegion === 'all' ? 'active' : ''}" data-region="all">All</button>
+        ${regions.map(r => `<button class="filter-btn ${filterRegion === r ? 'active' : ''}" data-region="${r}">${(regionInfo[r]?.name || r).toUpperCase()}</button>`).join('')}
+      `;
 
-        markers.push(marker);
+      // Filter handlers
+      document.querySelectorAll('#statusFilters .filter-btn').forEach(btn => {
+        btn.onclick = () => { filterStatus = btn.dataset.filter; render(); };
       });
 
-      // Render list
-      document.getElementById('jurisdictionList').innerHTML = filtered.map(j => `
-        <div class="jurisdiction-card ${selectedJurisdiction === j.name ? 'active' : ''}" onclick="selectJurisdiction('${j.name}')">
-          <h3>
-            <span class="flag">${getFlag(j.flag)}</span>
-            ${j.name}
-            <span class="status-badge status-${j.status}">${j.status}</span>
-            <span class="region-tag">${j.region.toUpperCase()}</span>
-          </h3>
-          <p>${j.description?.substring(0, 60) || j.technology?.substring(0, 60) || ''}...</p>
-          <div class="cred-tags">
-            ${(j.issuedCredentialTypes || []).slice(0, 3).map(ct => `<span class="cred-tag">${ct.type}</span>`).join('')}
-            ${(j.issuedCredentialTypes || []).length > 3 ? `<span class="cred-tag">+${(j.issuedCredentialTypes || []).length - 3}</span>` : ''}
+      document.querySelectorAll('#regionFilters .filter-btn').forEach(btn => {
+        btn.onclick = () => { filterRegion = btn.dataset.region; render(); };
+      });
+
+      // Group by region
+      const byRegion = {};
+      filtered.forEach(j => {
+        if (!byRegion[j.region]) byRegion[j.region] = [];
+        byRegion[j.region].push(j);
+      });
+
+      // Render political map
+      const mapEl = document.getElementById('politicalMap');
+      mapEl.innerHTML = Object.entries(byRegion).map(([region, jurs]) => `
+        <div class="region-section">
+          <div class="region-header">
+            <span class="region-flag">${regionInfo[region]?.flag || '🌍'}</span>
+            <span class="region-title">${regionInfo[region]?.name || region}</span>
+            <span class="region-count">${jurs.length} jurisdiction${jurs.length !== 1 ? 's' : ''}</span>
+          </div>
+          <div class="jurisdiction-grid">
+            ${jurs.map(j => renderJurisdictionCard(j)).join('')}
           </div>
         </div>
       `).join('');
+
+      // Add click handlers
+      document.querySelectorAll('.jurisdiction-card').forEach(card => {
+        card.onclick = () => {
+          const name = card.dataset.name;
+          const j = jur.find(x => x.name === name);
+          if (j) selectJurisdiction(j);
+        };
+      });
     }
 
-    function selectJurisdiction(name) {
-      selectedJurisdiction = name;
-      const j = appData.jurisdictions.find(j => j.name === name);
-      if (j) {
-        const coords = getCoords(j);
-        map.setView([coords.lat, coords.lng], 6);
-        showPopup(j);
-      }
-      render(); // Update active state
-    }
-
-    function showPopup(j) {
-      const coords = getCoords(j);
-      map.setView([coords.lat, coords.lng], 6);
-      selectedJurisdiction = j.name;
-      render();
-
+    function renderJurisdictionCard(j) {
+      const type = getJurisdictionType(j);
       const creds = j.issuedCredentialTypes || [];
-      const credsHtml = creds.length > 0 
-        ? `<div class="popup-creds">${creds.map(c => `<span class="popup-cred">${c.type}</span>`).join('')}</div>`
-        : '<p>No credential data</p>';
-
-      const authorities = j.issuingAuthorities || [];
-      const authHtml = authorities.length > 0
-        ? authorities.map(a => `<p>🏛️ <strong>${a.name}</strong> (${a.type})</p>`).join('')
-        : '<p>—</p>';
-
-      const popup = L.popup()
-        .setLatLng([coords.lat, coords.lng])
-        .setContent(`
-          <div class="popup-title">
-            <span>${getFlag(j.flag)}</span>
-            ${j.name}
+      return `
+        <div class="jurisdiction-card ${selectedJurisdiction === j.name ? 'active' : ''}" data-name="${j.name}">
+          <div class="jur-card-header">
+            <span class="jur-flag">${getFlag(j.flag)}</span>
+            <span class="jur-name">${j.name}</span>
             <span class="status-badge status-${j.status}">${j.status}</span>
           </div>
-          <div class="popup-section">
-            <h4>Technology</h4>
-            <p>${j.technology || '—'}</p>
+          <div class="jur-type">${type} • ${j.region.toUpperCase()}</div>
+          <div class="jur-creds">
+            ${creds.slice(0, 3).map(c => `<span class="cred-tag">${c.type}</span>`).join('')}
+            ${creds.length > 3 ? `<span class="cred-tag">+${creds.length - 3}</span>` : ''}
           </div>
-          <div class="popup-section">
-            <h4>Issued Credentials</h4>
-            ${credsHtml}
+        </div>
+      `;
+    }
+
+    function selectJurisdiction(j) {
+      selectedJurisdiction = j.name;
+      render(); // Update active state
+      
+      const type = getJurisdictionType(j);
+      const creds = j.issuedCredentialTypes || [];
+      const auths = j.issuingAuthorities || [];
+      
+      document.getElementById('detailPanel').style.display = 'flex';
+      document.getElementById('detailTitle').innerHTML = `
+        <span>${getFlag(j.flag)}</span>
+        ${j.name}
+        <span class="status-badge status-${j.status}" style="margin-left:auto">${j.status}</span>
+      `;
+      document.getElementById('detailSubtitle').textContent = `${type} • ${regionInfo[j.region]?.name || j.region}`;
+      
+      document.getElementById('detailContent').innerHTML = `
+        <div class="detail-section">
+          <h4>Description</h4>
+          <p>${j.description || 'No description available.'}</p>
+        </div>
+        
+        <div class="detail-section">
+          <h4>Technology</h4>
+          ${j.technology ? `<span class="tech-pill">${j.technology}</span>` : '<p>—</p>'}
+        </div>
+        
+        <div class="detail-section">
+          <h4>Issued Credentials</h4>
+          ${creds.length > 0 ? `
+            <div class="cred-list">
+              ${creds.map(c => `<div class="cred-item"><strong>${c.type}</strong>${c.count ? ` (${c.count})` : ''}</div>`).join('')}
+            </div>
+          ` : '<p>—</p>'}
+        </div>
+        
+        <div class="detail-section">
+          <h4>Issuing Authorities</h4>
+          ${auths.length > 0 ? `
+            <div class="authority-list">
+              ${auths.map(a => `
+                <div class="authority-item">
+                  <span class="authority-icon">🏛️</span>
+                  <div>
+                    <strong>${a.name}</strong><br>
+                    <span style="color:var(--text-muted)">${a.type}</span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          ` : '<p>—</p>'}
+        </div>
+        
+        ${j.url ? `
+          <div class="detail-section">
+            <h4>Links</h4>
+            <a href="${j.url}" target="_blank" class="btn" style="display:inline-flex;gap:6px">Visit Website →</a>
           </div>
-          <div class="popup-section">
-            <h4>Issuing Authorities</h4>
-            ${authHtml}
-          </div>
-          ${j.url ? `<div class="popup-section"><a href="${j.url}" target="_blank" class="popup-link">Visit Website →</a></div>` : ''}
-        `)
-        .openOn(map);
+        ` : ''}
+      `;
     }
 
     loadData();
