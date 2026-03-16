@@ -409,26 +409,6 @@
           .on('click', () => showPopup(j));
 
         markers.push(marker);
-        
-        // Add jurisdiction name label (not city name)
-        const labelIcon = L.divIcon({
-          className: 'jurisdiction-label',
-          html: `<div style="
-            background: rgba(255,255,255,0.95);
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 3px 8px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #111;
-            white-space: nowrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-          ">${j.name}</div>`,
-          iconSize: [120, 24],
-          iconAnchor: [60, -12]
-        });
-        
-        L.marker([coords.lat, coords.lng], { icon: labelIcon }).addTo(map);
       });
 
       // Render list
