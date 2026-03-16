@@ -43,18 +43,25 @@
     .cred-tag { font-size: 0.65rem; padding: 2px 6px; background: var(--bg-color); border-radius: 3px; color: var(--text-muted); }
     .flag { font-size: 1.1rem; }
     .region-tag { font-size: 0.6rem; padding: 2px 5px; background: var(--border-color); border-radius: 3px; margin-left: auto; }
-    /* Leaflet popup styling */
-    .leaflet-popup-content-wrapper { background: var(--card-bg); color: var(--text-color); border-radius: 8px; }
-    .leaflet-popup-content { margin: 12px; }
-    .leaflet-popup-tip { background: var(--card-bg); }
-    .popup-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    /* Leaflet popup styling - force explicit colors */
+    .leaflet-popup-content-wrapper { 
+      background: #1a1a2e !important; 
+      color: #e0e0e0 !important; 
+      border-radius: 8px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); 
+    }
+    .leaflet-popup-content { margin: 12px; color: #e0e0e0; }
+    .leaflet-popup-tip { background: #1a1a2e; }
+    .leaflet-popup-close-button { color: #e0e0e0 !important; }
+    .leaflet-container a.leaflet-popup-close-button:hover { color: #fff !important; }
+    .popup-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; color: #e0e0e0; }
     .popup-section { margin-bottom: 10px; }
-    .popup-section h4 { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px 0; letter-spacing: 0.5px; }
-    .popup-section p { font-size: 0.85rem; margin: 0; }
-    .popup-link { color: var(--accent-color); text-decoration: none; }
+    .popup-section h4 { font-size: 0.7rem; text-transform: uppercase; color: #888 !important; margin: 0 0 4px 0; letter-spacing: 0.5px; }
+    .popup-section p { font-size: 0.85rem; margin: 0; color: #ccc !important; }
+    .popup-link { color: #4da6ff !important; text-decoration: none; }
     .popup-link:hover { text-decoration: underline; }
     .popup-creds { display: flex; flex-wrap: wrap; gap: 4px; }
-    .popup-cred { font-size: 0.75rem; padding: 3px 8px; background: var(--bg-color); border-radius: 4px; }
+    .popup-cred { font-size: 0.75rem; padding: 3px 8px; background: #2a2a3e; border-radius: 4px; color: #ccc; }
     /* Responsive */
     @media (max-width: 900px) {
       .map-body { flex-direction: column; }
