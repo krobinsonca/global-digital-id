@@ -4,145 +4,223 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Digital ID Map - BC Government Digital Trust</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .map-page { display: flex; flex-direction: column; height: 100vh; }
+    .map-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .map-header h1 { font-size: 1.5rem; margin: 0; }
+    .map-header .header-actions { display: flex; gap: 10px; align-items: center; }
+    .map-body { display: flex; flex: 1; overflow: hidden; }
+    .map-container { flex: 1; position: relative; }
+    #map { height: 100%; width: 100%; }
+    .map-sidebar { width: 380px; border-left: 1px solid var(--border-color); display: flex; flex-direction: column; background: var(--bg-color); }
+    .sidebar-header { padding: 15px; border-bottom: 1px solid var(--border-color); }
+    .sidebar-header h2 { margin: 0 0 10px 0; font-size: 1.1rem; }
+    .filter-group { margin-bottom: 10px; }
+    .filter-group label { display: block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .filter-btns { display: flex; flex-wrap: wrap; gap: 5px; }
+    .filter-btn { padding: 6px 12px; font-size: 0.8rem; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover { border-color: var(--accent-color); }
+    .filter-btn.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+    .sidebar-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 15px; border-bottom: 1px solid var(--border-color); }
+    .stat-box { text-align: center; padding: 8px; background: var(--card-bg); border-radius: 6px; }
+    .stat-box .stat-num { font-size: 1.3rem; font-weight: 700; color: var(--accent-color); }
+    .stat-box .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
+    .jurisdiction-list { flex: 1; overflow-y: auto; padding: 10px; }
+    .jurisdiction-card { padding: 12px; margin-bottom: 8px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .jurisdiction-card:hover { border-color: var(--accent-color); transform: translateX(3px); }
+    .jurisdiction-card.active { border-color: var(--accent-color); background: var(--hover-bg); }
+    .jurisdiction-card h3 { margin: 0 0 6px 0; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+    .jurisdiction-card p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
+    .status-badge { display: inline-block; padding: 2px 6px; font-size: 0.65rem; border-radius: 3px; text-transform: uppercase; font-weight: 600; }
+    .status-production { background: var(--accent-green); color: #000; }
+    .status-pilot { background: var(--accent-yellow); color: #000; }
+    .status-development { background: var(--accent-blue); color: #fff; }
+    .status-specification { background: var(--text-muted); color: #fff; }
+    .status-unknown { background: #666; color: #fff; }
+    .cred-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .cred-tag { font-size: 0.65rem; padding: 2px 6px; background: var(--bg-color); border-radius: 3px; color: var(--text-muted); }
+    .flag { font-size: 1.1rem; }
+    .region-tag { font-size: 0.6rem; padding: 2px 5px; background: var(--border-color); border-radius: 3px; margin-left: auto; }
+    /* Leaflet popup styling */
+    .leaflet-popup-content-wrapper { background: var(--card-bg); color: var(--text-color); border-radius: 8px; }
+    .leaflet-popup-content { margin: 12px; }
+    .leaflet-popup-tip { background: var(--card-bg); }
+    .popup-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .popup-section { margin-bottom: 10px; }
+    .popup-section h4 { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px 0; letter-spacing: 0.5px; }
+    .popup-section p { font-size: 0.85rem; margin: 0; }
+    .popup-link { color: var(--accent-color); text-decoration: none; }
+    .popup-link:hover { text-decoration: underline; }
+    .popup-creds { display: flex; flex-wrap: wrap; gap: 4px; }
+    .popup-cred { font-size: 0.75rem; padding: 3px 8px; background: var(--bg-color); border-radius: 4px; }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .map-body { flex-direction: column; }
+      .map-sidebar { width: 100%; height: 40%; border-left: none; border-top: 1px solid var(--border-color); }
+    }
+  </style>
 </head>
 <body>
-  <div class="toolbar">
-      <div class="toolbar-left">
-        <h1>🌍 Global Digital ID Map</h1>
-      </div>
-      <div class="toolbar-right">
-        <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
-        <a href="index.html" class="toolbar-link">← Back to List</a>
-        <a href="usecases.html" class="toolbar-link">🔐 Use Cases</a>
+  <div class="map-page">
+    <div class="map-header">
+      <h1>🌍 Global Digital ID Map</h1>
+      <div class="header-actions">
+        <button class="filter-btn theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+        <a href="index.html" class="filter-btn">← List</a>
+        <a href="usecases.html" class="filter-btn">🔐 Use Cases</a>
       </div>
     </div>
-
-  <div class="main-container">
-    <div class="map-container">
-      <div class="stats-bar" id="statsBar"></div>
-      <svg class="map-svg" id="worldMap" viewBox="0 0 1000 500"></svg>
-      <div class="legend" id="legend"></div>
-    </div>
-
-    <div class="sidebar">
-      <div class="filter-section">
-        <h3>Filter by Status</h3>
-        <div class="filter-btns" id="statusFilters"></div>
+    
+    <div class="map-body">
+      <div class="map-container">
+        <div id="map"></div>
       </div>
-      <div class="filter-section">
-        <h3>Filter by Region</h3>
-        <div class="filter-btns" id="regionFilters"></div>
+      
+      <div class="map-sidebar">
+        <div class="sidebar-header">
+          <h2>Jurisdictions</h2>
+          <div class="filter-group">
+            <label>Status</label>
+            <div class="filter-btns" id="statusFilters"></div>
+          </div>
+          <div class="filter-group">
+            <label>Region</label>
+            <div class="filter-btns" id="regionFilters"></div>
+          </div>
+        </div>
+        
+        <div class="sidebar-stats" id="statsBar"></div>
+        
+        <div class="jurisdiction-list" id="jurisdictionList"></div>
       </div>
-      <h3 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Jurisdictions</h3>
-      <div id="jurisdictionList" class="loading">Loading...</div>
     </div>
   </div>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // ============= HELPER FUNCTIONS =============
+    // Capital city coordinates for jurisdictions (government issuers = capital city)
+    const coordinates = {
+      // Countries
+      "us": { lat: 38.9072, lng: -77.0369 }, // Washington DC
+      "ca": { lat: 45.4215, lng: -75.6972 }, // Ottawa
+      "mx": { lat: 19.4326, lng: -99.1332 }, // Mexico City
+      "gb": { lat: 51.5074, lng: -0.1278 }, // London
+      "fr": { lat: 48.8566, lng: 2.3522 }, // Paris
+      "de": { lat: 52.5200, lng: 13.4050 }, // Berlin
+      "it": { lat: 41.9028, lng: 12.4964 }, // Rome
+      "es": { lat: 40.4168, lng: -3.7038 }, // Madrid
+      "pt": { lat: 38.7223, lng: -9.1393 }, // Lisbon
+      "nl": { lat: 52.3676, lng: 4.9041 }, // Amsterdam
+      "se": { lat: 59.3293, lng: 18.0686 }, // Stockholm
+      "fi": { lat: 60.1699, lng: 24.9384 }, // Helsinki
+      "ee": { lat: 59.4370, lng: 24.7536 }, // Tallinn
+      "cn": { lat: 39.9042, lng: 116.4074 }, // Beijing
+      "in": { lat: 28.6139, lng: 77.2090 }, // New Delhi
+      "jp": { lat: 35.6762, lng: 139.6503 }, // Tokyo
+      "kr": { lat: 37.5665, lng: 126.9780 }, // Seoul
+      "sg": { lat: 1.3521, lng: 103.8198 }, // Singapore
+      "au": { lat: -35.2809, lng: 149.1300 }, // Canberra
+      "nz": { lat: -41.2865, lng: 174.7762 }, // Wellington
+      "il": { lat: 31.7683, lng: 35.2137 }, // Jerusalem
+      "ae": { lat: 24.4539, lng: 54.3773 }, // Abu Dhabi
+      "sa": { lat: 24.7136, lng: 46.6753 }, // Riyadh
+      "om": { lat: 23.5880, lng: 58.3829 }, // Muscat
+      "qa": { lat: 25.2854, lng: 51.5310 }, // Doha
+      "ng": { lat: 9.0820, lng: 7.4891 }, // Abuja
+      "ke": { lat: -1.2921, lng: 36.8219 }, // Nairobi
+      "br": { lat: -15.7975, lng: -47.8919 }, // Brasilia
+      "ar": { lat: -34.6037, lng: -58.3816 }, // Buenos Aires
+      "my": { lat: 3.1390, lng: 101.6869 }, // Kuala Lumpur
+      "tw": { lat: 25.0330, lng: 121.5654 }, // Taipei
+      "eu": { lat: 50.8503, lng: 4.3547 }, // Brussels (EU HQ)
+      // Subnationals - US States (capitals)
+      "california": { lat: 38.5816, lng: -121.4944 }, // Sacramento
+      "texas": { lat: 30.2672, lng: -97.7431 }, // Austin
+      "florida": { lat: 30.4383, lng: -84.2807 }, // Tallahassee
+      "new york": { lat: 42.6526, lng: -73.7562 }, // Albany
+      "illinois": { lat: 39.7817, lng: -89.6501 }, // Springfield
+      "pennsylvania": { lat: 40.2732, lng: -76.8867 }, // Harrisburg
+      "ohio": { lat: 39.9612, lng: -82.9988 }, // Columbus
+      "georgia": { lat: 32.1656, lng: -81.8913 }, // Atlanta
+      "michigan": { lat: 42.7325, lng: -84.5555 }, // Lansing
+      "washington": { lat: 47.0379, lng: -122.9007 }, // Olympia
+      "arizona": { lat: 33.4484, lng: -112.0740 }, // Phoenix
+      "colorado": { lat: 39.7392, lng: -104.9903 }, // Denver
+      "virginia": { lat: 37.4316, lng: -78.6569 }, // Richmond
+      "nevada": { lat: 39.1635, lng: -119.7674 }, // Carson City
+      "utah": { lat: 40.7608, lng: -111.8910 }, // Salt Lake City
+      "louisiana": { lat: 30.9843, lng: -91.9623 }, // Baton Rouge
+      "iowa": { lat: 41.8780, lng: -93.0977 }, // Des Moines
+      "vermont": { lat: 44.5588, lng: -72.5778 }, // Montpelier
+      "new jersey": { lat: 40.2206, lng: -74.7697 }, // Trenton
+      // Subnationals - Canada (capitals)
+      "alberta": { lat: 53.5461, lng: -113.4938 }, // Edmonton
+      "ontario": { lat: 43.6532, lng: -79.3832 }, // Toronto
+      "quebec": { lat: 46.8139, lng: -71.2080 }, // Quebec City
+      "british columbia": { lat: 49.2827, lng: -123.1207 }, // Vancouver
+      "manitoba": { lat: 49.8951, lng: -97.1384 }, // Winnipeg
+      "saskatchewan": { lat: 52.1332, lng: -106.6700 }, // Regina
+      // Subnationals - Australia (capitals)
+      "new south wales": { lat: -33.8688, lng: 151.2093 }, // Sydney
+      "victoria": { lat: -37.8136, lng: 144.9631 }, // Melbourne
+      "queensland": { lat: -27.4698, lng: 153.0251 }, // Brisbane
+      "western australia": { lat: -31.9505, lng: 115.8605 }, // Perth
+      "south australia": { lat: -34.9285, lng: 138.6007 }, // Adelaide
+      "tasmania": { lat: -42.8821, lng: 147.3272 }, // Hobart
+    };
 
-    function getStatusBadge(status) {
-        const colors = {
-            'production': 'var(--success)',
-            'pilot': 'var(--warning)',
-            'development': 'var(--info)',
-            'mixed': 'linear-gradient(45deg, var(--success), var(--info))',
-            'unknown': 'var(--text-mute)'
-        };
-        const labels = {
-            'production': '🟢 Production',
-            'pilot': '🟡 Pilot',
-            'development': '🔵 Development',
-            'mixed': '⚡ Mixed',
-            'unknown': '⚪ Unknown'
-        };
-        const color = colors[status] || colors['unknown'];
-        const label = labels[status] || labels['unknown'];
+    // Flag emoji mapping
+    const flags = {
+      'us': '🇺🇸', 'ca': '🇨🇦', 'mx': '🇲🇽', 'gb': '🇬🇧', 'fr': '🇫🇷', 'de': '🇩🇪',
+      'it': '🇮🇹', 'es': '🇪🇸', 'pt': '🇵🇹', 'nl': '🇳🇱', 'se': '🇸🇪', 'fi': '🇫🇮',
+      'ee': '🇪🇪', 'cn': '🇨🇳', 'in': '🇮🇳', 'jp': '🇯🇵', 'kr': '🇰🇷', 'sg': '🇸🇬',
+      'au': '🇦🇺', 'nz': '🇳🇿', 'il': '🇮🇱', 'ae': '🇦🇪', 'sa': '🇸🇦', 'om': '🇴🇲',
+      'qa': '🇶🇦', 'ng': '🇳🇬', 'ke': '🇰🇪', 'br': '🇧🇷', 'ar': '🇦🇷', 'my': '🇲🇾',
+      'tw': '🇹🇼', 'eu': '🇪🇺'
+    };
 
-        if (status === 'mixed') {
-            return `<span class="status-badge" style="background:${color}">${label}</span>`;
-        }
-        return `<span class="status-badge" style="border-color:${color};color:${color}">${label}</span>`;
-    }
+    // Status colors
+    const statusColors = {
+      'production': '#22c55e',
+      'pilot': '#eab308',
+      'development': '#3b82f6',
+      'specification': '#6b7280',
+      'unknown': '#6b7280'
+    };
 
-    function renderCredential(cred) {
-        // Handle string format (backward compat)
-        if (typeof cred === 'string') {
-            return `<span class="cred-pill">${cred}</span>`;
-        }
-
-        // Handle object format
-        const statusBadge = getStatusBadge(cred.status);
-        const issuerInfo = cred.issuer ? `<div class="cred-meta">🏛️ ${cred.issuer}</div>` : '';
-        const networkInfo = cred.verificationNetwork ? `<div class="cred-meta">🔗 ${cred.verificationNetwork}</div>` : '';
-
-        return `
-            <div class="cred-pill cred-pill-detailed">
-                <div class="cred-header">
-                    <span class="cred-name">${cred.type}</span>
-                    ${statusBadge}
-                </div>
-                ${issuerInfo}
-                ${networkInfo}
-            </div>
-        `;
-    }
-
-    // ============= END HELPERS =============
-
+    let map, markers = [];
     let appData = null;
     let filterStatus = 'all';
     let filterRegion = 'all';
+    let selectedJurisdiction = null;
 
-    // Simplified world map regions (ISO codes mapped to SVG paths)
-    const regionPaths = {
-      // North America
-      "US": "M150,80 L200,75 L220,90 L210,130 L180,140 L140,120 L130,95 Z",
-      "CA": "M130,50 L200,45 L210,75 L150,80 L130,95 L100,80 Z",
-      "MX": "M140,140 L180,140 L190,170 L160,180 L130,160 Z",
-      // Europe
-      "GB": "M420,70 L440,68 L445,85 L425,88 Z",
-      "FR": "M410,95 L440,92 L445,120 L415,125 Z",
-      "DE": "M445,85 L470,82 L475,110 L450,115 Z",
-      "IT": "M450,115 L475,110 L485,140 L460,150 Z",
-      "ES": "M390,115 L415,125 L420,150 L395,145 Z",
-      "PT": "M380,120 L395,145 L385,150 Z",
-      "NL": "M440,75 L455,73 L458,85 L445,88 Z",
-      "SE": "M460,50 L485,45 L490,85 L465,90 Z",
-      "FI": "M490,40 L520,35 L525,75 L495,80 Z",
-      "EE": "M515,65 L535,63 L538,75 L518,77 Z",
-      // Asia Pacific
-      "CN": "M650,100 L750,95 L760,150 L700,160 L640,140 Z",
-      "IN": "M600,140 L650,135 L660,180 L620,190 L590,170 Z",
-      "JP": "M780,90 L810,85 L815,120 L785,125 Z",
-      "KR": "M750,110 L775,108 L778,130 L753,132 Z",
-      "SG": "M680,200 L695,198 L697,210 L682,212 Z",
-      "AU": "M750,250 L850,245 L860,320 L760,330 Z",
-      "NZ": "M870,340 L895,335 L900,365 L875,370 Z",
-      // Middle East
-      "IL": "M540,135 L560,133 L563,150 L543,152 Z",
-      "AE": "M580,155 L605,152 L608,170 L583,173 Z",
-      "SA": "M560,150 L620,145 L630,190 L570,200 Z",
-      "OM": "M605,170 L635,168 L638,190 L608,192 Z",
-      "QA": "M595,165 L608,163 L610,175 L597,177 Z",
-      // Africa
-      "NG": "M440,200 L480,195 L485,230 L445,235 Z",
-      "KE": "M520,210 L555,205 L560,240 L525,245 Z",
-      // South America
-      "BR": "M280,220 L350,215 L360,280 L290,290 Z",
-      "AR": "M260,290 L300,285 L305,360 L265,365 Z"
-    };
+    function getFlag(code) {
+      return flags[code?.toLowerCase()] || '🏳️';
+    }
 
-    // Region to country mapping
-    const regionCountries = {
-      "na": ["US", "CA", "MX"],
-      "eu": ["GB", "FR", "DE", "IT", "ES", "PT", "NL", "SE", "FI", "EE"],
-      "apac": ["CN", "IN", "JP", "KR", "SG", "AU", "NZ"],
-      "me": ["IL", "AE", "SA", "OM", "QA"],
-      "af": ["NG", "KE"],
-      "sa": ["BR", "AR"]
-    };
+    function getCoords(jurisdiction) {
+      // Try by flag code first
+      if (jurisdiction.flag && coordinates[jurisdiction.flag.toLowerCase()]) {
+        return coordinates[jurisdiction.flag.toLowerCase()];
+      }
+      // Try by name (lowercase)
+      const nameKey = jurisdiction.name.toLowerCase();
+      if (coordinates[nameKey]) {
+        return coordinates[nameKey];
+      }
+      // Default to center of region
+      const regionCenters = {
+        'na': { lat: 45.0, lng: -100.0 },
+        'eu': { lat: 50.0, lng: 10.0 },
+        'apac': { lat: 20.0, lng: 120.0 },
+        'me': { lat: 25.0, lng: 50.0 },
+        'af': { lat: 5.0, lng: 20.0 },
+        'sa': { lat: -15.0, lng: -60.0 }
+      };
+      return regionCenters[jurisdiction.region] || { lat: 0, lng: 0 };
+    }
 
     async function loadData() {
       try {
@@ -150,16 +228,29 @@
         appData = await resp.json();
         initMap();
       } catch(e) {
-        document.getElementById('jurisdictionList').innerHTML = '<div class="loading">Error loading data.json</div>';
+        console.error('Error loading data:', e);
       }
     }
 
     function initMap() {
+      // Initialize Leaflet
+      map = L.map('map').setView([20, 0], 2);
+      
+      // Add OpenStreetMap tiles
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
       // Theme toggle
       const themeToggle = document.getElementById('themeToggle');
       const savedTheme = localStorage.getItem('theme') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
       themeToggle.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+      
+      // Adjust map for dark mode
+      if (savedTheme === 'dark') {
+        // Use a darker tile or CSS filter
+      }
 
       themeToggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme');
@@ -169,34 +260,38 @@
         themeToggle.textContent = next === 'light' ? '☀️' : '🌙';
       });
 
-      // Render stats
+      // Render filters
+      renderFilters();
+      
+      // Initial render
+      render();
+    }
+
+    function renderFilters() {
       const jur = appData.jurisdictions;
+      
+      // Stats
       const total = jur.length;
       const production = jur.filter(j => j.status === 'production').length;
       const development = jur.filter(j => j.status === 'development').length;
-      const withMulti = jur.filter(j => j.issuedCredentialTypes && j.issuedCredentialTypes.length > 0).length;
-
+      const pilot = jur.filter(j => j.status === 'pilot').length;
+      
       document.getElementById('statsBar').innerHTML = `
-        <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Jurisdictions</div></div>
-        <div class="stat-card"><div class="stat-value">${production}</div><div class="stat-label">Production</div></div>
-        <div class="stat-card"><div class="stat-value">${development}</div><div class="stat-label">Development</div></div>
-        <div class="stat-card"><div class="stat-value">${withMulti}</div><div class="stat-label">Multi-Credential</div></div>
+        <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-lbl">Total</div></div>
+        <div class="stat-box"><div class="stat-num">${production}</div><div class="stat-lbl">Prod</div></div>
+        <div class="stat-box"><div class="stat-num">${pilot}</div><div class="stat-lbl">Pilot</div></div>
+        <div class="stat-box"><div class="stat-num">${development}</div><div class="stat-lbl">Dev</div></div>
       `;
 
-      // Render legend
-      document.getElementById('legend').innerHTML = `
-        <div class="legend-item"><div class="legend-color" style="background: var(--accent-green)"></div> Production</div>
-        <div class="legend-item"><div class="legend-color" style="background: var(--accent-yellow)"></div> Development</div>
-        <div class="legend-item"><div class="legend-color" style="background: var(--card-bg)"></div> No Data</div>
-      `;
-
-      // Render filters
-      const regions = [...new Set(jur.map(j => j.region))];
+      // Status filters
+      const statuses = [...new Set(jur.map(j => j.status))];
       document.getElementById('statusFilters').innerHTML = `
         <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="production">Production</button>
-        <button class="filter-btn" data-filter="development">Development</button>
+        ${statuses.map(s => `<button class="filter-btn" data-filter="${s}">${s.charAt(0).toUpperCase() + s.slice(1)}</button>`).join('')}
       `;
+
+      // Region filters
+      const regions = [...new Set(jur.map(j => j.region))];
       document.getElementById('regionFilters').innerHTML = `
         <button class="filter-btn active" data-region="all">All</button>
         ${regions.map(r => `<button class="filter-btn" data-region="${r}">${r.toUpperCase()}</button>`).join('')}
@@ -220,8 +315,6 @@
           render();
         };
       });
-
-      render();
     }
 
     function render() {
@@ -231,119 +324,105 @@
         return statusMatch && regionMatch;
       });
 
-      // Render map regions
-      const svg = document.getElementById('worldMap');
-      svg.innerHTML = '';
+      // Clear markers
+      markers.forEach(m => map.removeLayer(m));
+      markers = [];
 
-      // Draw simplified world map background
-      const bgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      bgPath.setAttribute('d', 'M50,50 L950,50 L950,450 L50,450 Z');
-      bgPath.setAttribute('fill', 'var(--bg-color)');
-      svg.appendChild(bgPath);
-
-      // Draw region markers based on data
-      const regionCenters = {
-        "na": {x: 170, y: 100}, "eu": {x: 450, y: 90}, "apac": {x: 720, y: 150},
-        "me": {x: 580, y: 140}, "af": {x: 490, y: 220}, "sa": {x: 300, y: 280}
-      };
-
-      const regionCounts = {};
-      const regionStatus = {};
-
+      // Add markers
       filtered.forEach(j => {
-        if (!regionCounts[j.region]) {
-          regionCounts[j.region] = 0;
-          regionStatus[j.region] = {};
-        }
-        regionCounts[j.region]++;
-        regionStatus[j.region][j.status] = (regionStatus[j.region][j.status] || 0) + 1;
+        const coords = getCoords(j);
+        const color = statusColors[j.status] || statusColors.unknown;
+        
+        // Create custom marker
+        const icon = L.divIcon({
+          className: 'custom-marker',
+          html: `<div style="
+            width: 16px; 
+            height: 16px; 
+            background: ${color}; 
+            border: 2px solid #fff; 
+            border-radius: 50%; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          "></div>`,
+          iconSize: [16, 16],
+          iconAnchor: [8, 8]
+        });
 
-        // Draw circle for jurisdiction
-        const center = regionCenters[j.region];
-        if (center) {
-          const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-          circle.setAttribute('cx', center.x + (Math.random() - 0.5) * 80);
-          circle.setAttribute('cy', center.y + (Math.random() - 0.5) * 60);
-          circle.setAttribute('r', 8);
-          circle.setAttribute('fill', j.status === 'production' ? 'var(--accent-green)' : 'var(--accent-yellow)');
-          circle.setAttribute('stroke', 'var(--border-color)');
-          circle.setAttribute('stroke-width', '1');
-          circle.setAttribute('cursor', 'pointer');
-          circle.setAttribute('data-jurisdiction', j.name);
-          circle.addEventListener('click', () => showJurisdiction(j));
+        const marker = L.marker([coords.lat, coords.lng], { icon })
+          .addTo(map)
+          .on('click', () => showPopup(j));
 
-          // Tooltip
-          const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-          title.textContent = `${j.name} (${j.status})`;
-          circle.appendChild(title);
-
-          svg.appendChild(circle);
-        }
-      });
-
-      // Draw region labels
-      Object.entries(regionCenters).forEach(([region, center]) => {
-        if (regionCounts[region]) {
-          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          text.setAttribute('x', center.x);
-          text.setAttribute('y', center.y + 80);
-          text.setAttribute('text-anchor', 'middle');
-          text.setAttribute('fill', 'var(--text-color)');
-          text.setAttribute('font-size', '12');
-          text.setAttribute('font-weight', '600');
-          text.textContent = `${region.toUpperCase()}: ${regionCounts[region]}`;
-          svg.appendChild(text);
-        }
+        markers.push(marker);
       });
 
       // Render list
       document.getElementById('jurisdictionList').innerHTML = filtered.map(j => `
-        <div class="jurisdiction-card" onclick='showJurisdiction(${JSON.stringify(j).replace(/'/g, "\'")})'>
-          <h3><span class="flag">${getFlag(j.flag)}</span> ${j.name} <span class="status ${j.status === 'development' ? 'dev' : ''}">${j.status}</span></h3>
-          <p>${j.description?.substring(0, 80) || ''}...</p>
-          <div class="credential-tags">
-            ${(j.issuedCredentialTypes || []).slice(0, 5).map(ct => `<span class="cred-tag">${ct.type}</span>`).join('')}
+        <div class="jurisdiction-card ${selectedJurisdiction === j.name ? 'active' : ''}" onclick="selectJurisdiction('${j.name}')">
+          <h3>
+            <span class="flag">${getFlag(j.flag)}</span>
+            ${j.name}
+            <span class="status-badge status-${j.status}">${j.status}</span>
+            <span class="region-tag">${j.region.toUpperCase()}</span>
+          </h3>
+          <p>${j.description?.substring(0, 60) || j.technology?.substring(0, 60) || ''}...</p>
+          <div class="cred-tags">
+            ${(j.issuedCredentialTypes || []).slice(0, 3).map(ct => `<span class="cred-tag">${ct.type}</span>`).join('')}
+            ${(j.issuedCredentialTypes || []).length > 3 ? `<span class="cred-tag">+${(j.issuedCredentialTypes || []).length - 3}</span>` : ''}
           </div>
         </div>
       `).join('');
     }
 
-    function getFlag(code) {
-      if (!code) return '🏳️';
-      const flags = {
-        'us': '🇺🇸', 'ca': '🇨🇦', 'mx': '🇲🇽', 'gb': '🇬🇧', 'fr': '🇫🇷', 'de': '🇩🇪',
-        'it': '🇮🇹', 'es': '🇪🇸', 'pt': '🇵🇹', 'nl': '🇳🇱', 'se': '🇸🇪', 'fi': '🇫🇮',
-        'ee': '🇪🇪', 'cn': '🇨🇳', 'in': '🇮🇳', 'jp': '🇯🇵', 'kr': '🇰🇷', 'sg': '🇸🇬',
-        'au': '🇦🇺', 'nz': '🇳🇿', 'il': '🇮🇱', 'ae': '🇦🇪', 'sa': '🇸🇦', 'om': '🇴🇲',
-        'qa': '🇶🇦', 'ng': '🇳🇬', 'ke': '🇰🇪', 'br': '🇧🇷', 'ar': '🇦🇷'
-      };
-      return flags[code.toLowerCase()] || '🏳️';
+    function selectJurisdiction(name) {
+      selectedJurisdiction = name;
+      const j = appData.jurisdictions.find(j => j.name === name);
+      if (j) {
+        const coords = getCoords(j);
+        map.setView([coords.lat, coords.lng], 6);
+        showPopup(j);
+      }
+      render(); // Update active state
     }
 
-    function showJurisdiction(j) {
-      const details = `
-        <div class="jurisdiction-card" style="cursor: default;">
-          <h3><span class="flag">${getFlag(j.flag)}</span> ${j.name}</h3>
-          <p><strong>Status:</strong> ${j.status}</p>
-          <p><strong>Technology:</strong> ${j.technology}</p>
-          ${j.issuedCredentialTypes ? `<p><strong>Issues:</strong> ${j.issuedCredentialTypes.map(ct => ct.type).join(', ')}</p>` : ''}
-          ${j.issuingAuthorities ? `
-            <p><strong>Issuing Authorities:</strong></p>
-            <ul style="font-size: 0.75rem; margin-left: 15px;">
-              ${j.issuingAuthorities.map(a => `<li>${a.name} (${a.type}): ${a.credentials.join(', ')}</li>`).join('')}
-            </ul>
-          ` : ''}
-          ${j.acceptedCredentials ? `
-            <p><strong>Accepted Credentials:</strong></p>
-            <ul style="font-size: 0.75rem; margin-left: 15px;">
-              ${Object.entries(j.acceptedCredentials).map(([uc, data]) => `<li><strong>${uc}:</strong> ${data.acceptedTypes.join(', ')}</li>`).join('')}
-            </ul>
-          ` : ''}
-          ${j.url ? `<p><a href="${j.url}" target="_blank" style="color: var(--accent-color);">Visit Website →</a></p>` : ''}
-        </div>
-      `;
-      document.getElementById('jurisdictionList').innerHTML = details;
-      document.getElementById('jurisdictionList').scrollTop = 0;
+    function showPopup(j) {
+      const coords = getCoords(j);
+      map.setView([coords.lat, coords.lng], 6);
+      selectedJurisdiction = j.name;
+      render();
+
+      const creds = j.issuedCredentialTypes || [];
+      const credsHtml = creds.length > 0 
+        ? `<div class="popup-creds">${creds.map(c => `<span class="popup-cred">${c.type}</span>`).join('')}</div>`
+        : '<p>No credential data</p>';
+
+      const authorities = j.issuingAuthorities || [];
+      const authHtml = authorities.length > 0
+        ? authorities.map(a => `<p>🏛️ <strong>${a.name}</strong> (${a.type})</p>`).join('')
+        : '<p>—</p>';
+
+      const popup = L.popup()
+        .setLatLng([coords.lat, coords.lng])
+        .setContent(`
+          <div class="popup-title">
+            <span>${getFlag(j.flag)}</span>
+            ${j.name}
+            <span class="status-badge status-${j.status}">${j.status}</span>
+          </div>
+          <div class="popup-section">
+            <h4>Technology</h4>
+            <p>${j.technology || '—'}</p>
+          </div>
+          <div class="popup-section">
+            <h4>Issued Credentials</h4>
+            ${credsHtml}
+          </div>
+          <div class="popup-section">
+            <h4>Issuing Authorities</h4>
+            ${authHtml}
+          </div>
+          ${j.url ? `<div class="popup-section"><a href="${j.url}" target="_blank" class="popup-link">Visit Website →</a></div>` : ''}
+        `)
+        .openOn(map);
     }
 
     loadData();
