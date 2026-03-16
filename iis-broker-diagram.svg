@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 720 580">
+<defs>
+  <!-- Gradients -->
+  <linearGradient id="personGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#064e3b"/>
+    <stop offset="100%" style="stop-color:#065f46"/>
+  </linearGradient>
+  <linearGradient id="brokerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#4c1d95"/>
+    <stop offset="100%" style="stop-color:#5b21b6"/>
+  </linearGradient>
+  <linearGradient id="service1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#14532d"/>
+    <stop offset="100%" style="stop-color:#166534"/>
+  </linearGradient>
+  <linearGradient id="service2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#312e81"/>
+    <stop offset="100%" style="stop-color:#3730a3"/>
+  </linearGradient>
+  <linearGradient id="uidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#fef3c7"/>
+    <stop offset="100%" style="stop-color:#fde68a"/>
+  </linearGradient>
+  <linearGradient id="ppid1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#dcfce7"/>
+    <stop offset="100%" style="stop-color:#bbf7d0"/>
+  </linearGradient>
+  <linearGradient id="ppid2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#e0e7ff"/>
+    <stop offset="100%" style="stop-color:#c7d2fe"/>
+  </linearGradient>
+  
+  <!-- Shadows -->
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.15"/>
+  </filter>
+  <filter id="shadowStrong" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.2"/>
+  </filter>
+  
+  <!-- Arrow marker -->
+  <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M0 0L10 5L0 10Z" fill="currentColor"/>
+  </marker>
+</defs>
+
+<!-- Background -->
+<rect width="720" height="580" fill="#0a0a0f"/>
+
+<!-- Title -->
+<text x="360" y="28" text-anchor="middle" fill="#f0f0f0" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600">IIS Broker Architecture</text>
+<text x="360" y="48" text-anchor="middle" fill="#888" font-family="system-ui, -apple-system, sans-serif" font-size="12">Privacy-Preserving Identity Mapping</text>
+
+<!-- PERSON Column -->
+<g transform="translate(30, 70)">
+  <rect x="0" y="0" width="150" height="220" rx="12" fill="url(#personGrad)" filter="url(#shadowStrong)" stroke="#34d399" stroke-width="1"/>
+  <text x="75" y="32" text-anchor="middle" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Person</text>
+  <text x="75" y="48" text-anchor="middle" fill="#34d399" font-family="system-ui, sans-serif" font-size="11">Credential Holder</text>
+  
+  <!-- Credential Card -->
+  <rect x="15" y="65" width="120" height="140" rx="8" fill="#1a1a2e" stroke="#34d399" stroke-width="1" filter="url(#shadow)"/>
+  <text x="75" y="88" text-anchor="middle" fill="#f0f0f0" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Companion</text>
+  <text x="75" y="102" text-anchor="middle" fill="#f0f0f0" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Credential</text>
+  
+  <line x1="20" y1="112" x2="130" y2="112" stroke="#333" stroke-width="1"/>
+  
+  <text x="22" y="128" fill="#888" font-family="system-ui, sans-serif" font-size="10">Issuer:</text>
+  <text x="22" y="142" fill="#ccc" font-family="system-ui, sans-serif" font-size="10">Service BC</text>
+  
+  <!-- UID Chip -->
+  <rect x="20" y="155" width="110" height="38" rx="6" fill="url(#uidGrad)" stroke="#d97706" stroke-width="1"/>
+  <text x="75" y="172" text-anchor="middle" fill="#92400e" font-family="system-ui, sans-serif" font-size="9" font-weight="600">uid attribute</text>
+  <text x="75" y="186" text-anchor="middle" fill="#b45309" font-family="monospace" font-size="10">a3f7·91bc·2d44</text>
+  
+  <text x="75" y="215" text-anchor="middle" fill="#666" font-family="system-ui, sans-serif" font-size="9">uid opaque to all</text>
+  <text x="75" y="227" text-anchor="middle" fill="#666" font-family="system-ui, sans-serif" font-size="9">except Broker</text>
+</g>
+
+<!-- BROKER Column -->
+<g transform="translate(200, 70)">
+  <rect x="0" y="0" width="280" height="480" rx="12" fill="url(#brokerGrad)" filter="url(#shadowStrong)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="140" y="32" text-anchor="middle" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="14" font-weight="600">IIS Broker</text>
+  <text x="140" y="48" text-anchor="middle" fill="#8b5cf6" font-family="system-ui, sans-serif" font-size="11">Trusted Intermediary</text>
+  
+  <!-- Mapping Table Header -->
+  <rect x="15" y="65" width="250" height="26" rx="6" fill="#2d2d44" stroke="#4c1d95" stroke-width="1"/>
+  <text x="140" y="82" text-anchor="middle" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="10" font-weight="500">Internal Mapping Table</text>
+  
+  <!-- Table Header Row -->
+  <rect x="15" y="95" width="250" height="24" rx="4" fill="#4c1d95"/>
+  <text x="65" y="111" text-anchor="middle" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="9" font-weight="600">Person uid</text>
+  <text x="140" y="111" text-anchor="middle" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="9" font-weight="600">Service</text>
+  <text x="215" y="111" text-anchor="middle" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="9" font-weight="600">PPID</text>
+  
+  <!-- Row 1: Court Services -->
+  <rect x="15" y="123" width="250" height="34" rx="4" fill="#f0fdf4" stroke="#22c55e" stroke-width="0.5"/>
+  <rect x="20" y="127" width="85" height="26" rx="4" fill="url(#uidGrad)" stroke="#d97706" stroke-width="0.5"/>
+  <text x="62" y="144" text-anchor="middle" fill="#92400e" font-family="monospace" font-size="9">a3f7·91bc·...</text>
+  <text x="140" y="144" text-anchor="middle" fill="#166534" font-family="system-ui, sans-serif" font-size="9">Court Services</text>
+  <rect x="190" y="127" width="70" height="26" rx="4" fill="url(#ppid1Grad)" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="225" y="144" text-anchor="middle" fill="#166534" font-family="monospace" font-size="9">cs·9x2k</text>
+  
+  <!-- Row 2: myLTSA -->
+  <rect x="15" y="161" width="250" height="34" rx="4" fill="#eef2ff" stroke="#6366f1" stroke-width="0.5"/>
+  <rect x="20" y="165" width="85" height="26" rx="4" fill="url(#uidGrad)" stroke="#d97706" stroke-width="0.5"/>
+  <text x="62" y="182" text-anchor="middle" fill="#92400e" font-family="monospace" font-size="9">a3f7·91bc·...</text>
+  <text x="140" y="182" text-anchor="middle" fill="#3730a3" font-family="system-ui, sans-serif" font-size="9">myLTSA Portal</text>
+  <rect x="190" y="165" width="70" height="26" rx="4" fill="url(#ppid2Grad)" stroke="#6366f1" stroke-width="0.5"/>
+  <text x="225" y="182" text-anchor="middle" fill="#3730a3" font-family="monospace" font-size="9">lt·4m8q</text>
+  
+  <!-- Key Insight Box -->
+  <rect x="15" y="205" width="250" height="48" rx="8" fill="#1a1a2e" stroke="#4c1d95" stroke-width="1"/>
+  <text x="140" y="225" text-anchor="middle" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="10" font-weight="600">Same uid → different PPID per service</text>
+  <text x="140" y="242" text-anchor="middle" fill="#888" font-family="system-ui, sans-serif" font-size="9">Services cannot correlate users</text>
+  
+  <!-- Step 1 -->
+  <rect x="15" y="265" width="250" height="65" rx="8" fill="#27272a" stroke="#71717a" stroke-width="1" filter="url(#shadow)"/>
+  <text x="35" y="285" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="12" font-weight="600">① Present Credential</text>
+  <text x="35" y="305" fill="#888" font-family="system-ui, sans-serif" font-size="9">Holder presents credential</text>
+  <text x="35" y="318" fill="#888" font-family="system-ui, sans-serif" font-size="9">Broker extracts uid</text>
+  
+  <!-- Step 2 -->
+  <rect x="15" y="340" width="250" height="65" rx="8" fill="#27272a" stroke="#71717a" stroke-width="1" filter="url(#shadow)"/>
+  <text x="35" y="360" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="12" font-weight="600">② Lookup PPID</text>
+  <text x="35" y="380" fill="#888" font-family="system-ui, sans-serif" font-size="9">uid + service → unique PPID</text>
+  <text x="35" y="393" fill="#888" font-family="system-ui, sans-serif" font-size="9">One PPID per service</text>
+  
+  <!-- Step 3 -->
+  <rect x="15" y="415" width="250" height="65" rx="8" fill="#27272a" stroke="#71717a" stroke-width="1" filter="url(#shadow)"/>
+  <text x="35" y="435" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="12" font-weight="600">③ Return PPID</text>
+  <text x="35" y="455" fill="#888" font-family="system-ui, sans-serif" font-size="9">Broker returns PPID to app</text>
+  <text x="35" y="468" fill="#888" font-family="system-ui, sans-serif" font-size="9">App never sees uid</text>
+</g>
+
+<!-- COURT SERVICES Column -->
+<g transform="translate(500, 70)">
+  <rect x="0" y="0" width="190" height="200" rx="12" fill="url(#service1Grad)" filter="url(#shadowStrong)" stroke="#4ade80" stroke-width="1"/>
+  <text x="95" y="32" text-anchor="middle" fill="#86efac" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Court Services</text>
+  <text x="95" y="48" text-anchor="middle" fill="#4ade80" font-family="system-ui, sans-serif" font-size="10">Branch Application</text>
+  
+  <text x="15" y="72" fill="#86efac" font-family="system-ui, sans-serif" font-size="10">Your app receives:</text>
+  
+  <!-- PPID Card -->
+  <rect x="15" y="82" width="160" height="50" rx="8" fill="url(#ppid1Grad)" stroke="#22c55e" stroke-width="1" filter="url(#shadow)"/>
+  <text x="80" y="105" text-anchor="middle" fill="#166534" font-family="system-ui, sans-serif" font-size="10" font-weight="600">PPID</text>
+  <text x="80" y="122" text-anchor="middle" fill="#166534" font-family="monospace" font-size="11">cs-9x2k-4t1p</text>
+  
+  <!-- Benefits -->
+  <text x="15" y="152" fill="#86efac" font-family="system-ui, sans-serif" font-size="10">✓ Unique &amp; stable per person</text>
+  <text x="15" y="170" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="10">✗ Cannot map back to uid</text>
+  <text x="15" y="188" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="10">✗ Cannot match other services</text>
+</g>
+
+<!-- myLTSA Column -->
+<g transform="translate(500, 300)">
+  <rect x="0" y="0" width="190" height="200" rx="12" fill="url(#service2Grad)" filter="url(#shadowStrong)" stroke="#818cf8" stroke-width="1"/>
+  <text x="95" y="32" text-anchor="middle" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="13" font-weight="600">myLTSA Portal</text>
+  <text x="95" y="48" text-anchor="middle" fill="#818cf8" font-family="system-ui, sans-serif" font-size="10">Land Title Application</text>
+  
+  <text x="15" y="72" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="10">Your app receives:</text>
+  
+  <!-- PPID Card -->
+  <rect x="15" y="82" width="160" height="50" rx="8" fill="url(#ppid2Grad)" stroke="#6366f1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="80" y="105" text-anchor="middle" fill="#3730a3" font-family="system-ui, sans-serif" font-size="10" font-weight="600">PPID</text>
+  <text x="80" y="122" text-anchor="middle" fill="#3730a3" font-family="monospace" font-size="11">lt-4m8q-7r9w</text>
+  
+  <!-- Benefits -->
+  <text x="15" y="152" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="10">✓ Unique &amp; stable per person</text>
+  <text x="15" y="170" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="10">✗ Cannot map back to uid</text>
+  <text x="15" y="188" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="10">✗ Cannot match other services</text>
+</g>
+
+<!-- Arrows -->
+<!-- Person → Broker -->
+<path d="M185 175 L195 175" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.8"/>
+<text x="190" y="168" fill="#666" font-family="system-ui, sans-serif" font-size="9">presents</text>
+
+<!-- Broker → Court Services -->
+<path d="M485 145 L495 145" fill="none" stroke="#4ade80" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.8"/>
+<text x="490" y="138" fill="#666" font-family="system-ui, sans-serif" font-size="9">PPID</text>
+
+<!-- Broker → myLTSA -->
+<path d="M485 380 L495 380" fill="none" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.8"/>
+<text x="490" y="373" fill="#666" font-family="system-ui, sans-serif" font-size="9">PPID</text>
+
+<!-- Cross-Service Barrier -->
+<line x1="595" y1="275" x2="595" y2="295" stroke="#ef4444" stroke-width="2" stroke-dasharray="4 3"/>
+<circle cx="595" cy="285" r="14" fill="#ef4444"/>
+<text x="595" y="289" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="14" font-weight="600">×</text>
+<text x="595" y="312" text-anchor="middle" fill="#ef4444" font-family="system-ui, sans-serif" font-size="9" font-weight="500">no correlation</text>
+
+<!-- Legend -->
+<g transform="translate(30, 555)">
+  <rect x="0" y="0" width="660" height="20" rx="4" fill="#1a1a2e" stroke="#333" stroke-width="1"/>
+  
+  <rect x="10" y="5" width="12" height="12" rx="3" fill="url(#uidGrad)" stroke="#d97706" stroke-width="1"/>
+  <text x="26" y="14" fill="#888" font-family="system-ui, sans-serif" font-size="9">uid (Broker-only)</text>
+  
+  <rect x="140" y="5" width="12" height="12" rx="3" fill="url(#ppid1Grad)" stroke="#22c55e" stroke-width="1"/>
+  <text x="156" y="14" fill="#888" font-family="system-ui, sans-serif" font-size="9">Court Services PPID</text>
+  
+  <rect x="290" y="5" width="12" height="12" rx="3" fill="url(#ppid2Grad)" stroke="#6366f1" stroke-width="1"/>
+  <text x="306" y="14" fill="#888" font-family="system-ui, sans-serif" font-size="9">myLTSA PPID</text>
+  
+  <rect x="430" y="5" width="12" height="12" rx="3" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>
+  <text x="446" y="14" fill="#888" font-family="system-ui, sans-serif" font-size="9">cross-service correlation blocked</text>
+</g>
+</svg>
