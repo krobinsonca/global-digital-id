@@ -108,6 +108,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     // Capital city coordinates for jurisdictions (government issuers = capital city)
+    // Countries - national capitals
     const coordinates = {
       // Countries
       "us": { lat: 38.9072, lng: -77.0369 }, // Washington DC
@@ -142,34 +143,33 @@
       "my": { lat: 3.1390, lng: 101.6869 }, // Kuala Lumpur
       "tw": { lat: 25.0330, lng: 121.5654 }, // Taipei
       "eu": { lat: 50.8503, lng: 4.3547 }, // Brussels (EU HQ)
-      // Subnationals - US States (capitals)
+
+      // US States - state capitals
       "california": { lat: 38.5816, lng: -121.4944 }, // Sacramento
       "texas": { lat: 30.2672, lng: -97.7431 }, // Austin
       "florida": { lat: 30.4383, lng: -84.2807 }, // Tallahassee
       "new york": { lat: 42.6526, lng: -73.7562 }, // Albany
-      "illinois": { lat: 39.7817, lng: -89.6501 }, // Springfield
-      "pennsylvania": { lat: 40.2732, lng: -76.8867 }, // Harrisburg
-      "ohio": { lat: 39.9612, lng: -82.9988 }, // Columbus
-      "georgia": { lat: 32.1656, lng: -81.8913 }, // Atlanta
-      "michigan": { lat: 42.7325, lng: -84.5555 }, // Lansing
-      "washington": { lat: 47.0379, lng: -122.9007 }, // Olympia
+      "louisiana": { lat: 30.9843, lng: -91.9623 }, // Baton Rouge
       "arizona": { lat: 33.4484, lng: -112.0740 }, // Phoenix
       "colorado": { lat: 39.7392, lng: -104.9903 }, // Denver
+      "georgia": { lat: 32.1656, lng: -81.8913 }, // Atlanta
+      "ohio": { lat: 39.9612, lng: -82.9988 }, // Columbus
+      "utah": { lat: 40.7608, lng: -111.8910 }, // Salt Lake City
+      "iowa": { lat: 41.8780, lng: -93.0977 }, // Des Moines
       "virginia": { lat: 37.4316, lng: -78.6569 }, // Richmond
       "nevada": { lat: 39.1635, lng: -119.7674 }, // Carson City
-      "utah": { lat: 40.7608, lng: -111.8910 }, // Salt Lake City
-      "louisiana": { lat: 30.9843, lng: -91.9623 }, // Baton Rouge
-      "iowa": { lat: 41.8780, lng: -93.0977 }, // Des Moines
       "vermont": { lat: 44.5588, lng: -72.5778 }, // Montpelier
       "new jersey": { lat: 40.2206, lng: -74.7697 }, // Trenton
-      // Subnationals - Canada (capitals)
+
+      // Canada - provincial capitals
       "alberta": { lat: 53.5461, lng: -113.4938 }, // Edmonton
       "ontario": { lat: 43.6532, lng: -79.3832 }, // Toronto
       "quebec": { lat: 46.8139, lng: -71.2080 }, // Quebec City
-      "british columbia": { lat: 49.2827, lng: -123.1207 }, // Vancouver
+      "british columbia": { lat: 48.4284, lng: -123.3656 }, // Victoria
       "manitoba": { lat: 49.8951, lng: -97.1384 }, // Winnipeg
       "saskatchewan": { lat: 52.1332, lng: -106.6700 }, // Regina
-      // Subnationals - Australia (capitals)
+
+      // Australia - state capitals
       "new south wales": { lat: -33.8688, lng: 151.2093 }, // Sydney
       "victoria": { lat: -37.8136, lng: 144.9631 }, // Melbourne
       "queensland": { lat: -27.4698, lng: 153.0251 }, // Brisbane
